@@ -1,0 +1,33 @@
+// Shared animation, included only by sections using appScrollReveal.
+
+@mixin section-reveal {
+  .scroll-reveal-ready[data-reveal],
+  .scroll-reveal-ready [data-reveal] {
+    opacity: var(--reveal-progress, 1);
+    translate: calc((1 - var(--reveal-progress, 1)) * -120px) 0;
+  }
+
+  .scroll-reveal-ready[data-reveal='right'],
+  .scroll-reveal-ready [data-reveal='right'] {
+    translate: calc((1 - var(--reveal-progress, 1)) * 120px) 0;
+  }
+
+  .scroll-reveal-ready[data-reveal='bottom'],
+  .scroll-reveal-ready [data-reveal='bottom'] {
+    translate: 0 calc((1 - var(--reveal-progress, 1)) * 120px);
+  }
+
+  .scroll-reveal-ready[data-reveal]:focus-within,
+  .scroll-reveal-ready:focus-within [data-reveal] {
+    opacity: 1;
+    translate: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-reveal-ready[data-reveal],
+    .scroll-reveal-ready [data-reveal] {
+      opacity: 1 !important;
+      translate: none !important;
+    }
+  }
+}

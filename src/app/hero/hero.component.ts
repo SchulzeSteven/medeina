@@ -5,7 +5,7 @@ import { SiteStateService } from '../site-state.service';
   standalone: true,
   imports: [],
   templateUrl: './hero.component.html',
-  host: { class: 'section-component' },
+  styleUrl: './hero.component.scss',
 })
 export class HeroComponent {
   readonly state = inject(SiteStateService);

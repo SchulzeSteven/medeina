@@ -6,7 +6,7 @@ import { ScrollRevealDirective } from '../scroll-reveal.directive';
   standalone: true,
   imports: [ScrollRevealDirective],
   templateUrl: './events.component.html',
-  host: { class: 'section-component' },
+  styleUrl: './events.component.scss',
 })
 export class EventsComponent {
   readonly state = inject(SiteStateService);

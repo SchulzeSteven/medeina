@@ -1,2 +1,234 @@
-/* Compatibility for a preview that still uses the previous stylesheet path. */
-@use './styles.css';
+// Global theme, resets, typography and reusable layout/button styles.
+
+:root {
+  --cream: #faf7f2;
+  --ink: #25251f;
+  --olive: #697447;
+  --olive-dark: #505c35;
+  --brown: #765035;
+  --sand: #eadcc9;
+  --button-bg: teal;
+  --button-hover: #e7c579;
+  --serif: Georgia, 'Times New Roman', serif;
+  --header-height: 80px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + 16px);
+}
+
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--ink);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18.2px;
+  line-height: 1.6;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #b08d60;
+  outline-offset: 4px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1.12;
+}
+
+h2 {
+  font-size: 41.6px;
+}
+
+h3 {
+  font-size: 22.1px;
+}
+
+.container {
+  width: min(1157px, calc(100% - 64px));
+  margin-inline: auto;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18.2px;
+  border: 1px solid transparent;
+  border-radius: 30px;
+  background-color: var(--button-bg);
+  color: white;
+  padding: 13px 29.9px;
+  font-size: 15.6px;
+  line-height: 1.45;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.button:hover {
+  background-color: var(--button-hover);
+  color: var(--ink);
+  transform: translateY(-1.3px);
+}
+
+.button-outline {
+  border-color: var(--button-bg);
+  background-color: var(--button-bg);
+  color: white;
+}
+
+.button-outline:hover {
+  border-color: var(--button-hover);
+  background-color: var(--button-hover);
+  color: var(--ink);
+}
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+}
+
+.muted {
+  color: #b78e67;
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 15.6px;
+}
+
+.section-heading .eyebrow {
+  color: #6f4527;
+  margin-bottom: 6.5px;
+}
+
+.section-heading h2 {
+  font-size: 44.2px;
+  letter-spacing: -0.6px;
+}
+
+@media (max-width: 1280px) {
+  .container {
+    width: calc(100% - 64px);
+  }
+}
+
+@media (max-width: 900px) {
+  html {
+    scroll-padding-top: calc(var(--header-height) + 16px);
+  }
+
+  .container {
+    width: calc(100% - 40px);
+  }
+
+  .section-heading {
+    margin-bottom: 26px;
+  }
+
+  .section-heading h2 {
+    font-size: 40.3px;
+  }
+
+  .desktop-break {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+.container {
+  width: min(1157px, calc(100% - 64px));
+}
+
+.button {
+  min-height: 57.2px;
+  text-align: center;
+}
+
+@media (max-width: 1280px) {
+  html {
+    scroll-padding-top: calc(var(--header-height) + 16px);
+  }
+}
+
+@media (max-width: 900px) {
+  .container {
+    width: calc(100% - 40px);
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+
+  .section-heading h2 {
+    font-size: clamp(33.8px, 9.1vw, 41.6px);
+  }
+}
+
+@media (max-width: 1280px) {
+  html {
+    scroll-padding-top: calc(var(--header-height) + 16px);
+  }
+}
+
+html {
+  scrollbar-gutter: stable;
+}

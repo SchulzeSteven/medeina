@@ -1,0 +1,59 @@
+@use '../../styles/scroll-reveal';
+
+:host {
+  display: block;
+}
+
+.slogans {
+  padding-block: 40px 48px;
+}
+
+.slogan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.slogan-card {
+  margin: 0;
+  padding: 20px 24px 24px;
+  background: #fff;
+  border: 1px solid #eadcc9;
+  border-radius: 16px;
+  text-align: center;
+}
+
+.slogan-card img {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  height: auto;
+  margin-inline: auto;
+}
+
+.slogan-card figcaption {
+  margin-top: 12px;
+  font-family: var(--serif);
+  font-size: 23px;
+  line-height: 1.4;
+  color: var(--brown);
+}
+
+@media (max-width: 600px) {
+  .slogan-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .slogan-card {
+    padding: 16px 20px 24px;
+  }
+
+  .slogan-card img {
+    max-width: 300px;
+  }
+}
+
+@include scroll-reveal.section-reveal;

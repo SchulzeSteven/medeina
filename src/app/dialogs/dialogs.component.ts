@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [FormsModule],
   templateUrl: './dialogs.component.html',
-  host: { class: 'section-component' },
+  styleUrl: './dialogs.component.scss',
 })
 export class DialogsComponent {
   readonly state = inject(SiteStateService);

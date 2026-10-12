@@ -6,7 +6,7 @@ import { SiteStateService } from '../site-state.service';
   standalone: true,
   imports: [],
   templateUrl: './benefits.component.html',
-  host: { class: 'section-component' },
+  styleUrl: './benefits.component.scss',
 })
 export class BenefitsComponent {
   readonly state = inject(SiteStateService);

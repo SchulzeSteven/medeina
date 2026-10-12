@@ -43,7 +43,7 @@ const labels = {
   selector: 'app-google-reviews',
   standalone: true,
   templateUrl: './google-reviews.component.html',
-  styleUrl: './google-reviews.component.css',
+  styleUrl: './google-reviews.component.scss',
 })
 export class GoogleReviewsComponent {
   readonly language = input.required<Language>();

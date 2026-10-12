@@ -38,7 +38,7 @@ const labels = {
   selector: 'app-instagram-feed',
   standalone: true,
   templateUrl: './instagram-feed.component.html',
-  styleUrl: './instagram-feed.component.css',
+  styleUrl: './instagram-feed.component.scss',
 })
 export class InstagramFeedComponent {
   readonly language = input.required<Language>();

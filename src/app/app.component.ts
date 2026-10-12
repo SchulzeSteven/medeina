@@ -17,5 +17,6 @@ import { ReviewsComponent } from './reviews/reviews.component';
   standalone: true,
   imports: [HeaderComponent, FooterComponent, DialogsComponent, HeroComponent, BenefitsComponent, AboutComponent, SlogansComponent, OffersComponent, QuoteComponent, EventsComponent, InstagramComponent, ReviewsComponent],
   templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {}

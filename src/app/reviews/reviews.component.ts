@@ -6,7 +6,7 @@ import { GoogleReviewsComponent } from '../google-reviews.component';
   standalone: true,
   imports: [GoogleReviewsComponent],
   templateUrl: './reviews.component.html',
-  host: { class: 'section-component' },
+  styleUrl: './reviews.component.scss',
 })
 export class ReviewsComponent {
   readonly state = inject(SiteStateService);

@@ -1,0 +1,83 @@
+:host {
+  display: block;
+}
+
+.quote-banner {
+  position: relative;
+  background: linear-gradient(90deg, #eac39475, #ffcd8b95), url('/images/retreats.png') center 56% / cover;
+  height: 208px;
+}
+
+.quote-content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 84.5px;
+}
+
+.quote-content blockquote {
+  text-align: center;
+  font-family: var(--serif);
+  font-size: 29.9px;
+  line-height: 1.35;
+  margin: 0;
+  color: #272718;
+}
+
+.quote-content .button {
+  white-space: nowrap;
+  box-shadow: 0 0 20px #fff3cb;
+}
+
+@media (max-width: 1280px) {
+  .quote-content {
+    gap: 45.5px;
+  }
+
+  .quote-content blockquote {
+    font-size: 28.6px;
+  }
+}
+
+@media (max-width: 900px) {
+  .quote-banner {
+    height: 299px;
+  }
+
+  .quote-content {
+    flex-direction: column;
+    gap: 26px;
+    justify-content: center;
+  }
+
+  .quote-content blockquote {
+    font-size: 31.2px;
+  }
+}
+
+.quote-content blockquote {
+  min-width: 0;
+}
+
+@media (max-width: 1280px) {
+  .quote-content {
+    gap: 31.2px;
+  }
+}
+
+@media (max-width: 900px) {
+  .quote-banner {
+    height: auto;
+    min-height: 299px;
+    padding-block: 41.6px;
+  }
+
+  .quote-content {
+    gap: 26px;
+  }
+}
+
+.quote-content blockquote {
+  max-width: 806px;
+}

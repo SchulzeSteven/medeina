@@ -5,7 +5,7 @@ import { SiteStateService } from '../site-state.service';
   standalone: true,
   imports: [],
   templateUrl: './footer.component.html',
-  host: { class: 'section-component' },
+  styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
   readonly state = inject(SiteStateService);

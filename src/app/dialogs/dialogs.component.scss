@@ -1,0 +1,141 @@
+:host {
+  display: block;
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: #252b21a6;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 31.2px;
+  backdrop-filter: blur(6.5px);
+}
+
+.modal {
+  background: var(--cream);
+  width: min(676px, 100%);
+  max-height: 90dvh;
+  overflow: auto;
+  border-radius: 16px;
+  padding: 52px;
+  position: relative;
+  box-shadow: 0 20px 80px #0003;
+}
+
+.modal-close {
+  position: absolute;
+  top: 13px;
+  right: 19.5px;
+  font-size: 36.4px;
+  background: transparent;
+  border: 0;
+  color: var(--brown);
+}
+
+.modal h2 {
+  font-size: 41.6px;
+  margin: 15.6px 0 23.4px;
+}
+
+.modal > p:not(.eyebrow) {
+  margin-bottom: 31.2px;
+  color: #615b51;
+}
+
+.modal form {
+  display: grid;
+  gap: 16.9px;
+}
+
+.modal label {
+  display: grid;
+  gap: 6.5px;
+  font-size: 15.6px;
+  color: #64553f;
+}
+
+input,
+select,
+textarea {
+  background: #fffdf9;
+  border: 1px solid #d9ccbb;
+  border-radius: 6px;
+  padding: 13px;
+  width: 100%;
+  color: var(--ink);
+}
+
+textarea {
+  resize: vertical;
+}
+
+.form-note {
+  font-size: 14.3px;
+  color: #7d7264;
+}
+
+.confirmation {
+  text-align: center;
+}
+
+.confirmation > span {
+  display: block;
+  font-size: 52px;
+  color: var(--olive);
+}
+
+.confirmation p {
+  margin: 19.5px 0 31.2px;
+  font-size: 16.9px;
+}
+
+@media (max-width: 900px) {
+  .modal {
+    padding: 45.5px 31.2px;
+  }
+}
+
+.modal h2 {
+  overflow-wrap: anywhere;
+}
+
+.modal-close {
+  min-width: 57.2px;
+  min-height: 57.2px;
+}
+
+input,
+select,
+textarea {
+  font-size: 20.8px;
+  min-width: 0;
+}
+
+.modal {
+  max-height: calc(100dvh - 62.4px);
+  overscroll-behavior: contain;
+}
+
+@media (max-width: 600px) {
+  .modal-backdrop {
+    padding: 15.6px;
+  }
+
+  .modal {
+    padding: 62.4px 26px 31.2px;
+    max-height: calc(100dvh - 31.2px);
+  }
+
+  .modal h2 {
+    font-size: 36.4px;
+  }
+}
+
+.legal-draft {
+  padding: 12px 16px;
+  background: #efe7da;
+  border-radius: 8px;
+}

@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+:host {
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+}
+
+#main-content {
+  flex: 1;
+}
+
+#main-content:focus {
+  outline: none;
+}
+
+main {
+  overflow-x: clip;
+}

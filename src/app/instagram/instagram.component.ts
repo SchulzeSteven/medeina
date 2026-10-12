@@ -6,7 +6,7 @@ import { InstagramFeedComponent } from '../instagram-feed.component';
   standalone: true,
   imports: [InstagramFeedComponent],
   templateUrl: './instagram.component.html',
-  host: { class: 'section-component' },
+  styleUrl: './instagram.component.scss',
 })
 export class InstagramComponent {
   readonly state = inject(SiteStateService);

@@ -22,11 +22,11 @@ Die Seite läuft unter http://localhost:4200. Produktionsbuild: `npm run build`;
 - Lokal vorbereiteter E-Mail-Entwurf an `medeinaa@hotmail.com`, ohne Backend oder Datenversand
 - Vorhandene Bilder und Logos, ohne externe Bilddienste oder Fonts
 
-Texte und Veranstaltungen: `src/app/translations.ts`. Die Sections liegen in eigenen Komponenten unter `src/app/`. Farben und Layout: `src/styles.css`. Bildausschnitte können mit `node scripts/extract-images.cjs` aus der ursprünglichen Vorlage erneut erzeugt werden.
+Texte und Veranstaltungen: `src/app/translations.ts`. Die Sections liegen in eigenen Komponenten unter `src/app/`. Globale Farben und Grundregeln: `src/styles.scss`. Die Styles jeder Section liegen in ihrer jeweiligen `*.component.scss`-Datei. Bildausschnitte können mit `node scripts/extract-images.cjs` aus der ursprünglichen Vorlage erneut erzeugt werden.
 
 ## Komponenten auf einer Seite
 
-Alle Sections werden gemeinsam in `src/app/app.component.html` in ihrer ursprünglichen Reihenfolge eingebunden. Jede Section besitzt eine eigene TypeScript- und HTML-Datei unter `src/app/`:
+Alle Sections werden gemeinsam in `src/app/app.component.html` in ihrer ursprünglichen Reihenfolge eingebunden. Jede Section besitzt eigene TypeScript-, HTML- und SCSS-Dateien unter `src/app/`:
 
 - `hero/`: Startbereich
 - `benefits/`: Vorteile
@@ -39,6 +39,8 @@ Alle Sections werden gemeinsam in `src/app/app.component.html` in ihrer ursprün
 - `reviews/`: Google-Bewertungen
 
 Header, Footer und Dialoge haben ebenfalls eigene Komponenten. `site-state.service.ts` hält die gemeinsame Sprache und die Daten für Angebotsdetails und Terminanfragen. Die Navigation scrollt per Sprunglink zu den Sections derselben Seite und schließt das mobile Menü. Es gibt keine separaten Section-Seiten und keinen Router.
+
+Die Styles von Header, Footer, Dialogen und Sections sind über `styleUrl` an ihre Komponenten gebunden. `src/styles.scss` enthält nur Theme-Variablen, HTML-/Body-Grundregeln, Typografie und gemeinsam genutzte Container-, Button- und Überschriftenstile. Das SCSS-Mixin in `src/styles/_scroll-reveal.scss` wird von den animierten Sections eingebunden. Die bestehenden Instagram- und Google-Bewertungskomponenten verwenden ebenfalls eigene SCSS-Dateien.
 
 Die Website wurde auf den Stand vor der Übernahme von `MEDEINA_Originaltexte.txt` zurückgesetzt. Impressum und Datenschutz enthalten weiterhin die damaligen Platzhalter. Die Veranstaltungsdaten sind Layoutbeispiele; der Hinweis ist über „Alle Termine anzeigen“ erreichbar.
 

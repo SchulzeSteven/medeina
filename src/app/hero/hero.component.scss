@@ -1,0 +1,311 @@
+:host {
+  display: block;
+}
+
+.light {
+  border-color: var(--button-bg);
+  color: white;
+}
+
+.light:hover {
+  border-color: var(--button-hover);
+  background-color: var(--button-hover);
+  color: var(--ink);
+}
+
+.hero {
+  height: 100svh;
+  position: relative;
+  overflow: hidden;
+  background: #45452a;
+  color: #fffaf2;
+}
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 230%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+@media (width > 2560px) {
+  .hero-photo {
+    height: 300%;
+  }
+}
+
+@media (880px < width < 1440px) {
+  .hero-photo {
+    height: 150%;
+  }
+}
+
+@media (width <= 880px) {
+  .hero-photo {
+    height: 100%;
+  }
+}
+
+.hero-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #363923e6 0%, #42472c80 25%, transparent 45%);
+}
+
+.hero-content {
+  position: relative;
+  padding: 105.3px 13px 0;
+}
+
+.hero .eyebrow {
+  margin-bottom: 15.6px;
+  color: #fff;
+}
+
+.hero h1 {
+  font-size: 67.6px;
+  line-height: 0.99;
+  letter-spacing: -1.6px;
+}
+
+.hero-description {
+  margin-top: 19.5px;
+  font-size: 18.2px;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  gap: 15.6px;
+  margin-top: 28.6px;
+}
+
+.hero .button {
+  padding: 13px 31.2px;
+}
+
+.hero-wave {
+  position: absolute;
+  bottom: -1.3px;
+  left: 0;
+  width: 100%;
+  height: 104px;
+  fill: #f3eadc;
+}
+
+@media (min-width: 1200px) {
+  .hero-content {
+    padding-top: 117px;
+  }
+
+  .hero h1 {
+    font-size: 78px;
+  }
+
+  .hero-description {
+    font-size: 20.8px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-shade {
+    background: linear-gradient(90deg, #34382180, transparent 65%);
+  }
+
+  .hero-content {
+    padding: 143px 0 0;
+  }
+
+  .hero h1 {
+    font-size: 62.4px;
+  }
+
+  .hero-description {
+    font-size: 18.2px;
+    max-width: 403px;
+  }
+
+  .hero-wave {
+    height: 65px;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero h1 {
+    font-size: 53.3px;
+  }
+
+  .actions {
+    gap: 10.4px;
+  }
+
+  .hero .button {
+    padding: 13px 19.5px;
+    font-size: 14.3px;
+  }
+}
+
+.hero-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 15.6px 13px 52px;
+}
+
+.hero h1 {
+  font-size: clamp(39px, 7.5svh, 78px);
+}
+
+@media (max-width: 900px) {
+  .hero-content {
+    padding: 15.6px 0 39px;
+  }
+
+  .hero h1 {
+    font-size: clamp(36.4px, 6.8svh, 62.4px);
+  }
+}
+
+@media (max-height: 750px) {
+  .hero .eyebrow {
+    margin-bottom: 10.4px;
+  }
+
+  .hero-description {
+    margin-top: 13px;
+    font-size: 15.6px;
+  }
+
+  .hero .actions {
+    margin-top: 15.6px;
+  }
+
+  .hero .button {
+    padding: 10.4px 19.5px;
+    font-size: 14.3px;
+  }
+}
+
+.hero {
+  min-height: 546px;
+}
+
+.hero-content {
+  min-height: 546px;
+  padding-block: 52px 104px;
+}
+
+.hero h1 {
+  font-size: clamp(39px, min(7.5svh, 7.8vw), 78px);
+  max-width: 100%;
+}
+
+.actions {
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .hero h1 {
+    font-size: clamp(39px, 9.1vw, 62.4px);
+  }
+
+  .hero-content {
+    padding-block: 52px 84.5px;
+  }
+
+  .hero-shade {
+    background: linear-gradient(90deg, #343821d9, #34382166 70%, #34382133);
+  }
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: clamp(39px, 10.4vw, 49.4px);
+    letter-spacing: -0.9px;
+  }
+
+  .hero .eyebrow {
+    font-size: 11.7px;
+    letter-spacing: 2.6px;
+  }
+
+  .hero-description {
+    font-size: 18.2px;
+  }
+
+  .hero .button {
+    padding: 13px 18.2px;
+    font-size: 15.6px;
+  }
+
+  .actions {
+    gap: 13px;
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    height: auto;
+    min-height: 468px;
+  }
+
+  .hero-content {
+    min-height: 468px;
+    padding-block: 41.6px 78px;
+  }
+
+  .hero h1 {
+    font-size: 46.8px;
+  }
+
+  .hero-wave {
+    height: 52px;
+  }
+}
+
+.hero-signature {
+  font-family: var(--serif);
+  font-size: 33.8px;
+  color: #f2d594;
+  margin-bottom: 26px;
+}
+
+.hero-signature span {
+  display: block;
+  font-size: 16.9px;
+  letter-spacing: 1.3px;
+  color: #fffaf2;
+}
+
+.hero-description {
+  max-width: 507px;
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero-signature {
+    margin-bottom: 13px;
+    font-size: 26px;
+  }
+}
+
+.hero {
+  height: auto;
+  min-height: max(100svh, 546px);
+}
+
+.hero-content {
+  height: auto;
+  min-height: max(100svh, 546px);
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero,
+  .hero-content {
+    min-height: 468px;
+  }
+}
