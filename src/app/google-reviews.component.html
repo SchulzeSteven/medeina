@@ -1,0 +1,110 @@
+<section class="reviews-section container" aria-labelledby="reviews-title">
+  <div class="reviews-heading">
+    <div>
+      <p class="eyebrow muted">Medeina · Çağla Mutlu</p>
+      <h2 id="reviews-title">{{ copy().title }}</h2>
+      <p>{{ copy().description }}</p>
+    </div>
+    @if (orderedReviews().length > 0) {
+      <div class="reviews-controls">
+        <button
+          type="button"
+          [disabled]="!canGoBack()"
+          [attr.aria-label]="copy().previous"
+          aria-controls="google-review-track"
+          (click)="move(-1)"
+        >
+          ←
+        </button>
+        <button
+          type="button"
+          [disabled]="!canGoForward()"
+          [attr.aria-label]="copy().next"
+          aria-controls="google-review-track"
+          (click)="move(1)"
+        >
+          →
+        </button>
+      </div>
+    }
+  </div>
+  @if (orderedReviews().length > 0) {
+    <p class="reviews-order">{{ copy().newest }} · {{ copy().swipe }}</p>
+    <div
+      #reviewTrack
+      id="google-review-track"
+      class="reviews-track"
+      tabindex="0"
+      role="region"
+      [attr.aria-label]="copy().title"
+      (scroll)="updateControls(reviewTrack)"
+      (keydown.arrowleft)="$event.preventDefault(); move(-1)"
+      (keydown.arrowright)="$event.preventDefault(); move(1)"
+    >
+      @for (review of orderedReviews(); track review.id) {
+        <article class="review-card">
+          <header class="review-author">
+            @if (review.authorPhotoUrl) {
+              <img
+                [src]="review.authorPhotoUrl"
+                alt=""
+                width="44"
+                height="44"
+                loading="lazy"
+                referrerpolicy="no-referrer"
+              />
+            } @else {
+              <span class="review-avatar" aria-hidden="true">{{ review.author.charAt(0) }}</span>
+            }
+            <div>
+              @if (review.authorUrl) {
+                <a [href]="review.authorUrl" target="_blank" rel="noopener noreferrer">
+                  {{ review.author }}
+                </a>
+              } @else {
+                <span>{{ review.author }}</span>
+              }
+              <time [attr.datetime]="review.publishedAt">{{ dateLabel(review.publishedAt) }}</time>
+            </div>
+          </header>
+          <div
+            class="review-stars"
+            role="img"
+            [attr.aria-label]="review.rating + ' ' + copy().stars"
+          >
+            @for (star of [1, 2, 3, 4, 5]; track star) {
+              <span [class.filled]="star <= review.rating" aria-hidden="true">★</span>
+            }
+          </div>
+          @if (review.text) {
+            <blockquote>{{ review.text }}</blockquote>
+          }
+          <a
+            class="review-source"
+            [href]="review.sourceUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {{ copy().original }} ↗
+          </a>
+        </article>
+      }
+    </div>
+  } @else {
+    <div class="reviews-empty">
+      <span class="review-quote" aria-hidden="true">“</span>
+      <h3>{{ copy().emptyTitle }}</h3>
+      <p>{{ copy().empty }}</p>
+    </div>
+  }
+  @if (profileUrl(); as url) {
+    <a
+      class="button button-outline reviews-all"
+      [href]="url"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {{ copy().all }} ↗
+    </a>
+  }
+</section>

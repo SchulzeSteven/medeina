@@ -1,0 +1,69 @@
+<section
+  class="instagram-section container"
+  aria-labelledby="instagram-title"
+  [attr.aria-busy]="loading()"
+>
+  <div class="instagram-heading">
+    <p class="eyebrow muted">Instagram · @medeinaland</p>
+    <h2 id="instagram-title">{{ copy.title }}</h2>
+    <p>{{ copy.description }}</p>
+  </div>
+  @if (posts().length > 0) {
+    <div class="instagram-grid">
+      @for (post of posts(); track post.id) {
+        <a
+          class="instagram-post"
+          [href]="post.permalink"
+          target="_blank"
+          rel="noopener noreferrer"
+          [attr.aria-label]="copy.open + (post.caption ? ': ' + post.caption : '')"
+        >
+          <div class="instagram-image">
+            <img
+              [src]="post.imageUrl"
+              [alt]="post.caption || copy.photo"
+              width="600"
+              height="600"
+              loading="lazy"
+              decoding="async"
+              referrerpolicy="no-referrer"
+            />
+            @if (post.mediaType !== 'IMAGE') {
+              <span class="instagram-media-type">
+                {{ post.mediaType === 'VIDEO' ? copy.video : copy.album }}
+              </span>
+            }
+            <span class="instagram-open" aria-hidden="true">↗</span>
+          </div>
+          @if (post.caption) {
+            <p class="instagram-caption">{{ post.caption }}</p>
+          }
+        </a>
+      }
+    </div>
+  } @else {
+    <div class="instagram-empty" role="status">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        aria-hidden="true"
+      >
+        <rect x="3" y="3" width="18" height="18" rx="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+      </svg>
+      <p>{{ loading() ? copy.loading : failed() ? copy.error : copy.empty }}</p>
+    </div>
+  }
+  <a
+    class="button button-outline instagram-profile"
+    [href]="profileUrl"
+    target="_blank"
+    rel="noopener noreferrer"
+  >
+    {{ copy.profile }}
+    <span aria-hidden="true">↗</span>
+  </a>
+</section>

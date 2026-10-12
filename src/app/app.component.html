@@ -1,0 +1,415 @@
+<header class="site-header">
+  <a
+    href="#start"
+    class="brand"
+    [attr.aria-label]="'Medeina · Çağla Mutlu – ' + copy.home"
+    (click)="navigateTo('start', $event)"
+  >
+    <img
+      class="brand-wordmark"
+      src="images/name.png"
+      alt="Medeina by Çağla Mutlu"
+      width="1920"
+      height="480"
+    />
+  </a>
+  <button
+    class="menu-toggle"
+    type="button"
+    (click)="menuOpen.set(!menuOpen())"
+    [attr.aria-expanded]="menuOpen()"
+    aria-controls="navigation"
+    [attr.aria-label]="copy.menu"
+  >
+    {{ menuOpen() ? '×' : '☰' }}
+  </button>
+  <nav
+    id="navigation"
+    [class.open]="menuOpen()"
+    [attr.aria-label]="copy.navigation"
+    (keydown.escape)="navigate()"
+  >
+    <a href="#ueber-mich" (click)="navigateTo('ueber-mich', $event)">{{ copy.about }}</a>
+    <a href="#angebote" (click)="navigateTo('angebote', $event)">{{ copy.offersLabel }}</a>
+    <a href="#angebote" (click)="navigateTo('angebote', $event)">{{ copy.seminars }}</a>
+    <a href="#termine" (click)="navigateTo('termine', $event)">{{ copy.dates }}</a>
+    <button class="nav-link" (click)="book('contact')">{{ copy.contact }}</button>
+  </nav>
+  <button class="button header-book" (click)="book()">
+    {{ copy.book }}
+  </button>
+  <div class="language-switch" role="group" [attr.aria-label]="copy.language">
+    <button
+      type="button"
+      lang="de"
+      aria-label="Deutsch"
+      [attr.aria-pressed]="language() === 'de'"
+      (click)="setLanguage('de')"
+    >
+      DE
+    </button>
+    <span aria-hidden="true">/</span>
+    <button
+      type="button"
+      lang="tr"
+      aria-label="Türkçe"
+      [attr.aria-pressed]="language() === 'tr'"
+      (click)="setLanguage('tr')"
+    >
+      TR
+    </button>
+  </div>
+</header>
+<main>
+  <section class="hero" id="start" aria-labelledby="hero-title">
+    <img class="hero-photo" src="images/hero.png" alt="" aria-hidden="true" fetchpriority="high" />
+    <div class="hero-shade"></div>
+    <div class="hero-content container">
+      <p class="hero-signature">
+        Medeina
+        <span>by Çağla Mutlu</span>
+      </p>
+      <p class="eyebrow">{{ copy.heroEyebrow }}</p>
+      <h1 id="hero-title">
+        {{ copy.heroTitle }}
+        <br />
+        {{ copy.heroTitleEnd }}
+      </h1>
+      <p class="hero-description">{{ copy.heroDescription }}</p>
+      <div class="actions">
+        <button class="button" (click)="book()">
+          {{ copy.bookIntro }}
+          <span aria-hidden="true">⟶</span>
+        </button>
+        <a
+          class="button button-outline light"
+          href="#ueber-mich"
+          (click)="navigateTo('ueber-mich', $event)"
+        >
+          {{ copy.more }}
+        </a>
+      </div>
+    </div>
+    <svg class="hero-wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 58C130 108 210 80 390 96S820 142 1020 104S1270-20 1440 3V120H0Z" />
+    </svg>
+  </section>
+  <section class="benefits" [attr.aria-label]="copy.benefitsLabel">
+    <div class="container benefit-grid">
+      @for (benefit of benefits; track $index) {
+        <div class="benefit">
+          <span class="benefit-icon" aria-hidden="true">{{ benefit.icon }}</span>
+          <span>{{ benefit.title }}</span>
+        </div>
+      }
+    </div>
+  </section>
+  <section
+    id="ueber-mich"
+    class="about container"
+    aria-labelledby="about-title"
+    appScrollReveal
+    data-reveal="left"
+  >
+    <div class="about-image-group">
+      <img
+        class="main-portrait"
+        src="images/about.png"
+        [alt]="copy.aboutPhoto"
+        width="397"
+        height="274"
+        loading="lazy"
+      />
+      <img
+        class="about-photo about-inset"
+        src="images/main.jpeg"
+        [alt]="copy.mainPortraitAlt"
+        width="1037"
+        height="1516"
+        loading="lazy"
+      />
+    </div>
+    <div class="about-content">
+      <p class="eyebrow muted">{{ copy.about }} · Çağla Mutlu</p>
+      <h2 id="about-title">
+        {{ copy.aboutTitle }}
+        <br />
+        {{ copy.aboutTitleEnd }}
+      </h2>
+      <p>{{ copy.aboutText }}</p>
+      <button class="button" (click)="selectedOfferId.set('about')">
+        {{ copy.aboutMore }}
+        <span aria-hidden="true">⟶</span>
+      </button>
+    </div>
+    <aside class="personal-note">
+      <svg viewBox="0 0 110 160" fill="none" aria-hidden="true">
+        <path
+          d="M15 155Q70 90 76 5M45 112Q7 79 28 50Q43 75 45 112M58 88Q92 87 104 66Q75 65 58 88M67 59Q40 35 52 12Q67 34 67 59M72 38Q96 33 103 16Q82 16 72 38"
+        />
+      </svg>
+      <p>{{ copy.personalNote }}</p>
+    </aside>
+  </section>
+  <section
+    id="slogans"
+    class="slogans container"
+    aria-labelledby="slogans-title"
+    appScrollReveal
+    data-reveal="right"
+  >
+    <div class="section-heading">
+      <p class="eyebrow muted">Medeina</p>
+      <h2 id="slogans-title">{{ copy.slogansTitle }}</h2>
+    </div>
+    <div class="slogan-grid">
+      <figure class="slogan-card">
+        <img
+          src="images/slogan1.png"
+          alt="The key to transformation is in you"
+          lang="en"
+          width="2636"
+          height="2948"
+          loading="lazy"
+        />
+        <figcaption>{{ copy.sloganTransformation }}</figcaption>
+      </figure>
+      <figure class="slogan-card">
+        <img
+          src="images/slogan2.png"
+          alt="Heal. Grow. Bloom."
+          lang="en"
+          width="2637"
+          height="2948"
+          loading="lazy"
+        />
+        <figcaption>{{ copy.sloganBloom }}</figcaption>
+      </figure>
+    </div>
+  </section>
+  <section
+    id="angebote"
+    class="offers"
+    aria-labelledby="offers-title"
+    appScrollReveal
+    data-reveal="bottom"
+  >
+    <div class="wide-container">
+      <div class="section-heading">
+        <p class="eyebrow">{{ copy.myOffers }}</p>
+        <h2 id="offers-title">{{ copy.offersTitle }}</h2>
+      </div>
+      <div class="offer-grid">
+        @for (offer of offers; track offer.id) {
+          <article class="offer-card">
+            <img
+              [src]="'images/' + offer.image + '.png'"
+              [alt]="offer.title"
+              width="228"
+              height="140"
+              loading="lazy"
+            />
+            <div class="offer-content">
+              <h3>{{ offer.title }}</h3>
+              <p>{{ offer.text }}</p>
+              <button class="offer-link" (click)="selectedOfferId.set(offer.id)">
+                {{ copy.more }}
+                <span aria-hidden="true">⟶</span>
+              </button>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+  </section>
+  <section class="quote-banner">
+    <div class="container quote-content">
+      <blockquote>{{ copy.quote }}</blockquote>
+      <button class="button" (click)="book()">
+        {{ copy.start }}
+        <span aria-hidden="true">⟶</span>
+      </button>
+    </div>
+  </section>
+  <section
+    id="termine"
+    class="events container"
+    aria-labelledby="events-title"
+    appScrollReveal
+    data-reveal="left"
+  >
+    <div class="events-heading">
+      <div>
+        <p class="eyebrow muted">{{ copy.currentDates }}</p>
+        <h2 id="events-title">{{ copy.eventsTitle }}</h2>
+      </div>
+      <button
+        class="button button-outline"
+        (click)="showAllEvents.set(!showAllEvents())"
+        [attr.aria-expanded]="showAllEvents()"
+      >
+        {{ showAllEvents() ? copy.hideNotice : copy.allDates }}
+      </button>
+    </div>
+    <div class="event-grid">
+      @for (event of events; track event.id) {
+        <button class="event-card" (click)="book(event.id)">
+          <span class="event-date">
+            <span>{{ event.day }}</span>
+            {{ event.month }}
+          </span>
+          <span class="event-description">
+            <strong>{{ event.title }}</strong>
+            <span>{{ event.type }}</span>
+            <span>{{ event.place }}</span>
+          </span>
+          <span class="event-arrow" aria-hidden="true">⟶</span>
+        </button>
+      }
+    </div>
+    @if (showAllEvents()) {
+      <p class="event-notice">
+        {{ copy.eventNotice }}
+        <button class="text-link" (click)="book('dates')">{{ copy.askDates }} ⟶</button>
+      </p>
+    }
+  </section>
+  <app-instagram-feed [language]="language()" />
+  <app-google-reviews
+    [language]="language()"
+    [reviews]="googleReviews"
+    [profileUrl]="googleReviewsProfileUrl"
+  />
+</main>
+<footer class="site-footer">
+  <div class="container footer-content">
+    <img src="images/mainlogo.png" alt="Medeina" width="250" height="250" loading="lazy" />
+    <div>
+      <p class="footer-name">Medeina · Çağla Mutlu</p>
+      <p>{{ copy.footer }}</p>
+      <nav class="footer-links" [attr.aria-label]="copy.contact">
+        <a href="https://www.instagram.com/medeinaland/" target="_blank" rel="noopener noreferrer">
+          <svg
+            class="footer-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+          </svg>
+          Instagram
+        </a>
+        <a href="mailto:medeinaa@hotmail.com">
+          <svg
+            class="footer-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="m4 7 8 6 8-6" />
+          </svg>
+          {{ copy.emailLink }}
+        </a>
+      </nav>
+    </div>
+    <a
+      class="footer-back-top"
+      href="#start"
+      [attr.aria-label]="copy.home"
+      (click)="navigateTo('start', $event)"
+    >
+      Medeina ↑
+    </a>
+  </div>
+  <div class="container footer-bottom">
+    <p>Copyright © 2026 Çağla Mutlu</p>
+    <nav class="footer-legal" [attr.aria-label]="copy.imprint + ' · ' + copy.privacy">
+      <button type="button" (click)="openLegal('imprint')">{{ copy.imprint }}</button>
+      <button type="button" (click)="openLegal('privacy')">{{ copy.privacy }}</button>
+    </nav>
+  </div>
+</footer>
+@if (selectedOffer() || bookingOpen() || legalDocument()) {
+  <div class="modal-backdrop" (click)="close()" (keydown.escape)="close()">
+    <section
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dialog-title"
+      (click)="$event.stopPropagation()"
+    >
+      <button class="modal-close" autofocus [attr.aria-label]="copy.close" (click)="close()">
+        ×
+      </button>
+      @if (legalDocument(); as document) {
+        <p class="eyebrow muted">Medeina · Çağla Mutlu</p>
+        <h2 id="dialog-title">{{ document === 'imprint' ? copy.imprint : copy.privacy }}</h2>
+        <p class="legal-draft">{{ copy.legalDraft }}</p>
+        <p>{{ document === 'imprint' ? copy.imprintPending : copy.privacyPending }}</p>
+        <a class="button button-outline" href="mailto:medeinaa@hotmail.com">{{ copy.emailLink }}</a>
+      }
+      @if (selectedOffer(); as offer) {
+        <p class="eyebrow muted">{{ copy.development }}</p>
+        <h2 id="dialog-title">{{ offer.title }}</h2>
+        <p>{{ offer.detail }}</p>
+        <button class="button" (click)="book(offer.id)">
+          {{ copy.enquire }}
+          <span aria-hidden="true">⟶</span>
+        </button>
+      }
+      @if (bookingOpen()) {
+        <p class="eyebrow muted">{{ copy.firstStep }}</p>
+        <h2 id="dialog-title">{{ copy.dialogTitle }}</h2>
+        @if (!requestPrepared()) {
+          <p>{{ copy.dialogText }}</p>
+          <form ngNativeValidate (ngSubmit)="prepareRequest()">
+            <label>
+              {{ copy.name }}
+              <input name="name" [(ngModel)]="name" required autocomplete="name" />
+            </label>
+            <label>
+              {{ copy.email }}
+              <input name="email" type="email" [(ngModel)]="email" required autocomplete="email" />
+            </label>
+            <label>
+              {{ copy.interest }}
+              <select name="interest" [(ngModel)]="interest">
+                <option [value]="interest">{{ interestLabel }}</option>
+                @for (offer of offers; track offer.id) {
+                  @if (offer.id !== interest) {
+                    <option [value]="offer.id">{{ offer.title }}</option>
+                  }
+                }
+              </select>
+            </label>
+            <label>
+              {{ copy.message }}
+              <textarea name="message" [(ngModel)]="message" rows="3"></textarea>
+            </label>
+            <p class="form-note">{{ copy.demo }}</p>
+            <button class="button" type="submit">
+              {{ copy.prepare }}
+              <span aria-hidden="true">⟶</span>
+            </button>
+          </form>
+        } @else {
+          <div class="confirmation">
+            <span aria-hidden="true">✓</span>
+            <h3>{{ copy.prepared }}</h3>
+            <p>{{ copy.confirmation }}</p>
+            <a class="button" [href]="emailHref">{{ copy.openEmail }} ⟶</a>
+          </div>
+        }
+      }
+    </section>
+  </div>
+}
