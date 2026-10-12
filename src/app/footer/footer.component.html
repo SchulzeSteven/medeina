@@ -1,0 +1,56 @@
+<footer class="site-footer">
+  <div class="container footer-content">
+    <img src="images/mainlogo.png" alt="Medeina" width="250" height="250" loading="lazy" />
+    <div>
+      <p class="footer-name">Medeina · Çağla Mutlu</p>
+      <p>{{ state.copy.footer }}</p>
+      <nav class="footer-links" [attr.aria-label]="state.copy.contact">
+        <a href="https://www.instagram.com/medeinaland/" target="_blank" rel="noopener noreferrer">
+          <svg
+            class="footer-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            aria-hidden="true"
+          >
+            <rect x="3" y="3" width="18" height="18" rx="5" />
+            <circle cx="12" cy="12" r="4" />
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+          </svg>
+          Instagram
+        </a>
+        <a href="mailto:medeinaa@hotmail.com">
+          <svg
+            class="footer-icon"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <rect x="3" y="5" width="18" height="14" rx="2" />
+            <path d="m4 7 8 6 8-6" />
+          </svg>
+          {{ state.copy.emailLink }}
+        </a>
+      </nav>
+    </div>
+    <a
+      class="footer-back-top"
+      href="#start" (click)="state.navigateTo('start', $event)"
+      [attr.aria-label]="state.copy.home"
+    >
+      Medeina ↑
+    </a>
+  </div>
+  <div class="container footer-bottom">
+    <p>Copyright © 2026 Çağla Mutlu</p>
+    <nav class="footer-legal" [attr.aria-label]="state.copy.imprint + ' · ' + state.copy.privacy">
+      <button type="button" (click)="state.openLegal('imprint')">{{ state.copy.imprint }}</button>
+      <button type="button" (click)="state.openLegal('privacy')">{{ state.copy.privacy }}</button>
+    </nav>
+  </div>
+</footer>

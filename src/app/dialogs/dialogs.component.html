@@ -1,0 +1,75 @@
+@if (state.selectedOffer() || state.bookingOpen() || state.legalDocument()) {
+  <div class="modal-backdrop" (click)="state.close()" (keydown.escape)="state.close()">
+    <section
+      class="modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="dialog-title"
+      (click)="$event.stopPropagation()"
+    >
+      <button class="modal-close" autofocus [attr.aria-label]="state.copy.close" (click)="state.close()">
+        ×
+      </button>
+      @if (state.legalDocument(); as document) {
+        <p class="eyebrow muted">Medeina · Çağla Mutlu</p>
+        <h2 id="dialog-title">{{ document === 'imprint' ? state.copy.imprint : state.copy.privacy }}</h2>
+        <p class="legal-draft">{{ state.copy.legalDraft }}</p>
+        <p>{{ document === 'imprint' ? state.copy.imprintPending : state.copy.privacyPending }}</p>
+        <a class="button button-outline" href="mailto:medeinaa@hotmail.com">{{ state.copy.emailLink }}</a>
+      }
+      @if (state.selectedOffer(); as offer) {
+        <p class="eyebrow muted">{{ state.copy.development }}</p>
+        <h2 id="dialog-title">{{ offer.title }}</h2>
+        <p>{{ offer.detail }}</p>
+        <button class="button" (click)="state.book(offer.id)">
+          {{ state.copy.enquire }}
+          <span aria-hidden="true">⟶</span>
+        </button>
+      }
+      @if (state.bookingOpen()) {
+        <p class="eyebrow muted">{{ state.copy.firstStep }}</p>
+        <h2 id="dialog-title">{{ state.copy.dialogTitle }}</h2>
+        @if (!state.requestPrepared()) {
+          <p>{{ state.copy.dialogText }}</p>
+          <form ngNativeValidate (ngSubmit)="state.prepareRequest()">
+            <label>
+              {{ state.copy.name }}
+              <input name="name" [(ngModel)]="state.name" required autocomplete="name" />
+            </label>
+            <label>
+              {{ state.copy.email }}
+              <input name="email" type="email" [(ngModel)]="state.email" required autocomplete="email" />
+            </label>
+            <label>
+              {{ state.copy.interest }}
+              <select name="interest" [(ngModel)]="state.interest">
+                <option [value]="state.interest">{{ state.interestLabel }}</option>
+                @for (offer of state.offers; track offer.id) {
+                  @if (offer.id !== state.interest) {
+                    <option [value]="offer.id">{{ offer.title }}</option>
+                  }
+                }
+              </select>
+            </label>
+            <label>
+              {{ state.copy.message }}
+              <textarea name="message" [(ngModel)]="state.message" rows="3"></textarea>
+            </label>
+            <p class="form-note">{{ state.copy.demo }}</p>
+            <button class="button" type="submit">
+              {{ state.copy.prepare }}
+              <span aria-hidden="true">⟶</span>
+            </button>
+          </form>
+        } @else {
+          <div class="confirmation">
+            <span aria-hidden="true">✓</span>
+            <h3>{{ state.copy.prepared }}</h3>
+            <p>{{ state.copy.confirmation }}</p>
+            <a class="button" [href]="state.emailHref">{{ state.copy.openEmail }} ⟶</a>
+          </div>
+        }
+      }
+    </section>
+  </div>
+}

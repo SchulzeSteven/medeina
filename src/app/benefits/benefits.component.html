@@ -1,0 +1,10 @@
+<section class="benefits" [attr.aria-label]="state.copy.benefitsLabel">
+  <div class="container benefit-grid">
+    @for (benefit of state.benefits; track $index) {
+      <div class="benefit">
+        <span class="benefit-icon" aria-hidden="true">{{ benefit.icon }}</span>
+        <span>{{ benefit.title }}</span>
+      </div>
+    }
+  </div>
+</section>

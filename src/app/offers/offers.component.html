@@ -1,0 +1,35 @@
+<section
+  id="angebote"
+  class="offers"
+  aria-labelledby="offers-title"
+  appScrollReveal
+  data-reveal="bottom"
+>
+  <div class="wide-container">
+    <div class="section-heading">
+      <p class="eyebrow">{{ state.copy.myOffers }}</p>
+      <h2 id="offers-title">{{ state.copy.offersTitle }}</h2>
+    </div>
+    <div class="offer-grid">
+      @for (offer of state.offers; track offer.id) {
+        <article class="offer-card">
+          <img
+            [src]="'images/' + offer.image + '.png'"
+            [alt]="offer.title"
+            width="228"
+            height="140"
+            loading="lazy"
+          />
+          <div class="offer-content">
+            <h3>{{ offer.title }}</h3>
+            <p>{{ offer.text }}</p>
+            <button class="offer-link" (click)="state.selectedOfferId.set(offer.id)">
+              {{ state.copy.more }}
+              <span aria-hidden="true">⟶</span>
+            </button>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,43 @@
+<section
+  id="termine"
+  class="events container"
+  aria-labelledby="events-title"
+  appScrollReveal
+  data-reveal="left"
+>
+  <div class="events-heading">
+    <div>
+      <p class="eyebrow muted">{{ state.copy.currentDates }}</p>
+      <h2 id="events-title">{{ state.copy.eventsTitle }}</h2>
+    </div>
+    <button
+      class="button button-outline"
+      (click)="state.showAllEvents.set(!state.showAllEvents())"
+      [attr.aria-expanded]="state.showAllEvents()"
+    >
+      {{ state.showAllEvents() ? state.copy.hideNotice : state.copy.allDates }}
+    </button>
+  </div>
+  <div class="event-grid">
+    @for (event of state.events; track event.id) {
+      <button class="event-card" (click)="state.book(event.id)">
+        <span class="event-date">
+          <span>{{ event.day }}</span>
+          {{ event.month }}
+        </span>
+        <span class="event-description">
+          <strong>{{ event.title }}</strong>
+          <span>{{ event.type }}</span>
+          <span>{{ event.place }}</span>
+        </span>
+        <span class="event-arrow" aria-hidden="true">⟶</span>
+      </button>
+    }
+  </div>
+  @if (state.showAllEvents()) {
+    <p class="event-notice">
+      {{ state.copy.eventNotice }}
+      <button class="text-link" (click)="state.book('dates')">{{ state.copy.askDates }} ⟶</button>
+    </p>
+  }
+</section>

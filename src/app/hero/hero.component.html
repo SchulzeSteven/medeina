@@ -1,0 +1,32 @@
+<section class="hero" id="start" aria-labelledby="hero-title">
+  <img class="hero-photo" src="images/hero.png" alt="" aria-hidden="true" fetchpriority="high" />
+  <div class="hero-shade"></div>
+  <div class="hero-content container">
+    <p class="hero-signature">
+      Medeina
+      <span>by Çağla Mutlu</span>
+    </p>
+    <p class="eyebrow">{{ state.copy.heroEyebrow }}</p>
+    <h1 id="hero-title">
+      {{ state.copy.heroTitle }}
+      <br />
+      {{ state.copy.heroTitleEnd }}
+    </h1>
+    <p class="hero-description">{{ state.copy.heroDescription }}</p>
+    <div class="actions">
+      <button class="button" (click)="state.book()">
+        {{ state.copy.bookIntro }}
+        <span aria-hidden="true">⟶</span>
+      </button>
+      <a
+        class="button button-outline light"
+        href="#ueber-mich" (click)="state.navigateTo('ueber-mich', $event)"
+      >
+        {{ state.copy.more }}
+      </a>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 58C130 108 210 80 390 96S820 142 1020 104S1270-20 1440 3V120H0Z" />
+  </svg>
+</section>

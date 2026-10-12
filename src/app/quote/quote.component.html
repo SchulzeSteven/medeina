@@ -1,0 +1,9 @@
+<section class="quote-banner">
+  <div class="container quote-content">
+    <blockquote>{{ state.copy.quote }}</blockquote>
+    <button class="button" (click)="state.book()">
+      {{ state.copy.start }}
+      <span aria-hidden="true">⟶</span>
+    </button>
+  </div>
+</section>

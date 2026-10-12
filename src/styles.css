@@ -1440,6 +1440,27 @@ html {
   }
 }
 
+/* Shared layout around the section components. */
+app-root {
+  display: flex;
+  min-height: 100dvh;
+  flex-direction: column;
+}
+app-header {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.section-component {
+  display: block;
+}
+#main-content {
+  flex: 1;
+}
+#main-content:focus {
+  outline: none;
+}
 /* Directional reveals follow scroll progress and reverse along the same path. */
 main {
   overflow-x: clip;

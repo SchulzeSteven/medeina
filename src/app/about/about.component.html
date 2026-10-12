@@ -1,0 +1,47 @@
+<section
+  id="ueber-mich"
+  class="about container"
+  aria-labelledby="about-title"
+  appScrollReveal
+  data-reveal="left"
+>
+  <div class="about-image-group">
+    <img
+      class="main-portrait"
+      src="images/about.png"
+      [alt]="state.copy.aboutPhoto"
+      width="397"
+      height="274"
+      loading="lazy"
+    />
+    <img
+      class="about-photo about-inset"
+      src="images/main.jpeg"
+      [alt]="state.copy.mainPortraitAlt"
+      width="1037"
+      height="1516"
+      loading="lazy"
+    />
+  </div>
+  <div class="about-content">
+    <p class="eyebrow muted">{{ state.copy.about }} · Çağla Mutlu</p>
+    <h2 id="about-title">
+      {{ state.copy.aboutTitle }}
+      <br />
+      {{ state.copy.aboutTitleEnd }}
+    </h2>
+    <p>{{ state.copy.aboutText }}</p>
+    <button class="button" (click)="state.selectedOfferId.set('about')">
+      {{ state.copy.aboutMore }}
+      <span aria-hidden="true">⟶</span>
+    </button>
+  </div>
+  <aside class="personal-note">
+    <svg viewBox="0 0 110 160" fill="none" aria-hidden="true">
+      <path
+        d="M15 155Q70 90 76 5M45 112Q7 79 28 50Q43 75 45 112M58 88Q92 87 104 66Q75 65 58 88M67 59Q40 35 52 12Q67 34 67 59M72 38Q96 33 103 16Q82 16 72 38"
+      />
+    </svg>
+    <p>{{ state.copy.personalNote }}</p>
+  </aside>
+</section>
