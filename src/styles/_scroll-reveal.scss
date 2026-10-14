@@ -23,7 +23,7 @@
     translate: none;
   }
 
-  @media (prefers-reduced-motion: reduce) {
+  @media (width < 600px), (prefers-reduced-motion: reduce) {
     .scroll-reveal-ready[data-reveal],
     .scroll-reveal-ready [data-reveal] {
       opacity: 1 !important;

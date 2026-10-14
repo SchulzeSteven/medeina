@@ -1,9 +1,21 @@
 <section class="quote-banner">
   <div class="container quote-content">
-    <blockquote>{{ state.copy.quote }}</blockquote>
-    <button class="button" (click)="state.book()">
-      {{ state.copy.start }}
-      <span aria-hidden="true">⟶</span>
-    </button>
+    <img
+      class="quote-portrait"
+      src="images/cagla2.jpeg"
+      [alt]="state.copy.caglaForestAlt"
+      width="1133"
+      height="1385"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="quote-message">
+      <blockquote>{{ state.copy.quote }}</blockquote>
+      <p class="quote-signature">Çağla Mutlu <span>· Medeina</span></p>
+      <button class="button" (click)="state.book()">
+        {{ state.copy.start }}
+        <span aria-hidden="true">⟶</span>
+      </button>
+    </div>
   </div>
 </section>

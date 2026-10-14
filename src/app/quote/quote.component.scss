@@ -3,81 +3,75 @@
 }
 
 .quote-banner {
-  position: relative;
-  background: linear-gradient(90deg, #eac39475, #ffcd8b95), url('/images/retreats.png') center 56% / cover;
-  height: 208px;
+  padding-block: 48px;
+  background: linear-gradient(120deg, #eadcc9, #f5ebdc 65%, #eed8ba);
 }
 
 .quote-content {
-  height: 100%;
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 320px) minmax(0, 1fr);
   align-items: center;
-  justify-content: flex-end;
-  gap: 84.5px;
+  gap: clamp(32px, 6vw, 80px);
 }
 
-.quote-content blockquote {
-  text-align: center;
-  font-family: var(--serif);
-  font-size: 29.9px;
-  line-height: 1.35;
-  margin: 0;
-  color: #272718;
+.quote-portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: 140px 140px 14px 14px;
+  box-shadow: 0 12px 32px #76503520;
 }
 
-.quote-content .button {
-  white-space: nowrap;
-  box-shadow: 0 0 20px #fff3cb;
-}
-
-@media (max-width: 1280px) {
-  .quote-content {
-    gap: 45.5px;
-  }
-
-  .quote-content blockquote {
-    font-size: 28.6px;
-  }
-}
-
-@media (max-width: 900px) {
-  .quote-banner {
-    height: 299px;
-  }
-
-  .quote-content {
-    flex-direction: column;
-    gap: 26px;
-    justify-content: center;
-  }
-
-  .quote-content blockquote {
-    font-size: 31.2px;
-  }
-}
-
-.quote-content blockquote {
+.quote-message {
   min-width: 0;
+  text-align: center;
 }
 
-@media (max-width: 1280px) {
-  .quote-content {
-    gap: 31.2px;
-  }
+blockquote {
+  margin: 0;
+  color: var(--brown);
+  font-family: var(--serif);
+  font-size: clamp(28px, 3vw, 38px);
+  line-height: 1.4;
+}
+
+.quote-signature {
+  margin-top: 20px;
+  color: var(--brown);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.quote-signature span {
+  white-space: nowrap;
+}
+
+.button {
+  margin-top: 28px;
 }
 
 @media (max-width: 900px) {
-  .quote-banner {
-    height: auto;
-    min-height: 299px;
-    padding-block: 41.6px;
-  }
-
   .quote-content {
-    gap: 26px;
+    grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
+    gap: 32px;
   }
 }
 
-.quote-content blockquote {
-  max-width: 806px;
+@media (max-width: 600px) {
+  .quote-banner {
+    padding-block: 36px;
+  }
+
+  .quote-content {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .quote-portrait {
+    width: min(100%, 260px);
+    margin-inline: auto;
+  }
 }
