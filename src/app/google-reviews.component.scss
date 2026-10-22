@@ -1,10 +1,10 @@
 :host {
   display: block;
-  background: linear-gradient(180deg, var(--cream), #f0e8dc);
+  background: #eee8de;
 }
 
 .reviews-section {
-  padding-block: 64px;
+  padding-block: var(--section-space);
 }
 
 .reviews-heading {
@@ -37,13 +37,15 @@
   background-color: var(--button-bg);
   color: white;
   font-size: 24px;
-  transition: background 0.2s;
+  transition: background-color var(--duration-ui) ease;
 }
 
+@media (hover: hover) and (pointer: fine) {
 .reviews-controls button:hover:not(:disabled) {
   background-color: var(--button-hover);
   border-color: var(--button-hover);
-  color: var(--ink);
+  color: white;
+}
 }
 
 .reviews-controls button:disabled {
@@ -109,9 +111,11 @@
   font-size: 24px;
 }
 
+@media (hover: hover) and (pointer: fine) {
 .review-author a:hover,
 .review-source:hover {
   text-decoration: underline;
+}
 }
 
 .review-author time {
@@ -188,7 +192,7 @@
 
 @media (max-width: 600px) {
   .reviews-section {
-    padding-block: 40px;
+    padding-block: var(--section-space);
   }
 
   .reviews-heading {

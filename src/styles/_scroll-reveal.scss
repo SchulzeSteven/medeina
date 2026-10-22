@@ -1,33 +1,7 @@
-// Shared animation, included only by sections using appScrollReveal.
-
+// Default-visible, one-time entrances. Only the observer marks offscreen content.
 @mixin section-reveal {
-  .scroll-reveal-ready[data-reveal],
-  .scroll-reveal-ready [data-reveal] {
-    opacity: var(--reveal-progress, 1);
-    translate: calc((1 - var(--reveal-progress, 1)) * -120px) 0;
-  }
-
-  .scroll-reveal-ready[data-reveal='right'],
-  .scroll-reveal-ready [data-reveal='right'] {
-    translate: calc((1 - var(--reveal-progress, 1)) * 120px) 0;
-  }
-
-  .scroll-reveal-ready[data-reveal='bottom'],
-  .scroll-reveal-ready [data-reveal='bottom'] {
-    translate: 0 calc((1 - var(--reveal-progress, 1)) * 120px);
-  }
-
-  .scroll-reveal-ready[data-reveal]:focus-within,
-  .scroll-reveal-ready:focus-within [data-reveal] {
-    opacity: 1;
-    translate: none;
-  }
-
-  @media (width < 600px), (prefers-reduced-motion: reduce) {
-    .scroll-reveal-ready[data-reveal],
-    .scroll-reveal-ready [data-reveal] {
-      opacity: 1 !important;
-      translate: none !important;
-    }
-  }
+  .reveal-target { opacity: 1; transform: none; transition: opacity var(--duration-reveal) var(--ease-out), transform var(--duration-reveal) var(--ease-out); }
+  .reveal-target.reveal-pending { opacity: 0; transform: translateY(18px); }
+  .reveal-target.reveal-pending:focus-within { opacity: 1; transform: none; transition: none; }
+  @media (prefers-reduced-motion: reduce) { .reveal-target, .reveal-target.reveal-pending { opacity: 1; transform: none; transition: none; } }
 }

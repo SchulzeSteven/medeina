@@ -26,7 +26,7 @@ Texte und Veranstaltungen: `src/app/translations.ts`. Die Sections liegen in eig
 
 ## Komponenten auf einer Seite
 
-Alle Sections werden gemeinsam in `src/app/app.component.html` in ihrer ursprünglichen Reihenfolge eingebunden. Jede Section besitzt eigene TypeScript-, HTML- und SCSS-Dateien unter `src/app/`:
+Die Startseiten-Sections werden in `src/app/home/home.component.html` in ihrer ursprünglichen Reihenfolge eingebunden. `src/app/app.component.html` enthält den gemeinsamen Header, Router-Ausgang, Footer und Kontaktdialog. Jede Section besitzt eigene TypeScript-, HTML- und SCSS-Dateien unter `src/app/`:
 
 - `hero/`: Startbereich
 - `benefits/`: Vorteile
@@ -38,7 +38,7 @@ Alle Sections werden gemeinsam in `src/app/app.component.html` in ihrer ursprün
 - `instagram/`: Instagram-Bereich
 - `reviews/`: Google-Bewertungen
 
-Header, Footer und Dialoge haben ebenfalls eigene Komponenten. `site-state.service.ts` hält die gemeinsame Sprache und die Daten für Angebotsdetails und Terminanfragen. Die Navigation scrollt per Sprunglink zu den Sections derselben Seite und schließt das mobile Menü. Es gibt keine separaten Section-Seiten und keinen Router.
+Header, Footer und Dialoge haben ebenfalls eigene Komponenten. `site-state.service.ts` hält die gemeinsame Sprache und die Daten für Angebotsdetails und Terminanfragen. Die Navigation führt per Sprunglink zu den Startseiten-Sections oder per Angular Router zu den Angebotsseiten und schließt das mobile Menü. Sprunglinks funktionieren auch von den Angebotsseiten zurück zur Startseite.
 
 Die Styles von Header, Footer, Dialogen und Sections sind über `styleUrl` an ihre Komponenten gebunden. `src/styles.scss` enthält nur Theme-Variablen, HTML-/Body-Grundregeln, Typografie und gemeinsam genutzte Container-, Button- und Überschriftenstile. Das SCSS-Mixin in `src/styles/_scroll-reveal.scss` wird von den animierten Sections eingebunden. Die bestehenden Instagram- und Google-Bewertungskomponenten verwenden ebenfalls eigene SCSS-Dateien.
 
@@ -67,3 +67,64 @@ Der Profil-Link `https://www.instagram.com/medeinaland/` ist gesetzt. Es wurden 
 Eine echte serverseitige Verbindung muss `{ posts: [...] }` mit den Feldern `id`, `permalink`, `imageUrl`, `caption`, `publishedAt` und `mediaType` liefern. `publishedAt` enthält einen ISO-Zeitstempel; `mediaType` ist `IMAGE`, `VIDEO` oder `CAROUSEL_ALBUM`. Für Video-Beiträge ist `imageUrl` das Vorschaubild. Die Komponente prüft die Daten, sortiert nach Veröffentlichungszeit und begrenzt die Anzeige auf sechs Beiträge. Bei Ladefehlern bleibt der direkte Profil-Link verfügbar. Meta-Zugangsdaten gehören nicht in den Browser-Code.
 
 Für die automatische Anzeige fehlt noch eine autorisierte Instagram-Kontoverbindung oder ein tatsächlich eingerichtetes Feed-Widget. Informationen zur Kontoverbindung: [Meta Instagram API](https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/).
+
+## Seminare, Ausbildungen und Sessions
+
+Im Header führt ein gemeinsamer Eintrag „Angebote“ zur Seite `/angebote`. Dort wählt man zuerst „Seminare & Ausbildungen“ (13 Angebote) oder „Sessions & Coaching“ (10 Angebote) und danach eine Methode. Auch die bestehenden Angebotskarten für Seminare und Einzelcoaching führen zu diesen Übersichten. Die anderen Angebote und die bisherigen Sections bleiben erhalten.
+
+- `src/app/catalog/catalog.data.ts`: zentrale Datenquelle mit stabilen IDs, DE/TR-Feldern, Kategorien, Inhalten, belegten Voraussetzungen, Dauer, Format und Ausbildungsstufen. Keine Preise.
+- `src/app/catalog/catalog.component.*`: responsive Übersicht, Kategorie-Filter, Detailansichten, Sprachumschaltung und Anfragebuttons. Die Übersichten und Details sind reguläre Seiten mit eigenen URLs. Navigation per Tastatur, Browser-Zurück und das Öffnen der Links in einem neuen Tab werden unterstützt.
+- `site-state.service.ts`: Navigation zu den Angebotsseiten sowie Übernahme der Angebots-ID in das vorhandene Kontaktformular. Die ausgewählte Sprache bestimmt auch den Angebotsnamen im E-Mail-Entwurf. Das Formular versendet weiterhin keine Daten automatisch.
+
+Alle Terminlisten sind zunächst leer. Bestätigte Termine lassen sich pro Angebot in `dates` ergänzen: `startsAt` (ISO-Zeitstempel), optional `endsAt`, `location` mit DE/TR und optional `registrationUrl`. Die Detailansicht zeigt vorhandene Termine; Registrierungslinks sind für eine spätere Erweiterung vorbereitet. Die bestehenden Veranstaltungskarten bleiben separate Layoutbeispiele.
+
+Die Angebotsübersicht verwendet Angular Router mit sauberen URLs ohne Routing-Hash:
+
+- `/`: bestehende Startseite
+- `/angebote`: gemeinsame Einstiegseite
+- `/angebote?bereich=seminars`: Seminare und Ausbildungen
+- `/angebote?bereich=sessions`: Sessions und Coaching
+- `/angebote/:id`: Detailseiten, z. B. `/angebote/basic-dna` und `/angebote/weekly-erstgespraech`
+- Bisherige `/seminare`- und `/sessions-coaching`-URLs werden auf die gemeinsame Seite beziehungsweise die neue Detailadresse weitergeleitet.
+
+Zunächst erscheinen ausschließlich die im jeweiligen Bereich verfügbaren Methoden als Auswahlkarten. Nach Auswahl werden nur die zugehörigen Angebote angezeigt. Die Methode steht im optionalen Query-Parameter `kategorie`; fehlende oder ungültige Werte führen zur Methodenübersicht. Detailseiten führen zurück zu ihrer eigenen Kategorie. Bei einer Anfrage aus einem konkreten Angebot enthält die Auswahl im Kontaktformular ausschließlich Angebote derselben Methode und Angebotsart. Fehlende oder ungültige `bereich`-Werte führen zur Bereichsauswahl. Detailseiten bestimmen Bereich und Methode anhand des Angebots selbst. Unbekannte Detail-IDs führen zur gemeinsamen Einstiegseite. Unbekannte Seiten führen zur Startseite. Header und Footer bleiben auf allen Seiten sichtbar. Seitentitel und Meta-Beschreibung wechseln passend zu Angebot und Sprache; beim Zurückkehren wird die Startseiten-Metadatenfassung wiederhergestellt. Die Katalogkomponente wird bei Bedarf geladen.
+
+### Hosting für direkte Seitenaufrufe
+
+Der Angular-Entwicklungsserver unterstützt die neuen URLs. Im Produktionshosting muss für Pfade ohne vorhandene Datei die `index.html` ausgeliefert werden, damit direkte Aufrufe und Neuladen von beispielsweise `/angebote/basic-dna` funktionieren. Eine aktive Hosting-Konfiguration liegt in diesem Repository nicht vor. Bei Nginx ist die übliche Regel `try_files $uri $uri/ /index.html;`; bei statischen Hostingdiensten ist entsprechend ein SPA-Fallback einzurichten. Vorhandene Assets müssen direkt ausgeliefert werden. Es wurde keine unbekannte Hosting-Konfiguration überschrieben.
+
+### Noch zu bestätigende Angaben
+
+- Aktuelle Termine und Verfügbarkeit sämtlicher Angebote; konkrete Veranstaltungsorte und Formate, soweit nicht angegeben.
+- Fehlende Seminardauern sowie Voraussetzungen, die in den gelieferten Angaben nicht genannt sind. Ein fehlender Wert bedeutet ausdrücklich nicht „keine Voraussetzungen“.
+- Pflanzenseminar: konkrete Inhalte, Dauer, Voraussetzungen und Format.
+- Reiki-Reihen: Inhalte, Dauer, Voraussetzungen und Format je Stufe.
+- JAAS / InnerSpeak™: Originalangaben zu Zertifikaten; es wird kein Zertifikat versprochen.
+- Weitere Details zur Methode und zum Ablauf der sieben Tore des Bewusstseins.
+- Rechtliche Prüfung des Hinweises zu spirituellen Methoden in Deutsch und Türkisch vor Veröffentlichung.
+
+### Hinweisfassung zur rechtlichen Prüfung
+
+Der in `catalogCopy` enthaltene deutsche und türkische Hinweis ist ein **ungeprüfter redaktioneller Entwurf**. Er beschreibt die Angebote als spirituelle beziehungsweise ergänzende Praxis für persönliche Entwicklung und Reflexion, grenzt medizinische Diagnosen und die Behandlung von Erkrankungen ab und verspricht keine Wirkungen oder Heilungen. Eine rechtlich geprüfte Freigabe liegt nicht vor. Vor Veröffentlichung ist der Wortlaut einschließlich der türkischen Übersetzung rechtlich prüfen und gegebenenfalls ersetzen zu lassen.
+
+## Upload auf steven-schulze.com/medeina/
+
+Mit `npm run build:medeina` einen Produktionsbuild für den Unterordner erstellen.
+Den gesamten **Inhalt** von `dist/medaina/browser/` mit FileZilla in den
+Serverordner `medeina` hochladen, einschließlich `.htaccess` und `images/`.
+Die `index.html` muss direkt im Serverordner `medeina` liegen.
+Danach `https://steven-schulze.com/medeina/` öffnen.
+
+Die mitgelieferte `.htaccess` ermöglicht auf Apache mit aktiviertem mod_rewrite
+auch direkte Aufrufe und Neuladen von Angebotsseiten. Bei Nginx muss das Hosting
+stattdessen einen SPA-Fallback auf `/medeina/index.html` einrichten.
+
+## Store-Vorschau
+
+`/store` zeigt sechs DE/TR-Beispielprodukte mit vorhandenen Website-Bildern als Platzhaltern.
+Kategorien werden über `?kategorie=` gefiltert, Details liegen unter `/store/:id`.
+Produkte und Übersetzungen stehen in `src/app/store/store.data.ts`.
+Alle Produkte und Euro-Preise sind als Beispiele gekennzeichnet. Beispielpreise werden in `priceCents` pro Produkt gepflegt. Die Produktanfrage
+öffnet einen E-Mail-Entwurf. Es gibt noch keinen Checkout, Zahlung, Download oder Bestellversand.
+Vor einem Verkaufsstart sind das echte Sortiment, eigene Produktbilder, Preise,
+Produktinformationen und der Bestellablauf einzurichten.

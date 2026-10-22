@@ -1,10 +1,6 @@
 import { afterNextRender, DestroyRef, Directive, ElementRef, inject } from '@angular/core';
-import { scrollRevealProgress } from './scroll-reveal-progress';
 
-@Directive({
-  selector: '[appScrollReveal]',
-  standalone: true,
-})
+@Directive({ selector: '[appScrollReveal]', standalone: true })
 export class ScrollRevealDirective {
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
   private readonly destroyRef = inject(DestroyRef);
@@ -12,67 +8,39 @@ export class ScrollRevealDirective {
   constructor() {
     afterNextRender(() => {
       const view = this.element.ownerDocument.defaultView;
-      if (!view) return;
-
-      const motionPreference = view.matchMedia('(prefers-reduced-motion: reduce)');
-      const narrowViewport = view.matchMedia('(width < 600px)');
-      let frame: number | null = null;
-      let previousProgress = -1;
-
-      const update = () => {
-        frame = null;
-        const animationEnabled = !motionPreference.matches && !narrowViewport.matches;
-        this.element.classList.toggle('scroll-reveal-ready', animationEnabled);
-
-        if (!animationEnabled) {
-          this.element.style.setProperty('--reveal-progress', '1');
-          previousProgress = 1;
-          return;
+      if (!view?.IntersectionObserver) return;
+      const preference = view.matchMedia('(prefers-reduced-motion: reduce)');
+      // Reveal meaningful groups instead of moving entire page sections.
+      const groups = this.element.querySelectorAll<HTMLElement>(
+        '.about-image-group, .about-content, .slogan-card, .offer-card, .events-heading, .event-card',
+      );
+      const targets = groups.length ? Array.from(groups) : [this.element];
+      const observer = new view.IntersectionObserver(entries => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.remove('reveal-pending');
+          observer.unobserve(entry.target);
         }
-
-        const remainingScroll = Math.max(
-          0,
-          this.element.ownerDocument.documentElement.scrollHeight - view.scrollY - view.innerHeight,
-        );
-        // Measure the original section position when the entire section moves vertically.
-        const verticalOffset =
-          this.element.dataset['reveal'] === 'bottom'
-            ? Number.parseFloat(
-                view.getComputedStyle(this.element).translate.split(' ')[1] ?? '0',
-              ) || 0
-            : 0;
-        const progress = scrollRevealProgress(
-          this.element.getBoundingClientRect().top - verticalOffset,
-          view.innerHeight,
-          remainingScroll,
-        );
-
-        if (progress !== previousProgress) {
-          this.element.style.setProperty('--reveal-progress', progress.toFixed(4));
-          previousProgress = progress;
+      }, { rootMargin: '0px 0px 32px 0px', threshold: 0 });
+      for (const target of targets) {
+        target.classList.add('reveal-target');
+        if (!preference.matches && target.getBoundingClientRect().top > view.innerHeight) {
+          target.classList.add('reveal-pending');
+          observer.observe(target);
         }
+      }
+      const showAll = () => {
+        for (const target of targets) target.classList.remove('reveal-pending');
+        observer.disconnect();
       };
-
-      // Coalesce scroll events into one update per painted frame.
-      const scheduleUpdate = () => {
-        if (frame === null) frame = view.requestAnimationFrame(update);
-      };
-
-      view.addEventListener('scroll', scheduleUpdate, { passive: true });
-      view.addEventListener('resize', scheduleUpdate);
-      motionPreference.addEventListener('change', scheduleUpdate);
-      narrowViewport.addEventListener('change', scheduleUpdate);
-      const resizeObserver = view.ResizeObserver ? new view.ResizeObserver(scheduleUpdate) : null;
-      resizeObserver?.observe(this.element.ownerDocument.body);
-      update();
-
+      const onPreferenceChange = () => { if (preference.matches) showAll(); };
+      const onFocus = () => showAll();
+      preference.addEventListener('change', onPreferenceChange);
+      this.element.addEventListener('focusin', onFocus);
       this.destroyRef.onDestroy(() => {
-        view.removeEventListener('scroll', scheduleUpdate);
-        view.removeEventListener('resize', scheduleUpdate);
-        motionPreference.removeEventListener('change', scheduleUpdate);
-        narrowViewport.removeEventListener('change', scheduleUpdate);
-        resizeObserver?.disconnect();
-        if (frame !== null) view.cancelAnimationFrame(frame);
+        observer.disconnect();
+        preference.removeEventListener('change', onPreferenceChange);
+        this.element.removeEventListener('focusin', onFocus);
       });
     });
   }

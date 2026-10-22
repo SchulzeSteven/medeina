@@ -7,7 +7,7 @@
       aria-labelledby="dialog-title"
       (click)="$event.stopPropagation()"
     >
-      <button class="modal-close" autofocus [attr.aria-label]="state.copy.close" (click)="state.close()">
+      <button class="modal-close" [attr.aria-label]="state.copy.close" (click)="state.close()">
         ×
       </button>
       @if (state.legalDocument(); as document) {
@@ -40,17 +40,11 @@
               {{ state.copy.email }}
               <input name="email" type="email" [(ngModel)]="state.email" required autocomplete="email" />
             </label>
-            <label>
-              {{ state.copy.interest }}
-              <select name="interest" [(ngModel)]="state.interest">
-                <option [value]="state.interest">{{ state.interestLabel }}</option>
-                @for (offer of state.offers; track offer.id) {
-                  @if (offer.id !== state.interest) {
-                    <option [value]="offer.id">{{ offer.title }}</option>
-                  }
-                }
-              </select>
-            </label>
+            <app-interest-select
+              [label]="state.copy.interest"
+              [options]="state.inquiryOffers"
+              [(value)]="state.interest"
+            />
             <label>
               {{ state.copy.message }}
               <textarea name="message" [(ngModel)]="state.message" rows="3"></textarea>

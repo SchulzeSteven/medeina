@@ -3,7 +3,7 @@
 }
 
 .instagram-section {
-  padding-block: 64px;
+  padding-block: var(--section-space);
   text-align: center;
 }
 
@@ -48,11 +48,13 @@
   height: 100%;
   display: block;
   object-fit: cover;
-  transition: transform 0.3s;
+  transition: transform var(--duration-reveal) var(--ease-out);
 }
 
+@media (hover: hover) and (pointer: fine) {
 .instagram-post:hover img {
   transform: scale(1.04);
+}
 }
 
 .instagram-media-type {
@@ -125,7 +127,7 @@
 
 @media (max-width: 500px) {
   .instagram-section {
-    padding-block: 40px;
+    padding-block: var(--section-space);
   }
 
   .instagram-heading h2 {

@@ -5,7 +5,7 @@
   appScrollReveal
   data-reveal="bottom"
 >
-  <div class="wide-container">
+  <div class="container">
     <div class="section-heading">
       <p class="eyebrow">{{ state.copy.myOffers }}</p>
       <h2 id="offers-title">{{ state.copy.offersTitle }}</h2>
@@ -23,7 +23,7 @@
           <div class="offer-content">
             <h3>{{ offer.title }}</h3>
             <p>{{ offer.text }}</p>
-            <button class="offer-link" (click)="state.selectedOfferId.set(offer.id)">
+            <button class="offer-link" (click)="offer.id === 'seminars' ? state.navigateCatalog() : offer.id === 'coaching' ? state.navigateCatalog('sessions') : state.selectedOfferId.set(offer.id)">
               {{ state.copy.more }}
               <span aria-hidden="true">⟶</span>
             </button>

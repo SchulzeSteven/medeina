@@ -1,6 +1,6 @@
-<header class="site-header">
+<header class="site-header" (keydown.escape)="state.navigate(); menuToggle.focus(); $event.stopPropagation()">
   <a
-    href="#start" (click)="state.navigateTo('start', $event)"
+    href="./" (click)="state.navigateTo('start', $event)"
     class="brand"
     [attr.aria-label]="'Medeina · Çağla Mutlu – ' + state.copy.home"
   >
@@ -13,6 +13,7 @@
     />
   </a>
   <button
+    #menuToggle
     class="menu-toggle"
     type="button"
     (click)="state.menuOpen.set(!state.menuOpen())"
@@ -20,19 +21,19 @@
     aria-controls="navigation"
     [attr.aria-label]="state.copy.menu"
   >
-    {{ state.menuOpen() ? '×' : '☰' }}
+    <span class="menu-icon" aria-hidden="true"></span>
   </button>
   <nav
     id="navigation"
     [class.open]="state.menuOpen()"
     [attr.aria-label]="state.copy.navigation"
-    (keydown.escape)="state.navigate()"
   >
+    <a href="./" (click)="state.navigateTo('start', $event)">{{ state.copy.home }}</a>
     <a href="#ueber-mich" (click)="state.navigateTo('ueber-mich', $event)">{{ state.copy.about }}</a>
-    <a href="#angebote" (click)="state.navigateTo('angebote', $event)">{{ state.copy.offersLabel }}</a>
-    <a href="#angebote" (click)="state.navigateTo('angebote', $event)">{{ state.copy.seminars }}</a>
-    <a href="#termine" (click)="state.navigateTo('termine', $event)">{{ state.copy.dates }}</a>
+    <a routerLink="/angebote" routerLinkActive="active" (click)="state.navigate()">{{ state.copy.offersLabel }}</a>
+    <a routerLink="/store" routerLinkActive="active" (click)="state.navigate()">Store</a>
     <button class="nav-link" (click)="state.book('contact')">{{ state.copy.contact }}</button>
+    <button class="button mobile-book" (click)="state.book()">{{ state.copy.book }}</button>
   </nav>
   <button class="button header-book" (click)="state.book()">
     {{ state.copy.book }}

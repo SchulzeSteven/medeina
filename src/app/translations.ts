@@ -69,6 +69,7 @@ const de = {
   pageDescription:
     'Medeina mit Çağla Mutlu: persönliche Begleitung für mehr Klarheit, Selbstvertrauen und ein erfülltes Leben. Coaching, Seminare und Retreats.',
   seminars: 'Seminare',
+  sessionsLabel: 'Sessions & Coaching',
   heroEyebrow: 'Bewusster. Klarer. Freier.',
   heroTitle: 'Entdecke',
   heroTitleEnd: 'dein volles Potenzial',
@@ -230,6 +231,7 @@ const tr: typeof de = {
   pageDescription:
     'Çağla Mutlu ile Medeina: daha fazla netlik, özgüven ve doyum dolu bir yaşam için kişisel rehberlik. Koçluk, seminerler ve inziva programları.',
   seminars: 'Seminerler',
+  sessionsLabel: 'Seanslar & Koçluk',
   heroEyebrow: 'Daha bilinçli. Daha net. Daha özgür.',
   heroTitle: 'İçindeki potansiyeli',
   heroTitleEnd: 'keşfet',
