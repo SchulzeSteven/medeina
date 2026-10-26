@@ -1,0 +1,21 @@
+<section
+  id="kontakt"
+  class="contact-section"
+  aria-labelledby="contact-title"
+>
+  <div class="container contact-layout">
+    <div>
+      <h2 id="contact-title">{{ copy.title }}</h2>
+      <p>{{ copy.text }}</p>
+    </div>
+    <div class="contact-actions">
+      <button
+        class="button"
+        (click)="state.book('contact')"
+      >
+        {{ copy.action }}
+        <span aria-hidden="true">⟶</span>
+      </button>
+    </div>
+  </div>
+</section>

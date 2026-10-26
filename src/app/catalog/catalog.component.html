@@ -52,6 +52,10 @@
         <p class="detail-description">{{ offer.description[state.language()] }}</p>
         <dl class="facts">
           <div>
+            <dt>{{ guidance().costs }}</dt>
+            <dd>{{ guidance().costsValue }}</dd>
+          </div>
+          <div>
             <dt>{{ copy().duration }}</dt>
             <dd>{{ offer.duration?.[state.language()] || copy().pending }}</dd>
           </div>
@@ -107,6 +111,7 @@
             }
           </section>
         </div>
+        <p class="inquiry-explanation">{{ guidance().detailIntro }}</p>
         <button
           class="catalog-cta"
           (click)="request(offer.id)"
@@ -252,6 +257,44 @@
         </nav>
       }
     }
+    @if (!selected()) {
+      <section
+        class="offer-guidance"
+        aria-labelledby="guidance-title"
+      >
+        <h2 id="guidance-title">{{ guidance().title }}</h2>
+        <div>
+          <p>{{ guidance().intro }}</p>
+          <button
+            class="catalog-cta"
+            (click)="request('intro')"
+          >
+            {{ guidance().action }}
+            <span aria-hidden="true">⟶</span>
+          </button>
+        </div>
+      </section>
+    }
+    <section
+      class="catalog-faq"
+      aria-labelledby="faq-title"
+    >
+      <div class="faq-heading">
+        <h2 id="faq-title">{{ guidance().faqTitle }}</h2>
+        <p>{{ guidance().faqIntro }}</p>
+      </div>
+      <div class="faq-questions">
+        @for (item of guidance().questions; track item.question) {
+          <details>
+            <summary>
+              {{ item.question }}
+              <span aria-hidden="true">+</span>
+            </summary>
+            <p>{{ item.answer }}</p>
+          </details>
+        }
+      </div>
+    </section>
     <aside
       class="method-note"
       aria-labelledby="method-note-title"

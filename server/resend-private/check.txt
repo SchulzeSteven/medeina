@@ -1,0 +1,1 @@
+Access protection test. This file must return HTTP 403 before credentials are uploaded.

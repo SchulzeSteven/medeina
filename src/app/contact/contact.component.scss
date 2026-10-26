@@ -1,0 +1,42 @@
+:host {
+  display: block;
+}
+.contact-section {
+  padding-block: clamp(36px, 5vw, 56px) 24px;
+  background: #e9e2d7;
+  color: var(--ink);
+}
+.contact-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+.contact-layout > div:first-child {
+  width: min(100%, 640px);
+  min-width: 0;
+}
+h2 {
+  margin: 0;
+  font-size: clamp(28px, 3vw, 36px);
+  line-height: 1.2;
+}
+p {
+  max-width: 44ch;
+  margin: 16px auto 0;
+  font-size: 17px;
+  line-height: 1.65;
+}
+.contact-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+.contact-actions .button {
+  max-width: 100%;
+  white-space: normal;
+}

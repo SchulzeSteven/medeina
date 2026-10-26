@@ -76,7 +76,16 @@ if (
 
 $configPath = getenv('MEDEINA_RESEND_CONFIG') ?: dirname(__DIR__, 3) . '/medeina-resend-config.php';
 if (!is_file($configPath) && !getenv('MEDEINA_RESEND_CONFIG')) {
-    $configPath = dirname(__DIR__, 2) . '/server/medeina-resend-config.php';
+    $candidates = [
+        dirname(__DIR__, 2) . '/medeina-private/medeina-resend-config.php',
+        dirname(__DIR__, 2) . '/server/medeina-resend-config.php',
+    ];
+    foreach ($candidates as $candidate) {
+        if (is_file($candidate)) {
+            $configPath = $candidate;
+            break;
+        }
+    }
 }
 $config = is_file($configPath) ? require $configPath : [];
 $config = is_array($config) ? $config : [];

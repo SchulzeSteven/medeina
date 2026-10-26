@@ -8,13 +8,14 @@ import {
   inject,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { InterestSelectComponent } from '../interest-select/interest-select.component';
 import { SiteStateService } from '../site-state.service';
 
 @Component({
   selector: 'app-dialogs',
   standalone: true,
-  imports: [FormsModule, InterestSelectComponent],
+  imports: [FormsModule, InterestSelectComponent, RouterLink],
   templateUrl: './dialogs.component.html',
   styleUrl: './dialogs.component.scss',
 })

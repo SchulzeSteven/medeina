@@ -210,34 +210,16 @@
   }
 }
 
-@keyframes hero-enter {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-@keyframes hero-settle {
-  from {
-    transform: scale(1.14);
-  }
-  to {
-    transform: scale(1);
-  }
-}
 @media (prefers-reduced-motion: no-preference) {
   .hero-photo {
-    animation: hero-settle 7s ease-in-out infinite alternate;
+    animation: medeina-hero-zoom 7s ease-in-out infinite alternate;
   }
   .hero-brand,
   .hero-content > .eyebrow,
   .hero h1,
   .hero-description,
   .actions {
-    animation: hero-enter 711ms var(--ease-out) both;
+    animation: medeina-hero-enter 711ms var(--ease-out) both;
   }
   .hero-brand {
     animation-delay: 60ms;

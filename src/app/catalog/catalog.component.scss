@@ -1,6 +1,98 @@
 :host {
   display: block;
 }
+.offer-guidance {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(24px, 5vw, 64px);
+  margin-top: clamp(64px, 8vw, 112px);
+  padding: clamp(24px, 4vw, 48px);
+  background: var(--sand);
+}
+.offer-guidance h2,
+.faq-heading h2 {
+  margin: 0;
+  font-size: clamp(28px, 3.2vw, 40px);
+  line-height: 1.2;
+  max-width: 20ch;
+}
+.offer-guidance p,
+.faq-heading p,
+.faq-questions p,
+.inquiry-explanation {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.offer-guidance p {
+  margin: 0 0 24px;
+}
+.inquiry-explanation {
+  max-width: 62ch;
+  margin-block: 32px 24px;
+}
+.catalog-faq {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: clamp(32px, 5vw, 64px);
+  margin-block: clamp(64px, 8vw, 112px);
+}
+.faq-heading p {
+  margin-top: 24px;
+}
+.faq-questions {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+  min-width: 0;
+}
+.faq-questions details {
+  background: var(--paper);
+  padding: 0 24px;
+}
+.faq-questions details[open] {
+  background: var(--sand);
+}
+.faq-questions summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 76px;
+  padding-block: 20px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  list-style: none;
+}
+.faq-questions summary::-webkit-details-marker {
+  display: none;
+}
+.faq-questions summary span {
+  flex: 0 0 auto;
+  color: var(--teal);
+  font-size: 28px;
+  font-weight: 400;
+}
+.faq-questions details[open] summary span {
+  transform: rotate(45deg);
+}
+.faq-questions p {
+  margin: 0;
+  padding-bottom: 24px;
+}
+@media (max-width: 760px) {
+  .offer-guidance,
+  .catalog-faq {
+    grid-template-columns: 1fr;
+  }
+  .offer-guidance .catalog-cta {
+    max-width: 100%;
+    white-space: normal;
+    text-align: left;
+  }
+}
 .catalog-page {
   background: var(--cream);
   min-height: 65svh;
@@ -153,7 +245,7 @@ h1:focus {
 }
 .facts {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
   margin-block: 40px;
 }

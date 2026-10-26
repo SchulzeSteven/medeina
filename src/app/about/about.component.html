@@ -53,6 +53,24 @@
         <span aria-hidden="true">⟶</span>
       </a>
     }
+    @if (fullPage) {
+      <aside
+        class="certifications"
+        [attr.aria-label]="state.copy.aboutCertifications"
+      >
+        <p class="certifications-title">ThetaHealing®</p>
+        <p class="certifications-description">{{ state.copy.aboutCertificationsDescription }}</p>
+        <a
+          class="button certification-link"
+          href="https://www.thetahealing.com/instructor-32720010-profile.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {{ state.copy.aboutCertificationsAction }}
+          <span aria-hidden="true">↗</span>
+        </a>
+      </aside>
+    }
   </div>
   @if (!fullPage) {
     <aside class="personal-note">

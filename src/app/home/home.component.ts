@@ -9,6 +9,7 @@ import { QuoteComponent } from '../quote/quote.component';
 import { EventsComponent } from '../events/events.component';
 import { InstagramComponent } from '../instagram/instagram.component';
 import { ReviewsComponent } from '../reviews/reviews.component';
+import { ContactComponent } from '../contact/contact.component';
 
 @Component({
   selector: 'app-home',
@@ -23,6 +24,7 @@ import { ReviewsComponent } from '../reviews/reviews.component';
     EventsComponent,
     InstagramComponent,
     ReviewsComponent,
+    ContactComponent,
   ],
   templateUrl: './home.component.html',
 })

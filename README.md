@@ -215,3 +215,14 @@ Bei Fehlern werden keine Erfolge angezeigt; die Eingaben bleiben erhalten.
 
 Mit `npm run check:inquiry` lassen sich Validierung und beide E-Mail-Sprachen prüfen,
 ohne E-Mails zu versenden. Dafür muss `npm run start:api` laufen.
+
+### Wenn FileZilla nur das öffentliche Stammverzeichnis `/` zeigt
+
+Alternativ ist ein per Apache gesperrter Ordner `/medeina-private/` neben `/medeina/`
+möglich. Zuerst ausschließlich `.htaccess` und `check.txt` aus `server/resend-private/`
+dorthin hochladen. `https://steven-schulze.com/medeina-private/check.txt` muss HTTP 403
+liefern. Erst nach bestätigter Sperre die private `medeina-resend-config.php` in diesen
+Ordner hochladen. Bei sichtbarer Testdatei, HTTP 404 oder HTTP 500 noch keine Zugangsdaten
+hochladen; zuerst die Zugriffssperre klären. Die Mail-API unterstützt diesen Konfigurationspfad.
+Die `.htaccess` muss dauerhaft im privaten Ordner bleiben. Anschließend die aktuelle dist
+inklusive `api/send-inquiry.php` hochladen. Die Portfolio-`sendmail.php` bleibt unberührt.

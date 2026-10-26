@@ -11,6 +11,7 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SiteStateService } from '../site-state.service';
+import { catalogGuidance } from './catalog-guidance';
 import {
   catalogCategories,
   catalogCopy,
@@ -48,6 +49,7 @@ export class CatalogComponent {
   });
   readonly basePath = computed(() => '/angebote');
   readonly copy = computed(() => catalogCopy[this.state.language()]);
+  readonly guidance = computed(() => catalogGuidance[this.state.language()]);
   readonly categories = computed(() =>
     catalogCategories.filter((category) =>
       catalogOffers.some(

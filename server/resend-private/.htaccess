@@ -1,0 +1,2 @@
+# This directory contains server-only credentials. Deny every HTTP request.
+Require all denied

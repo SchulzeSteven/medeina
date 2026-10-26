@@ -91,6 +91,15 @@
                 ></textarea>
               </label>
               <p class="form-note">{{ state.copy.inquiryNote }}</p>
+              <p class="form-note">
+                <a
+                  routerLink="/datenschutz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {{ state.copy.privacy }} ↗
+                </a>
+              </p>
               @if (state.requestError()) {
                 <p
                   class="form-error"
