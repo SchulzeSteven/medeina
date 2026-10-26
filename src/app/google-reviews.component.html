@@ -1,4 +1,7 @@
-<section class="reviews-section container" aria-labelledby="reviews-title">
+<section
+  class="reviews-section container"
+  aria-labelledby="reviews-title"
+>
   <div class="reviews-heading">
     <div>
       <p class="eyebrow muted">Medeina · Çağla Mutlu</p>
@@ -54,11 +57,20 @@
                 referrerpolicy="no-referrer"
               />
             } @else {
-              <span class="review-avatar" aria-hidden="true">{{ review.author.charAt(0) }}</span>
+              <span
+                class="review-avatar"
+                aria-hidden="true"
+              >
+                {{ review.author.charAt(0) }}
+              </span>
             }
             <div>
               @if (review.authorUrl) {
-                <a [href]="review.authorUrl" target="_blank" rel="noopener noreferrer">
+                <a
+                  [href]="review.authorUrl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {{ review.author }}
                 </a>
               } @else {
@@ -73,7 +85,12 @@
             [attr.aria-label]="review.rating + ' ' + copy().stars"
           >
             @for (star of [1, 2, 3, 4, 5]; track star) {
-              <span [class.filled]="star <= review.rating" aria-hidden="true">★</span>
+              <span
+                [class.filled]="star <= review.rating"
+                aria-hidden="true"
+              >
+                ★
+              </span>
             }
           </div>
           @if (review.text) {
@@ -92,7 +109,12 @@
     </div>
   } @else {
     <div class="reviews-empty">
-      <span class="review-quote" aria-hidden="true">“</span>
+      <span
+        class="review-quote"
+        aria-hidden="true"
+      >
+        “
+      </span>
       <h3>{{ copy().emptyTitle }}</h3>
       <p>{{ copy().empty }}</p>
     </div>

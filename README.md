@@ -125,6 +125,50 @@ stattdessen einen SPA-Fallback auf `/medeina/index.html` einrichten.
 Kategorien werden über `?kategorie=` gefiltert, Details liegen unter `/store/:id`.
 Produkte und Übersetzungen stehen in `src/app/store/store.data.ts`.
 Alle Produkte und Euro-Preise sind als Beispiele gekennzeichnet. Beispielpreise werden in `priceCents` pro Produkt gepflegt. Die Produktanfrage
-öffnet einen E-Mail-Entwurf. Es gibt noch keinen Checkout, Zahlung, Download oder Bestellversand.
+öffnet einen E-Mail-Entwurf. Ein eingebetteter Stripe-/PayPal-Testcheckout ist vorbereitet. Downloads und Bestellversand sind nicht automatisiert.
 Vor einem Verkaufsstart sind das echte Sortiment, eigene Produktbilder, Preise,
 Produktinformationen und der Bestellablauf einzurichten.
+
+## Eingebetteter Testcheckout mit Stripe Elements und PayPal
+
+Unter `/store/:id/checkout` erscheint wieder der Checkout mit echten Stripe-Kartenfeldern
+und dem offiziellen PayPal-Button. Beide Anbieter sind ausschließlich im Testmodus.
+
+### IONOS-Upload
+
+1. `npm run build:medeina` ausführen. Den gesamten Inhalt von `dist/medaina/browser/`
+   einschließlich `api/` und `.htaccess` in den Serverordner `medeina` hochladen.
+2. Für vollständige Stripe-Testzahlungen `server/medeina-stripe-config.example.php`
+   als `medeina-stripe-config.php` **außerhalb** des öffentlichen Website-Verzeichnisses
+   ablegen. Standardpfad: `dirname(__DIR__, 3) . '/medeina-stripe-config.php'`, ausgehend
+   von `medeina/api/stripe-common.php`. Bei anderer Serverstruktur den Suchpfad anpassen
+   oder die Server-Umgebungsvariable `MEDEINA_STRIPE_CONFIG` setzen. Öffentlichen Testschlüssel
+   `pk_test_…` und geheimen Testschlüssel `sk_test_…` desselben Stripe-Testkontos eintragen.
+3. PHP 8.1+ und cURL aktivieren. Im Checkout mit `4242 4242 4242 4242`, zukünftiger
+   Gültigkeit und beliebiger dreistelliger Prüfziffer testen. Kein echtes Geld wird abgebucht.
+
+Die private Datei und geheime Schlüssel gehören weder in die dist noch nach GitHub.
+Alternativ `MEDEINA_STRIPE_PUBLIC_KEY` / `MEDEINA_STRIPE_SECRET_KEY` serverseitig setzen.
+Ohne private Serverkonfiguration kann nur eine vorhandene öffentliche Testkonfiguration
+in `public/api/stripe-preview.json` die Stripe-Felder als Vorschau anzeigen; der Zahlungsabschluss
+ist dann deaktiviert. Ohne jegliche Testkonfiguration erscheint ein Einrichtungshinweis.
+
+### PayPal
+
+Ohne Sandbox-Zugangsdaten zeigt der offizielle SDK-Wert `client-id=sb` die Button-Vorschau.
+Für vollständige Testzahlungen eine PayPal-Sandbox-App erstellen und
+`server/medeina-paypal-config.example.php` als `medeina-paypal-config.php` außerhalb
+des öffentlichen Verzeichnisses neben der Stripe-Konfiguration ablegen. Sandbox-Client-ID
+und Secret eintragen. Alternativ `MEDEINA_PAYPAL_CONFIG`, `MEDEINA_PAYPAL_CLIENT_ID` und
+`MEDEINA_PAYPAL_SECRET` serverseitig setzen. Mit einem persönlichen PayPal-Sandboxkonto testen.
+
+Preise werden in PHP anhand der Produkt-ID festgelegt und müssen mit `priceCents`
+in `store.data.ts` übereinstimmen. Testschlüssel, Sitzungstoken, idempotente Aufrufe
+und die Prüfung der Zahlungsbestätigung verhindern Liveabbuchungen oder falsche Erfolge.
+Es gibt keine Produktlieferung oder Live-Bestellverwaltung. Vor einem Verkaufsstart
+sind echte Produkte, Anbieter-Konten und eine verifizierte serverseitige Bestellverarbeitung nötig.
+
+Die erneut eingerichtete temporäre Stripe-Sandbox läuft am 29.10.2026 ab. Ihre private
+Konfiguration liegt lokal in der ignorierten Datei `server/medeina-stripe-config.php`.
+Für vollständige Testzahlungen auf IONOS diese Datei wie oben beschrieben außerhalb
+des öffentlichen Verzeichnisses ablegen. Nur der öffentliche Testschlüssel liegt in der dist.

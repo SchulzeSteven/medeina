@@ -1,6 +1,7 @@
 <section
   id="ueber-mich"
   class="about container"
+  [class.about-page]="fullPage"
   aria-labelledby="about-title"
   appScrollReveal
   data-reveal="left"
@@ -8,7 +9,7 @@
   <div class="about-image-group">
     <img
       class="main-portrait"
-      src="images/cagla1.jpeg"
+      src="images/cagla3.jpeg"
       [alt]="state.copy.caglaPortraitAlt"
       width="1134"
       height="1387"
@@ -17,7 +18,7 @@
     />
     <img
       class="about-photo about-inset"
-      src="images/cagla3.jpeg"
+      src="images/cagla1.jpeg"
       [alt]="state.copy.caglaLeavesAlt"
       width="1083"
       height="1452"
@@ -27,23 +28,105 @@
   </div>
   <div class="about-content">
     <p class="eyebrow muted">{{ state.copy.about }} · Çağla Mutlu</p>
-    <h2 id="about-title">
-      {{ state.copy.aboutTitle }}
-      <br />
-      {{ state.copy.aboutTitleEnd }}
-    </h2>
+    @if (fullPage) {
+      <h1 id="about-title">
+        {{ state.copy.aboutTitle }}
+        <br />
+        {{ state.copy.aboutTitleEnd }}
+      </h1>
+    } @else {
+      <h2 id="about-title">
+        {{ state.copy.aboutTitle }}
+        <br />
+        {{ state.copy.aboutTitleEnd }}
+      </h2>
+    }
     <p>{{ state.copy.aboutText }}</p>
-    <button class="button" (click)="state.selectedOfferId.set('about')">
-      {{ state.copy.aboutMore }}
-      <span aria-hidden="true">⟶</span>
-    </button>
+    @if (fullPage) {
+      <p>{{ state.copy.aboutDetail }}</p>
+    } @else {
+      <a
+        class="button"
+        routerLink="/ueber-mich"
+      >
+        {{ state.copy.aboutMore }}
+        <span aria-hidden="true">⟶</span>
+      </a>
+    }
   </div>
-  <aside class="personal-note">
-    <svg viewBox="0 0 110 160" fill="none" aria-hidden="true">
-      <path
-        d="M15 155Q70 90 76 5M45 112Q7 79 28 50Q43 75 45 112M58 88Q92 87 104 66Q75 65 58 88M67 59Q40 35 52 12Q67 34 67 59M72 38Q96 33 103 16Q82 16 72 38"
-      />
-    </svg>
-    <p>{{ state.copy.personalNote }}</p>
-  </aside>
+  @if (!fullPage) {
+    <aside class="personal-note">
+      <svg
+        viewBox="0 0 110 160"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M15 155Q70 90 76 5M45 112Q7 79 28 50Q43 75 45 112M58 88Q92 87 104 66Q75 65 58 88M67 59Q40 35 52 12Q67 34 67 59M72 38Q96 33 103 16Q82 16 72 38"
+        />
+      </svg>
+      <p>{{ state.copy.personalNote }}</p>
+    </aside>
+  }
 </section>
+
+@if (fullPage) {
+  <div class="about-story container">
+    <blockquote class="about-quote">{{ state.copy.personalNote }}</blockquote>
+    <div class="story-layout">
+      <figure class="story-portrait">
+        <img
+          src="images/cagla1.jpeg"
+          [alt]="state.copy.caglaLeavesAlt"
+          width="1083"
+          height="1452"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>Çağla Mutlu · Medeina</figcaption>
+      </figure>
+      <div class="story-copy">
+        @for (section of state.copy.aboutStory; track section.title) {
+          <section class="story-section">
+            <h2>{{ section.title }}</h2>
+            <p>{{ section.text }}</p>
+          </section>
+        }
+      </div>
+    </div>
+    <section
+      class="about-animals"
+      aria-labelledby="about-animals-title"
+    >
+      <div class="animals-copy">
+        <h2 id="about-animals-title">{{ state.copy.aboutAnimalsTitle }}</h2>
+        <p>{{ state.copy.aboutAnimalsText }}</p>
+        <p>{{ state.copy.aboutAnimalsInvitation }}</p>
+      </div>
+      <img
+        src="images/animals.jpeg"
+        [alt]="state.copy.aboutAnimalsAlt"
+        width="1254"
+        height="1254"
+        loading="lazy"
+        decoding="async"
+      />
+    </section>
+    <section
+      class="about-contact"
+      aria-labelledby="about-contact-title"
+    >
+      <h2 id="about-contact-title">{{ state.copy.aboutContactTitle }}</h2>
+      <div class="contact-copy">
+        <p>{{ state.copy.aboutContactText }}</p>
+        <button
+          class="button"
+          (click)="requestIntro()"
+        >
+          {{ state.copy.aboutContactAction }}
+          <span aria-hidden="true">⟶</span>
+        </button>
+      </div>
+    </section>
+  </div>
+}

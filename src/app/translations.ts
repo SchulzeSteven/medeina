@@ -83,6 +83,30 @@ const de = {
     'Ich bin Çağla Mutlu. Mit Medeina begleite ich Menschen dabei, ihr volles Potenzial zu entfalten und ein selbstbestimmtes, erfülltes Leben zu führen. Mit Empathie, Erfahrung und wirkungsvollen Methoden schaffe ich einen Raum für echte Veränderung.',
   aboutDetail:
     'Ich glaube daran, dass Veränderung mit einem bewussten Moment beginnt. Meine Begleitung verbindet persönliche Reflexion, Empathie und praktische Impulse. Lerne mich in einem unverbindlichen Erstgespräch kennen und erzähle mir, was dich gerade bewegt.',
+  aboutStory: [
+    {
+      title: 'Was mir in meiner Begleitung wichtig ist',
+      text: 'Ich möchte einen Raum schaffen, in dem du mit deinen Fragen, Wünschen und Unsicherheiten ankommen kannst. Für mich beginnt Begleitung damit, zuzuhören und zu verstehen, was dich gerade bewegt. Empathie und persönliche Reflexion bilden dafür die Grundlage.',
+    },
+    {
+      title: 'Raum für deinen eigenen Weg',
+      text: 'Mit Medeina begleite ich dich dabei, deine Bedürfnisse bewusster wahrzunehmen, eigene Möglichkeiten zu entdecken und deinen nächsten Schritt zu finden. Dabei geht es um ein Leben, das sich für dich stimmig anfühlt – und um Entscheidungen, die du selbstbestimmt treffen kannst.',
+    },
+    {
+      title: 'Impulse, die dich im Alltag begleiten',
+      text: 'Meine Begleitung verbindet Reflexion mit praktischen Impulsen. Was du für dich erkennst, darf auch im Alltag einen Platz finden. Gemeinsam schauen wir darauf, was dich unterstützen kann und welche nächsten Schritte zu deiner Situation passen.',
+    },
+  ],
+  aboutAnimalsTitle: 'Mensch und Tier. Eine besondere Verbindung.',
+  aboutAnimalsText:
+    'Ein Tier ist für viele Menschen ein vertrauter Begleiter und ein wichtiger Teil ihres Lebens. Diese Verbindung möchte ich künftig stärker in den Blick nehmen und mit Medeina auch Menschen ansprechen, die ihren Alltag mit Tieren teilen.',
+  aboutAnimalsInvitation:
+    'Du lebst mit einem Tier und möchtest mehr Raum für dich und das, was euch verbindet? Erzähle mir gerne, was dich bewegt. In einem unverbindlichen Gespräch können wir gemeinsam schauen, ob meine Begleitung zu deinem Anliegen passt.',
+  aboutAnimalsAlt: 'Eine Frau geht mit zwei Hunden über eine Wiese im Abendlicht',
+  aboutContactTitle: 'Lass uns einander kennenlernen',
+  aboutContactText:
+    'Du möchtest etwas verändern oder herausfinden, ob meine Begleitung zu dir passt? Erzähle mir in einem kostenlosen, unverbindlichen Erstgespräch, was dich beschäftigt. Du kannst deine Fragen stellen und einen persönlichen Eindruck gewinnen, bevor du dich für ein Angebot entscheidest.',
+  aboutContactAction: 'Unverbindliche Anfrage stellen',
   personalNote: 'Veränderung beginnt in dem Moment, in dem du dich selbst ernst nimmst.',
   myOffers: 'Meine Angebote',
   offersTitle: 'Individuell. Ganzheitlich. Wirksam.',
@@ -245,6 +269,30 @@ const tr: typeof de = {
     'Ben Çağla Mutlu. Medeina ile insanların potansiyellerini keşfetmelerine ve kendi seçimleriyle şekillenen, doyum dolu bir yaşam sürmelerine eşlik ediyorum. Empati, deneyim ve etkili yöntemlerle gerçek değişime alan açıyorum.',
   aboutDetail:
     'Değişimin farkındalık dolu bir anla başladığına inanıyorum. Rehberliğim; kendini tanımayı, empatiyi ve günlük hayatta uygulanabilecek adımları bir araya getiriyor. Ücretsiz bir tanışma görüşmesinde beni tanı ve şu anda senin için önemli olanları paylaş.',
+  aboutStory: [
+    {
+      title: 'Rehberliğimde benim için önemli olan',
+      text: 'Soruların, isteklerin ve belirsizliklerinle kendine yer bulabileceğin bir alan oluşturmak istiyorum. Benim için rehberlik, seni dinlemek ve şu anda seni nelerin etkilediğini anlamakla başlar. Empati ve kendini tanıma bu yaklaşımın temelini oluşturur.',
+    },
+    {
+      title: 'Kendi yolun için alan',
+      text: 'Medeina ile ihtiyaçlarını daha bilinçli fark etmene, olanaklarını keşfetmene ve bir sonraki adımını bulmana eşlik ediyorum. Amacım, sana uygun hissettiren bir yaşam ve kendi iradenle verebileceğin kararlar için alan açmak.',
+    },
+    {
+      title: 'Günlük yaşamına taşıyabileceğin adımlar',
+      text: 'Rehberliğim, kişisel farkındalığı uygulanabilir önerilerle birleştirir. Kendin hakkında keşfettiklerin günlük yaşamında da yer bulabilir. Seni nelerin destekleyebileceğine ve hangi adımların durumuna uygun olduğuna birlikte bakarız.',
+    },
+  ],
+  aboutAnimalsTitle: 'İnsan ve hayvan. Özel bir bağ.',
+  aboutAnimalsText:
+    'Bir hayvan, pek çok insan için güven duyulan bir yol arkadaşı ve yaşamının önemli bir parçasıdır. Gelecekte bu bağı daha fazla odağıma almak ve Medeina ile günlük yaşamını hayvanlarla paylaşan insanlara da ulaşmak istiyorum.',
+  aboutAnimalsInvitation:
+    'Bir hayvanla yaşıyor, kendine ve aranızdaki bağa daha fazla alan açmak mı istiyorsun? Seni nelerin düşündürdüğünü benimle paylaşabilirsin. Bağlayıcı olmayan bir görüşmede rehberliğimin ihtiyacına uygun olup olmadığına birlikte bakabiliriz.',
+  aboutAnimalsAlt: 'Akşam ışığında bir çayırda iki köpekle yürüyen bir kadın',
+  aboutContactTitle: 'Birbirimizi tanıyalım',
+  aboutContactText:
+    'Bir şeyi değiştirmek ya da rehberliğimin sana uygun olup olmadığını öğrenmek mi istiyorsun? Ücretsiz ve bağlayıcı olmayan bir tanışma görüşmesinde seni nelerin meşgul ettiğini anlatabilirsin. Bir programa karar vermeden önce sorularını sorabilir ve beni tanıyabilirsin.',
+  aboutContactAction: 'Bağlayıcı olmayan bir talep gönder',
   personalNote: 'Değişim, kendini ciddiye almaya başladığın anda başlar.',
   myOffers: 'Hizmetlerim',
   offersTitle: 'Kişiye özel. Bütünsel. Etkili.',

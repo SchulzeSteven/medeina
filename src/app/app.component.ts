@@ -3,10 +3,12 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { StableLanguageLayoutDirective } from './stable-language-layout.directive';
 import { DialogsComponent } from './dialogs/dialogs.component';
 
 @Component({
   selector: 'app-root',
+  hostDirectives: [StableLanguageLayoutDirective],
   standalone: true,
   imports: [RouterOutlet, HeaderComponent, FooterComponent, DialogsComponent],
   templateUrl: './app.component.html',

@@ -1,107 +1,261 @@
-<section class="catalog-page" aria-labelledby="catalog-title">
+<section
+  class="catalog-page"
+  aria-labelledby="catalog-title"
+>
   <div class="catalog-shell container">
-    <a class="back-button" routerLink="/">← {{ state.copy.home }}</a>
+    <a
+      class="back-button"
+      routerLink="/"
+    >
+      ← {{ state.copy.home }}
+    </a>
     @if (section()) {
-    <nav class="section-switch" [attr.aria-label]="copy().title + ' / ' + copy().sessions">
-      <a routerLink="/angebote">{{ state.copy.offersLabel }}</a>
-      <a routerLink="/angebote" [queryParams]="{ bereich: 'seminars' }" [attr.aria-current]="section() === 'seminars' ? 'page' : null">{{ copy().title }}</a>
-      <a routerLink="/angebote" [queryParams]="{ bereich: 'sessions' }" [attr.aria-current]="section() === 'sessions' ? 'page' : null">{{ copy().sessions }}</a>
-    </nav>
+      <nav
+        class="section-switch"
+        [attr.aria-label]="copy().title + ' / ' + copy().sessions"
+      >
+        <a routerLink="/angebote">{{ state.copy.offersLabel }}</a>
+        <a
+          routerLink="/angebote"
+          [queryParams]="{ bereich: 'seminars' }"
+          [attr.aria-current]="section() === 'seminars' ? 'page' : null"
+        >
+          {{ copy().title }}
+        </a>
+        <a
+          routerLink="/angebote"
+          [queryParams]="{ bereich: 'sessions' }"
+          [attr.aria-current]="section() === 'sessions' ? 'page' : null"
+        >
+          {{ copy().sessions }}
+        </a>
+      </nav>
     }
     @if (selected(); as offer) {
       <article class="detail">
-        <a class="back-button" [routerLink]="basePath()" [queryParams]="selectionParams()"><span aria-hidden="true">←</span> {{ copy().back }}</a>
+        <a
+          class="back-button"
+          [routerLink]="basePath()"
+          [queryParams]="selectionParams()"
+        >
+          <span aria-hidden="true">←</span>
+          {{ copy().back }}
+        </a>
         <p class="category-label">{{ categoryTitle(offer.category) }}</p>
-        <h1 #viewHeading id="catalog-title" tabindex="-1">{{ offer.title[state.language()] }}</h1>
+        <h1
+          #viewHeading
+          id="catalog-title"
+          tabindex="-1"
+        >
+          {{ offer.title[state.language()] }}
+        </h1>
         <p class="detail-description">{{ offer.description[state.language()] }}</p>
         <dl class="facts">
-          <div><dt>{{ copy().duration }}</dt><dd>{{ offer.duration?.[state.language()] || copy().pending }}</dd></div>
-          <div><dt>{{ copy().format }}</dt><dd>{{ offer.format?.[state.language()] || copy().pending }}</dd></div>
+          <div>
+            <dt>{{ copy().duration }}</dt>
+            <dd>{{ offer.duration?.[state.language()] || copy().pending }}</dd>
+          </div>
+          <div>
+            <dt>{{ copy().format }}</dt>
+            <dd>{{ offer.format?.[state.language()] || copy().pending }}</dd>
+          </div>
         </dl>
         <div class="detail-columns">
           <section>
             <h3>{{ copy().contents }}</h3>
             @if (offer.contents; as contents) {
-              <ul>@for (content of contents; track $index) { <li>{{ content[state.language()] }}</li> }</ul>
-            } @else { <p>{{ copy().pending }}</p> }
+              <ul>
+                @for (content of contents; track $index) {
+                  <li>{{ content[state.language()] }}</li>
+                }
+              </ul>
+            } @else {
+              <p>{{ copy().pending }}</p>
+            }
             @if (offer.levels; as levels) {
               <h3>{{ copy().levels }}</h3>
-              <ul>@for (level of levels; track $index) { <li>{{ level[state.language()] }}</li> }</ul>
+              <ul>
+                @for (level of levels; track $index) {
+                  <li>{{ level[state.language()] }}</li>
+                }
+              </ul>
             }
           </section>
           <section>
             <h3>{{ copy().prerequisites }}</h3>
             @if (offer.prerequisites; as prerequisites) {
-              <ul>@for (id of prerequisites; track id) { <li>{{ offerTitle(id) }}</li> }</ul>
-            } @else { <p>{{ copy().pending }}</p> }
+              <ul>
+                @for (id of prerequisites; track id) {
+                  <li>{{ offerTitle(id) }}</li>
+                }
+              </ul>
+            } @else {
+              <p>{{ copy().pending }}</p>
+            }
             <h3>{{ copy().dates }}</h3>
             @if (offer.dates.length) {
-              <ul>@for (date of offer.dates; track date.startsAt) {
-                <li><time [attr.datetime]="date.startsAt">{{ date.startsAt }}</time> · {{ date.location[state.language()] }}</li>
-              }</ul>
-            } @else { <p>{{ copy().datesPending }}</p> }
+              <ul>
+                @for (date of offer.dates; track date.startsAt) {
+                  <li>
+                    <time [attr.datetime]="date.startsAt">{{ date.startsAt }}</time>
+                    · {{ date.location[state.language()] }}
+                  </li>
+                }
+              </ul>
+            } @else {
+              <p>{{ copy().datesPending }}</p>
+            }
           </section>
         </div>
-        <button class="catalog-cta" (click)="request(offer.id)">{{ offer.section === 'sessions' ? copy().appointment : copy().enquire }} <span aria-hidden="true">⟶</span></button>
+        <button
+          class="catalog-cta"
+          (click)="request(offer.id)"
+        >
+          {{ offer.section === 'sessions' ? copy().appointment : copy().enquire }}
+          <span aria-hidden="true">⟶</span>
+        </button>
       </article>
     } @else {
       <div class="catalog-intro">
         <p class="category-label">Çağla Mutlu · MEDEINA</p>
-        <h1 #viewHeading id="catalog-title" tabindex="-1">{{ filter() ? categoryTitle(filter()!) : section() === 'seminars' ? copy().title : section() === 'sessions' ? copy().sessions : state.copy.offersLabel }}</h1>
-        <p>{{ !section() ? copy().chooseSection : filter() ? copy().intro : copy().chooseMethod }}</p>
+        <h1
+          #viewHeading
+          id="catalog-title"
+          tabindex="-1"
+        >
+          {{
+            filter()
+              ? categoryTitle(filter()!)
+              : section() === 'seminars'
+                ? copy().title
+                : section() === 'sessions'
+                  ? copy().sessions
+                  : state.copy.offersLabel
+          }}
+        </h1>
+        <p>
+          {{ !section() ? copy().chooseSection : filter() ? copy().intro : copy().chooseMethod }}
+        </p>
       </div>
       @if (!section()) {
-        <nav class="method-grid" [attr.aria-label]="copy().chooseSection">
-          <a class="method-card" routerLink="/angebote" [queryParams]="{ bereich: 'seminars' }">
+        <nav
+          class="method-grid"
+          [attr.aria-label]="copy().chooseSection"
+        >
+          <a
+            class="method-card"
+            routerLink="/angebote"
+            [queryParams]="{ bereich: 'seminars' }"
+          >
             <h2>{{ copy().title }}</h2>
             <p class="section-description">{{ copy().seminarsSummary }}</p>
-            <span class="method-link">{{ copy().exploreMethod }} <span aria-hidden="true">⟶</span></span>
+            <span class="method-link">
+              {{ copy().exploreMethod }}
+              <span aria-hidden="true">⟶</span>
+            </span>
           </a>
-          <a class="method-card" routerLink="/angebote" [queryParams]="{ bereich: 'sessions' }">
+          <a
+            class="method-card"
+            routerLink="/angebote"
+            [queryParams]="{ bereich: 'sessions' }"
+          >
             <h2>{{ copy().sessions }}</h2>
             <p class="section-description">{{ copy().sessionsSummary }}</p>
-            <span class="method-link">{{ copy().exploreMethod }} <span aria-hidden="true">⟶</span></span>
+            <span class="method-link">
+              {{ copy().exploreMethod }}
+              <span aria-hidden="true">⟶</span>
+            </span>
           </a>
         </nav>
       } @else if (filter()) {
-      <div class="filters" role="navigation" [attr.aria-label]="copy().filters">
-        <a [routerLink]="basePath()" [queryParams]="selectionParams(null)">{{ copy().all }}</a>
-        @for (category of categories(); track category.id) {
-          <a [routerLink]="basePath()" [queryParams]="selectionParams(category.id)" [attr.aria-current]="filter() === category.id ? 'true' : null">{{ category.title[state.language()] }}</a>
-        }
-      </div>
-      <p class="result-count" aria-live="polite" aria-atomic="true">{{ offers().length }} {{ copy().count }}</p>
-      <div class="catalog-grid">
-        @for (offer of offers(); track offer.id) {
-          <article class="catalog-card">
-            <p class="category-label">{{ categoryTitle(offer.category) }}</p>
-            <h2>{{ offer.title[state.language()] }}</h2>
-            <p class="card-summary">{{ offer.summary[state.language()] }}</p>
-            @if (offer.duration) { <p class="duration">{{ copy().duration }} · {{ offer.duration[state.language()] }}</p> }
-            <div class="card-actions">
-              <a class="detail-button" [routerLink]="[basePath(), offer.id]" [queryParams]="selectionParams()" [attr.aria-label]="copy().more + ': ' + offer.title[state.language()]">{{ copy().more }} <span aria-hidden="true">⟶</span></a>
-              @if (section() === 'sessions') {
-                <button class="catalog-cta" (click)="request(offer.id)" [attr.aria-label]="copy().appointment + ': ' + offer.title[state.language()]">{{ copy().appointment }}</button>
-              }
-            </div>
-          </article>
-        }
-      </div>
-      } @else {
-        <nav class="method-grid" [attr.aria-label]="copy().filters">
+        <div
+          class="filters"
+          role="navigation"
+          [attr.aria-label]="copy().filters"
+        >
+          <a
+            [routerLink]="basePath()"
+            [queryParams]="selectionParams(null)"
+          >
+            {{ copy().all }}
+          </a>
           @for (category of categories(); track category.id) {
-            <a class="method-card" [routerLink]="basePath()" [queryParams]="selectionParams(category.id)">
+            <a
+              [routerLink]="basePath()"
+              [queryParams]="selectionParams(category.id)"
+              [attr.aria-current]="filter() === category.id ? 'true' : null"
+            >
+              {{ category.title[state.language()] }}
+            </a>
+          }
+        </div>
+        <p
+          class="result-count"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          {{ offers().length }} {{ copy().count }}
+        </p>
+        <div class="catalog-grid">
+          @for (offer of offers(); track offer.id) {
+            <article class="catalog-card">
+              <p class="category-label">{{ categoryTitle(offer.category) }}</p>
+              <h2>{{ offer.title[state.language()] }}</h2>
+              <p class="card-summary">{{ offer.summary[state.language()] }}</p>
+              @if (offer.duration) {
+                <p class="duration">
+                  {{ copy().duration }} · {{ offer.duration[state.language()] }}
+                </p>
+              }
+              <div class="card-actions">
+                <a
+                  class="detail-button"
+                  [routerLink]="[basePath(), offer.id]"
+                  [queryParams]="selectionParams()"
+                  [attr.aria-label]="copy().more + ': ' + offer.title[state.language()]"
+                >
+                  {{ copy().more }}
+                  <span aria-hidden="true">⟶</span>
+                </a>
+                @if (section() === 'sessions') {
+                  <button
+                    class="catalog-cta"
+                    (click)="request(offer.id)"
+                    [attr.aria-label]="copy().appointment + ': ' + offer.title[state.language()]"
+                  >
+                    {{ copy().appointment }}
+                  </button>
+                }
+              </div>
+            </article>
+          }
+        </div>
+      } @else {
+        <nav
+          class="method-grid"
+          [attr.aria-label]="copy().filters"
+        >
+          @for (category of categories(); track category.id) {
+            <a
+              class="method-card"
+              [routerLink]="basePath()"
+              [queryParams]="selectionParams(category.id)"
+            >
               <span class="method-count">{{ categoryCount(category.id) }} {{ copy().count }}</span>
               <h2>{{ category.title[state.language()] }}</h2>
-              <span class="method-link">{{ copy().exploreMethod }} <span aria-hidden="true">⟶</span></span>
+              <span class="method-link">
+                {{ copy().exploreMethod }}
+                <span aria-hidden="true">⟶</span>
+              </span>
             </a>
           }
         </nav>
       }
-
-
     }
-    <aside class="method-note" aria-labelledby="method-note-title">
+    <aside
+      class="method-note"
+      aria-labelledby="method-note-title"
+    >
       <h3 id="method-note-title">{{ copy().noticeTitle }}</h3>
       <p>{{ copy().notice }}</p>
     </aside>

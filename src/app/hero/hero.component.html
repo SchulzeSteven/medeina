@@ -1,11 +1,30 @@
-<section class="hero" id="start" aria-labelledby="hero-title">
-  <img class="hero-photo" src="images/hero.png" alt="" aria-hidden="true" fetchpriority="high" />
+<section
+  class="hero"
+  id="start"
+  aria-labelledby="hero-title"
+>
+  <img
+    class="hero-photo"
+    src="images/hero.png"
+    alt=""
+    aria-hidden="true"
+    fetchpriority="high"
+  />
   <div class="hero-shade"></div>
   <div class="hero-content container">
-    <p class="hero-signature">
-      Medeina
-      <span>by Çağla Mutlu</span>
-    </p>
+    <div class="hero-brand">
+      <img
+        class="hero-logo"
+        src="images/mainlogo.png"
+        alt=""
+        width="1500"
+        height="1660"
+      />
+      <p class="hero-signature">
+        Medeina
+        <span>by Çağla Mutlu</span>
+      </p>
+    </div>
     <p class="eyebrow">{{ state.copy.heroEyebrow }}</p>
     <h1 id="hero-title">
       {{ state.copy.heroTitle }}
@@ -14,13 +33,17 @@
     </h1>
     <p class="hero-description">{{ state.copy.heroDescription }}</p>
     <div class="actions">
-      <button class="button" (click)="state.book()">
+      <button
+        class="button"
+        (click)="state.book()"
+      >
         {{ state.copy.bookIntro }}
         <span aria-hidden="true">⟶</span>
       </button>
       <a
         class="button button-outline light"
-        href="#ueber-mich" (click)="state.navigateTo('ueber-mich', $event)"
+        href="#ueber-mich"
+        (click)="state.navigateTo('ueber-mich', $event, true)"
       >
         {{ state.copy.more }}
       </a>

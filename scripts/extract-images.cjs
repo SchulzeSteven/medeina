@@ -7,7 +7,7 @@ const w = data.readUInt32BE(16),
 if (data[24] !== 8 || data[25] !== 2 || data[28] !== 0)
   throw new Error('Expected non-interlaced RGB PNG');
 const blocks = [];
-for (let p = 8; p < data.length; ) {
+for (let p = 8; p < data.length;) {
   const n = data.readUInt32BE(p);
   if (data.toString('ascii', p + 4, p + 8) === 'IDAT') blocks.push(data.subarray(p + 8, p + 8 + n));
   p += n + 12;

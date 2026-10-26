@@ -1,0 +1,162 @@
+<section
+  class="checkout-page container"
+  aria-labelledby="checkout-title"
+>
+  <a
+    class="back-link"
+    [routerLink]="['/store', product.id]"
+  >
+    ← {{ copy().back }}
+  </a>
+  <h1 id="checkout-title">{{ copy().title }}</h1>
+  <p class="test-note">{{ copy().test }}</p>
+  <div class="checkout-layout">
+    <div class="payment-panel">
+      <h2>{{ copy().payment }}</h2>
+      <p class="intro">{{ copy().intro }}</p>
+      <div
+        class="payment-methods"
+        role="group"
+        [attr.aria-label]="copy().payment"
+        [hidden]="status() === 'success' || status() === 'processing'"
+      >
+        <button
+          type="button"
+          [attr.aria-pressed]="method() === 'card'"
+          [disabled]="busy()"
+          (click)="method.set('card')"
+        >
+          {{ copy().card }}
+        </button>
+        <button
+          type="button"
+          [attr.aria-pressed]="method() === 'paypal'"
+          [disabled]="busy()"
+          (click)="method.set('paypal')"
+        >
+          PayPal
+        </button>
+      </div>
+      <div
+        [hidden]="method() !== 'paypal' || status() === 'success' || status() === 'processing'"
+        class="paypal-panel"
+      >
+        <p class="paypal-info">{{ copy().paypalInfo }}</p>
+        <div #paypalMount></div>
+        @if (!paypalReady() && !paypalError()) {
+          <p role="status">{{ copy().loading }}</p>
+        }
+        @if (!paypalConfigured()) {
+          <p class="test-card">{{ copy().paypalSetup }}</p>
+        }
+        @if (paypalError()) {
+          <p
+            class="payment-error"
+            role="alert"
+          >
+            {{ paypalError() }}
+          </p>
+        }
+      </div>
+      <form
+        (submit)="pay($event)"
+        [attr.aria-busy]="busy()"
+        [hidden]="method() !== 'card' || status() === 'success' || status() === 'processing'"
+      >
+        <div
+          #paymentMount
+          class="payment-mount"
+          [hidden]="status() === 'unavailable' || status() === 'error'"
+        ></div>
+        @if (status() === 'loading') {
+          <p role="status">{{ copy().loading }}</p>
+        }
+        @if (status() === 'unavailable' || status() === 'error') {
+          <div
+            class="setup-note"
+            role="status"
+          >
+            <p>{{ status() === 'unavailable' ? copy().unavailable : copy().error }}</p>
+            <button
+              type="button"
+              class="reload"
+              (click)="initialize()"
+            >
+              {{ copy().retry }}
+            </button>
+          </div>
+        }
+        @if (status() === 'ready') {
+          <p class="test-card">{{ copy().testCard }}</p>
+        }
+        @if (status() === 'ready' && !backendReady()) {
+          <p class="test-card">{{ copy().previewOnly }}</p>
+        }
+        @if (error()) {
+          <p
+            class="payment-error"
+            role="alert"
+          >
+            {{ error() }}
+          </p>
+        }
+        <button
+          class="button pay-button"
+          type="submit"
+          [disabled]="!backendReady() || status() !== 'ready' || busy()"
+        >
+          {{ busy() ? copy().busy : copy().pay }} · {{ price() }}
+          <span aria-hidden="true">→</span>
+        </button>
+        <p class="secure-note">{{ copy().secure }}</p>
+      </form>
+      @if (status() === 'success') {
+        <div
+          class="result"
+          role="status"
+        >
+          <h3>{{ copy().success }}</h3>
+          <p>{{ copy().successText }}</p>
+          <a
+            class="button"
+            routerLink="/store"
+          >
+            Store →
+          </a>
+        </div>
+      }
+      @if (status() === 'processing') {
+        <p
+          class="result"
+          role="status"
+        >
+          {{ copy().processing }}
+        </p>
+      }
+    </div>
+    <aside
+      class="order-summary"
+      aria-labelledby="summary-title"
+    >
+      <h2 id="summary-title">{{ copy().summary }}</h2>
+      <img
+        [src]="'images/' + product.image"
+        [alt]="product.title[state.language()]"
+        width="700"
+        height="500"
+      />
+      <p class="product-format">{{ product.format[state.language()] }}</p>
+      <h3>{{ product.title[state.language()] }}</h3>
+      <p class="quantity">{{ copy().quantity }}</p>
+      <div class="total">
+        <span>{{ copy().total }}</span>
+        <strong>{{ price() }}</strong>
+      </div>
+      <p class="price-note">{{ copy().priceNote }}</p>
+      <p class="contact">
+        {{ copy().contact }}
+        <a href="mailto:medeinaa@hotmail.com">{{ copy().contactLink }}</a>
+      </p>
+    </aside>
+  </div>
+</section>

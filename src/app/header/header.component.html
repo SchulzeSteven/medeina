@@ -1,6 +1,10 @@
-<header class="site-header" (keydown.escape)="state.navigate(); menuToggle.focus(); $event.stopPropagation()">
+<header
+  class="site-header"
+  (keydown.escape)="state.navigate(); menuToggle.focus(); $event.stopPropagation()"
+>
   <a
-    href="./" (click)="state.navigateTo('start', $event)"
+    href="./"
+    (click)="state.navigateTo('start', $event)"
     class="brand"
     [attr.aria-label]="'Medeina · Çağla Mutlu – ' + state.copy.home"
   >
@@ -21,24 +25,67 @@
     aria-controls="navigation"
     [attr.aria-label]="state.copy.menu"
   >
-    <span class="menu-icon" aria-hidden="true"></span>
+    <span
+      class="menu-icon"
+      aria-hidden="true"
+    ></span>
   </button>
   <nav
     id="navigation"
     [class.open]="state.menuOpen()"
     [attr.aria-label]="state.copy.navigation"
   >
-    <a href="./" (click)="state.navigateTo('start', $event)">{{ state.copy.home }}</a>
-    <a href="#ueber-mich" (click)="state.navigateTo('ueber-mich', $event)">{{ state.copy.about }}</a>
-    <a routerLink="/angebote" routerLinkActive="active" (click)="state.navigate()">{{ state.copy.offersLabel }}</a>
-    <a routerLink="/store" routerLinkActive="active" (click)="state.navigate()">Store</a>
-    <button class="nav-link" (click)="state.book('contact')">{{ state.copy.contact }}</button>
-    <button class="button mobile-book" (click)="state.book()">{{ state.copy.book }}</button>
+    <a
+      href="./"
+      (click)="state.navigateTo('start', $event)"
+    >
+      {{ state.copy.home }}
+    </a>
+    <a
+      routerLink="/ueber-mich"
+      routerLinkActive="active"
+      (click)="state.navigate()"
+    >
+      {{ state.copy.about }}
+    </a>
+    <a
+      routerLink="/angebote"
+      routerLinkActive="active"
+      (click)="state.navigate()"
+    >
+      {{ state.copy.offersLabel }}
+    </a>
+    <a
+      routerLink="/store"
+      routerLinkActive="active"
+      (click)="state.navigate()"
+    >
+      Store
+    </a>
+    <button
+      class="nav-link"
+      (click)="state.book('contact')"
+    >
+      {{ state.copy.contact }}
+    </button>
+    <button
+      class="button mobile-book"
+      (click)="state.book()"
+    >
+      {{ state.copy.book }}
+    </button>
   </nav>
-  <button class="button header-book" (click)="state.book()">
+  <button
+    class="button header-book"
+    (click)="state.book()"
+  >
     {{ state.copy.book }}
   </button>
-  <div class="language-switch" role="group" [attr.aria-label]="state.copy.language">
+  <div
+    class="language-switch"
+    role="group"
+    [attr.aria-label]="state.copy.language"
+  >
     <button
       type="button"
       lang="de"

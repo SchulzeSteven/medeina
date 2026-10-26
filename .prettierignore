@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.angular/
+out-tsc/
+package-lock.json
+public/fonts/
+.env
+.env.*
+medeina-stripe-config.php
+medeina-paypal-config.php

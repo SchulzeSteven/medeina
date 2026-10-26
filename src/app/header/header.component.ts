@@ -14,6 +14,7 @@ export class HeaderComponent {
   private readonly element = inject<ElementRef<HTMLElement>>(ElementRef).nativeElement;
 
   closeOutside(event: MouseEvent) {
-    if (this.state.menuOpen() && !this.element.contains(event.target as Node)) this.state.navigate();
+    if (this.state.menuOpen() && !this.element.contains(event.target as Node))
+      this.state.navigate();
   }
 }

@@ -1,7 +1,28 @@
 // Default-visible, one-time entrances. Only the observer marks offscreen content.
 @mixin section-reveal {
-  .reveal-target { opacity: 1; transform: none; transition: opacity var(--duration-reveal) var(--ease-out), transform var(--duration-reveal) var(--ease-out); }
-  .reveal-target.reveal-pending { opacity: 0; transform: translateY(18px); }
-  .reveal-target.reveal-pending:focus-within { opacity: 1; transform: none; transition: none; }
-  @media (prefers-reduced-motion: reduce) { .reveal-target, .reveal-target.reveal-pending { opacity: 1; transform: none; transition: none; } }
+  .reveal-target {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity var(--duration-reveal) var(--ease-out),
+      transform var(--duration-reveal) var(--ease-out);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .reveal-target.reveal-pending {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  .reveal-target.reveal-pending:focus-within {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal-target,
+    .reveal-target.reveal-pending {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
 }

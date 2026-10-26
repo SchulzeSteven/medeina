@@ -1,10 +1,11 @@
 import { Component, inject } from '@angular/core';
+import { ScrollRevealDirective } from '../scroll-reveal.directive';
 import { SiteStateService } from '../site-state.service';
 
 @Component({
   selector: 'app-quote',
   standalone: true,
-  imports: [],
+  imports: [ScrollRevealDirective],
   templateUrl: './quote.component.html',
   styleUrl: './quote.component.scss',
 })

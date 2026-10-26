@@ -6,7 +6,9 @@
     "start": "ng serve --host 0.0.0.0",
     "build": "ng build",
     "watch": "ng build --watch",
-    "build:medeina": "ng build --configuration production --base-href /medeina/"
+    "build:medeina": "ng build --configuration production --base-href /medeina/",
+    "format": "prettier --write . --ignore-unknown",
+    "format:check": "prettier --check . --ignore-unknown"
   },
   "dependencies": {
     "@angular/common": "~20.3.0",
@@ -21,6 +23,8 @@
   "devDependencies": {
     "@angular/build": "~20.3.0",
     "@angular/cli": "~20.3.0",
+    "@prettier/plugin-php": "^0.26.0",
+    "prettier": "^3.9.10",
     "typescript": "~5.9.2"
   }
 }

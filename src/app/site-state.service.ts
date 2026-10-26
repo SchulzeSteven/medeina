@@ -21,9 +21,6 @@ export class SiteStateService {
   readonly requestPrepared = signal(false);
   readonly selectedOffer = computed(() => {
     const id = this.selectedOfferId();
-    if (id === 'about') {
-      return { id, title: 'Çağla Mutlu', detail: this.copy.aboutDetail };
-    }
     return this.offers.find((offer) => offer.id === id) ?? null;
   });
 
@@ -52,10 +49,10 @@ export class SiteStateService {
     const offers = [
       { id: 'intro', title: this.copy.intro },
       ...this.offers,
-      ...catalogOffers.map(offer => ({ id: offer.id, title: offer.title[this.language()] })),
+      ...catalogOffers.map((offer) => ({ id: offer.id, title: offer.title[this.language()] })),
     ];
     // Keep context-specific inquiries without narrowing the complete catalogue.
-    return offers.some(offer => offer.id === this.interest)
+    return offers.some((offer) => offer.id === this.interest)
       ? offers
       : [{ id: this.interest, title: this.interestLabel }, ...offers];
   }
@@ -97,34 +94,43 @@ export class SiteStateService {
     this.menuOpen.set(false);
   }
 
-  navigateTo(id: string, event: MouseEvent) {
+  navigateTo(id: string, event: MouseEvent, smooth = false) {
     if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
     event.preventDefault();
     this.navigate();
     const view = this.document.defaultView;
     if (!view) return;
 
-    const scrollToSection = () => view.requestAnimationFrame(() => {
-      const target = this.document.getElementById(id);
-      if (!target) return;
-      const headerHeight =
-        this.document.querySelector('.site-header')?.getBoundingClientRect().height ?? 80;
-      const verticalOffset =
-        Number.parseFloat(view.getComputedStyle(target).translate.split(' ')[1] ?? '0') || 0;
-      const top = id === 'start' ? 0 : Math.max(
-        0,
-        target.getBoundingClientRect().top + view.scrollY - verticalOffset - headerHeight - 16,
-      );
-      view.scrollTo({
-        top,
-        behavior: view.matchMedia('(prefers-reduced-motion: reduce)').matches
-          ? 'instant'
-          : 'smooth',
+    const scrollToSection = () =>
+      view.requestAnimationFrame(() => {
+        const target = this.document.getElementById(id);
+        if (!target) return;
+        const headerHeight =
+          this.document.querySelector('.site-header')?.getBoundingClientRect().height ?? 80;
+        const verticalOffset =
+          Number.parseFloat(view.getComputedStyle(target).translate.split(' ')[1] ?? '0') || 0;
+        const top =
+          id === 'start'
+            ? 0
+            : Math.max(
+                0,
+                target.getBoundingClientRect().top +
+                  view.scrollY -
+                  verticalOffset -
+                  headerHeight -
+                  16,
+              );
+        view.scrollTo({
+          top,
+          behavior:
+            smooth && !view.matchMedia('(prefers-reduced-motion: reduce)').matches
+              ? 'smooth'
+              : 'instant',
+        });
       });
-    });
 
     if (this.router.url !== '/') {
-      void this.router.navigate(['/']).then(navigated => {
+      void this.router.navigate(['/']).then((navigated) => {
         if (navigated) scrollToSection();
       });
     } else {
@@ -159,7 +165,7 @@ export class SiteStateService {
 
   openLegal(document: 'imprint' | 'privacy') {
     this.close();
-    this.legalDocument.set(document);
+    void this.router.navigate([document === 'imprint' ? '/impressum' : '/datenschutz']);
   }
 
   get emailHref() {

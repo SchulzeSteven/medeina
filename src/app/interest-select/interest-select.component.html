@@ -1,5 +1,10 @@
 <div class="interest-field">
-  <label id="interest-label" for="booking-interest">{{ label() }}</label>
+  <label
+    id="interest-label"
+    for="booking-interest"
+  >
+    {{ label() }}
+  </label>
   <button
     id="booking-interest"
     type="button"
@@ -14,12 +19,34 @@
     (keydown)="onKeydown($event)"
   >
     <span>{{ title() }}</span>
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
       <path [attr.d]="open() ? 'm7 14 5-5 5 5' : 'm7 10 5 5 5-5'" />
     </svg>
   </button>
-  <input type="hidden" name="interest" [value]="value()" />
-  <div id="interest-options" class="interest-options" [style.max-height.px]="listHeight()" role="listbox" tabindex="-1" aria-labelledby="interest-label" [hidden]="!open()">
+  <input
+    type="hidden"
+    name="interest"
+    [value]="value()"
+  />
+  <div
+    id="interest-options"
+    class="interest-options"
+    [style.max-height.px]="listHeight()"
+    role="listbox"
+    tabindex="-1"
+    aria-labelledby="interest-label"
+    [hidden]="!open()"
+  >
     @for (option of options(); track option.id; let index = $index) {
       <div
         role="option"
@@ -30,7 +57,18 @@
         (mousedown)="$event.preventDefault()"
         (click)="choose(index)"
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" [style.visibility]="option.id === value() ? 'visible' : 'hidden'">
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+          [style.visibility]="option.id === value() ? 'visible' : 'hidden'"
+        >
           <path d="m5 12 4 4L19 6" />
         </svg>
         <span>{{ option.title }}</span>

@@ -1,18 +1,120 @@
 @use '../../styles/scroll-reveal';
-:host { display: block; }
-.offers { padding-block: var(--section-space); background: #eee8de; }
-.section-heading { max-width: 720px; margin-inline: auto; margin-bottom: 48px; }
-.offer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
-.offer-card { display: grid; grid-template-columns: 42% minmax(0, 1fr); min-width: 0; background: var(--paper); border-radius: 16px; overflow: hidden; }
-.offer-card > img { display: block; width: 100%; height: 100%; min-height: 300px; object-fit: cover; transition: transform var(--duration-reveal) var(--ease-out); }
-.offer-content { position: relative; display: flex; flex-direction: column; padding: 32px 28px 24px; background: var(--paper); }
-.offer-content h3 { font-size: 30px; overflow-wrap: break-word; }
-.offer-content p { color: var(--muted); font-size: 15px; line-height: 1.8; margin-block: 16px 24px; }
-.offer-link { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; margin-top: auto; padding: 8px 0; min-height: 48px; text-align: left; font-size: 13px; color: var(--teal); border: 0; border-top: 1px solid var(--line); background: transparent; }
-.offer-link span { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: #edf1eb; font-size: 22px; transition: transform var(--duration-ui) var(--ease-out); flex-shrink: 0; }
-@media (hover: hover) and (pointer: fine) { .offer-card:hover > img { transform: scale(1.035); } .offer-link:hover span { transform: translateX(3px); } }
-@media (max-width: 1100px) { .offer-card { grid-template-columns: 1fr; } .offer-card > img { height: auto; min-height: 0; aspect-ratio: 1.65; } }
-@media (max-width: 900px) { .offer-grid { gap: 20px; } }
-@media (max-width: 600px) { .offer-grid { grid-template-columns: 1fr; } .offer-content { padding: 28px 24px 20px; } }
-@media (prefers-reduced-motion: reduce) { .offer-card > img, .offer-link span { transition: none; } .offer-card:hover > img, .offer-link:hover span { transform: none; } }
+:host {
+  display: block;
+}
+.offers {
+  padding-block: var(--section-space);
+  background: #eee8de;
+}
+.section-heading {
+  max-width: 720px;
+  margin-inline: auto;
+  margin-bottom: 48px;
+}
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+.offer-card {
+  display: grid;
+  grid-template-columns: 42% minmax(0, 1fr);
+  min-width: 0;
+  background: var(--paper);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.offer-card > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 300px;
+  object-fit: cover;
+  transition: transform var(--duration-reveal) var(--ease-out);
+}
+.offer-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 32px 28px 24px;
+  background: var(--paper);
+}
+.offer-content h3 {
+  font-size: 30px;
+  overflow-wrap: break-word;
+}
+.offer-content p {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.8;
+  margin-block: 16px 24px;
+}
+.offer-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  margin-top: auto;
+  padding: 8px 0;
+  min-height: 48px;
+  text-align: left;
+  font-size: 16px;
+  color: var(--teal);
+  border: 0;
+  border-top: 1px solid var(--line);
+  background: transparent;
+}
+.offer-link span {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #edf1eb;
+  font-size: 22px;
+  transition: transform var(--duration-ui) var(--ease-out);
+  flex-shrink: 0;
+}
+@media (hover: hover) and (pointer: fine) {
+  .offer-card:hover > img {
+    transform: scale(1.035);
+  }
+  .offer-link:hover span {
+    transform: translateX(3px);
+  }
+}
+@media (max-width: 1100px) {
+  .offer-card {
+    grid-template-columns: 1fr;
+  }
+  .offer-card > img {
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 1.65;
+  }
+}
+@media (max-width: 900px) {
+  .offer-grid {
+    gap: 20px;
+  }
+}
+@media (max-width: 600px) {
+  .offer-grid {
+    grid-template-columns: 1fr;
+  }
+  .offer-content {
+    padding: 28px 24px 20px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .offer-card > img,
+  .offer-link span {
+    transition: none;
+  }
+  .offer-card:hover > img,
+  .offer-link:hover span {
+    transform: none;
+  }
+}
 @include scroll-reveal.section-reveal;

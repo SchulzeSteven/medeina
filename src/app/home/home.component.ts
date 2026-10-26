@@ -13,10 +13,21 @@ import { ReviewsComponent } from '../reviews/reviews.component';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [HeroComponent, BenefitsComponent, AboutComponent, SlogansComponent, OffersComponent,
-    QuoteComponent, EventsComponent, InstagramComponent, ReviewsComponent],
+  imports: [
+    HeroComponent,
+    BenefitsComponent,
+    AboutComponent,
+    SlogansComponent,
+    OffersComponent,
+    QuoteComponent,
+    EventsComponent,
+    InstagramComponent,
+    ReviewsComponent,
+  ],
   templateUrl: './home.component.html',
 })
 export class HomeComponent {
-  constructor() { inject(SiteStateService).restorePageMetadata(); }
+  constructor() {
+    inject(SiteStateService).restorePageMetadata();
+  }
 }

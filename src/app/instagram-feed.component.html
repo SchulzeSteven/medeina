@@ -33,7 +33,12 @@
                 {{ post.mediaType === 'VIDEO' ? copy.video : copy.album }}
               </span>
             }
-            <span class="instagram-open" aria-hidden="true">↗</span>
+            <span
+              class="instagram-open"
+              aria-hidden="true"
+            >
+              ↗
+            </span>
           </div>
           @if (post.caption) {
             <p class="instagram-caption">{{ post.caption }}</p>
@@ -42,7 +47,10 @@
       }
     </div>
   } @else {
-    <div class="instagram-empty" role="status">
+    <div
+      class="instagram-empty"
+      role="status"
+    >
       <svg
         viewBox="0 0 24 24"
         fill="none"
@@ -50,9 +58,25 @@
         stroke-width="1.5"
         aria-hidden="true"
       >
-        <rect x="3" y="3" width="18" height="18" rx="5" />
-        <circle cx="12" cy="12" r="4" />
-        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+        <rect
+          x="3"
+          y="3"
+          width="18"
+          height="18"
+          rx="5"
+        />
+        <circle
+          cx="12"
+          cy="12"
+          r="4"
+        />
+        <circle
+          cx="17.5"
+          cy="6.5"
+          r="1"
+          fill="currentColor"
+          stroke="none"
+        />
       </svg>
       <p>{{ loading() ? copy.loading : failed() ? copy.error : copy.empty }}</p>
     </div>

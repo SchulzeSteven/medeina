@@ -1,4 +1,7 @@
-<section class="quote-banner">
+<section
+  appScrollReveal
+  class="quote-banner"
+>
   <div class="container quote-content">
     <img
       class="quote-portrait"
@@ -11,8 +14,14 @@
     />
     <div class="quote-message">
       <blockquote>{{ state.copy.quote }}</blockquote>
-      <p class="quote-signature">Çağla Mutlu <span>· Medeina</span></p>
-      <button class="button" (click)="state.book()">
+      <p class="quote-signature">
+        Çağla Mutlu
+        <span>· Medeina</span>
+      </p>
+      <button
+        class="button"
+        (click)="state.book()"
+      >
         {{ state.copy.start }}
         <span aria-hidden="true">⟶</span>
       </button>

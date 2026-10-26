@@ -23,7 +23,16 @@
           <div class="offer-content">
             <h3>{{ offer.title }}</h3>
             <p>{{ offer.text }}</p>
-            <button class="offer-link" (click)="offer.id === 'seminars' ? state.navigateCatalog() : offer.id === 'coaching' ? state.navigateCatalog('sessions') : state.selectedOfferId.set(offer.id)">
+            <button
+              class="offer-link"
+              (click)="
+                offer.id === 'seminars'
+                  ? state.navigateCatalog()
+                  : offer.id === 'coaching'
+                    ? state.navigateCatalog('sessions')
+                    : state.selectedOfferId.set(offer.id)
+              "
+            >
               {{ state.copy.more }}
               <span aria-hidden="true">⟶</span>
             </button>

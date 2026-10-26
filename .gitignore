@@ -3,3 +3,9 @@
 /.angular
 /out-tsc
 *.log
+
+# Private payment configuration
+medeina-stripe-config.php
+medeina-paypal-config.php
+.env
+.env.*

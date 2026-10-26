@@ -1,12 +1,74 @@
-:host { display: block; }
-.quote-banner { padding-block: var(--section-space); background: var(--teal-deep); color: var(--cream); }
-.quote-content { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); align-items: center; gap: clamp(40px, 8vw, 112px); }
-.quote-portrait { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 30%; border-radius: 170px 170px 12px 12px; }
-.quote-message { min-width: 0; }
-blockquote { margin: 0; color: var(--cream); font-family: var(--serif); font-size: clamp(30px, 3.5vw, 46px); line-height: 1.4; letter-spacing: -.02em; text-wrap: balance; }
-.quote-signature { margin-top: 28px; color: #e2d0ac; font-size: 13px; letter-spacing: .02em; }
-.quote-signature span { white-space: nowrap; }
-.button { margin-top: 32px; background: var(--gold); color: #273d38; }
-@media (hover: hover) and (pointer: fine) { .button:hover { background: #f1d89f; } }
-@media (max-width: 900px) { .quote-content { grid-template-columns: minmax(0, 240px) minmax(0, 1fr); gap: 40px; } }
-@media (max-width: 600px) { .quote-content { grid-template-columns: 1fr; gap: 36px; text-align: center; } .quote-portrait { max-width: 240px; margin-inline: auto; } }
+@use '../../styles/scroll-reveal';
+:host {
+  display: block;
+}
+.quote-banner {
+  padding-block: var(--section-space);
+  background: var(--teal-deep);
+  color: var(--cream);
+}
+.quote-content {
+  display: grid;
+  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  align-items: center;
+  gap: clamp(40px, 8vw, 112px);
+}
+.quote-portrait {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center 30%;
+  border-radius: 170px 170px 12px 12px;
+}
+.quote-message {
+  min-width: 0;
+}
+blockquote {
+  margin: 0;
+  color: var(--cream);
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.5vw, 46px);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+.quote-signature {
+  margin-top: 28px;
+  color: #e2d0ac;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+}
+.quote-signature span {
+  white-space: nowrap;
+}
+.button {
+  margin-top: 32px;
+  background: var(--gold);
+  color: #273d38;
+}
+@media (hover: hover) and (pointer: fine) {
+  .button:hover {
+    background: #f1d89f;
+  }
+}
+@media (max-width: 900px) {
+  .quote-content {
+    grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
+    gap: 40px;
+  }
+}
+@media (max-width: 600px) {
+  .quote-content {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    text-align: center;
+  }
+  .quote-portrait {
+    max-width: 240px;
+    margin-inline: auto;
+  }
+}
+
+@include scroll-reveal.section-reveal;
