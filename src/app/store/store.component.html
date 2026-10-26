@@ -82,12 +82,14 @@
       </div>
       <p class="preview-note">{{ copy().preview }}</p>
       <section
-        #collection
-        id="kollektion"
         class="collection"
         aria-labelledby="collection-title"
       >
-        <div class="collection-heading">
+        <div
+          #collection
+          id="kollektion"
+          class="collection-heading"
+        >
           <h2 id="collection-title">{{ copy().collection }}</h2>
           <span aria-live="polite">{{ products().length }} {{ copy().count }}</span>
         </div>
@@ -98,6 +100,7 @@
           @for (category of categories; track category.id) {
             <a
               routerLink="/store"
+              fragment="kollektion"
               [queryParams]="category.id === 'alle' ? {} : { kategorie: category.id }"
               [attr.aria-current]="filter() === category.id ? 'true' : null"
             >

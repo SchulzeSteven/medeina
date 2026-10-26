@@ -9,3 +9,5 @@ medeina-stripe-config.php
 medeina-paypal-config.php
 .env
 .env.*
+
+medeina-resend-config.php

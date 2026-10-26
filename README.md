@@ -19,7 +19,7 @@ Die Seite läuft unter http://localhost:4200. Produktionsbuild: `npm run build`;
 - Responsive Darstellung und mobiles Menü
 - Deutsch und Türkisch mit DE/TR-Umschaltung
 - Dialoge für Angebotsdetails und Terminanfragen
-- Lokal vorbereiteter E-Mail-Entwurf an `medeinaa@hotmail.com`, ohne Backend oder Datenversand
+- Anfrageformular mit serverseitigem Resend-Versand; Testempfänger `schulze89@hotmail.de`
 - Vorhandene Bilder und Logos, ohne externe Bilddienste oder Fonts
 
 Texte und Veranstaltungen: `src/app/translations.ts`. Die Sections liegen in eigenen Komponenten unter `src/app/`. Globale Farben und Grundregeln: `src/styles.scss`. Die Styles jeder Section liegen in ihrer jeweiligen `*.component.scss`-Datei. Bildausschnitte können mit `node scripts/extract-images.cjs` aus der ursprünglichen Vorlage erneut erzeugt werden.
@@ -74,7 +74,7 @@ Im Header führt ein gemeinsamer Eintrag „Angebote“ zur Seite `/angebote`. D
 
 - `src/app/catalog/catalog.data.ts`: zentrale Datenquelle mit stabilen IDs, DE/TR-Feldern, Kategorien, Inhalten, belegten Voraussetzungen, Dauer, Format und Ausbildungsstufen. Keine Preise.
 - `src/app/catalog/catalog.component.*`: responsive Übersicht, Kategorie-Filter, Detailansichten, Sprachumschaltung und Anfragebuttons. Die Übersichten und Details sind reguläre Seiten mit eigenen URLs. Navigation per Tastatur, Browser-Zurück und das Öffnen der Links in einem neuen Tab werden unterstützt.
-- `site-state.service.ts`: Navigation zu den Angebotsseiten sowie Übernahme der Angebots-ID in das vorhandene Kontaktformular. Die ausgewählte Sprache bestimmt auch den Angebotsnamen im E-Mail-Entwurf. Das Formular versendet weiterhin keine Daten automatisch.
+- `site-state.service.ts`: Navigation zu den Angebotsseiten sowie Übernahme der Angebots-ID in das vorhandene Kontaktformular. Die ausgewählte Sprache bestimmt den Angebotsnamen und die Sprache der Anfrage-E-Mail. Das Formular versendet über die PHP-API und Resend.
 
 Alle Terminlisten sind zunächst leer. Bestätigte Termine lassen sich pro Angebot in `dates` ergänzen: `startsAt` (ISO-Zeitstempel), optional `endsAt`, `location` mit DE/TR und optional `registrationUrl`. Die Detailansicht zeigt vorhandene Termine; Registrierungslinks sind für eine spätere Erweiterung vorbereitet. Die bestehenden Veranstaltungskarten bleiben separate Layoutbeispiele.
 
@@ -172,3 +172,46 @@ Die erneut eingerichtete temporäre Stripe-Sandbox läuft am 29.10.2026 ab. Ihre
 Konfiguration liegt lokal in der ignorierten Datei `server/medeina-stripe-config.php`.
 Für vollständige Testzahlungen auf IONOS diese Datei wie oben beschrieben außerhalb
 des öffentlichen Verzeichnisses ablegen. Nur der öffentliche Testschlüssel liegt in der dist.
+
+## Anfrageformular mit Resend testen
+
+Das Anfrageformular sendet direkt über `api/send-inquiry.php`. Im aktuellen Testbetrieb
+gehen alle Anfragen ausschließlich an `schulze89@hotmail.de`. Die eingegebene Besucheradresse
+wird als Reply-To gesetzt, nicht als zusätzlicher Empfänger. Die E-Mail enthält das eingebettete
+Mainlogo und die Formulardaten auf Deutsch oder Türkisch.
+
+### Lokal
+
+1. `server/medeina-resend-config.example.php` als `server/medeina-resend-config.php` kopieren
+   und den Resend-API-Schlüssel eintragen. Diese private Datei wird von Git und Prettier ignoriert.
+   Die lokale Testkonfiguration ist bereits eingerichtet.
+2. In einem Terminal `npm run start:api` starten (PHP 8.1+, cURL und mbstring erforderlich).
+3. In einem zweiten Terminal `npm start` starten. Angular leitet `/api` über `proxy.conf.json`
+   an den PHP-Server auf Port 8081 weiter. Im Entwicklungsbuild wird `public/api/` deshalb nicht als statischer Inhalt ausgeliefert. Einen bereits laufenden Angular-Server neu starten.
+4. Das Anfrageformular ausfüllen und **Anfrage senden** klicken. Erst nach erfolgreicher
+   Annahme durch Resend erscheint die Bestätigung. Das E-Mail-Programm wird nicht geöffnet.
+
+### Hosting / IONOS
+
+Mit `npm run build:medeina` bauen und den Inhalt von `dist/medaina/browser/` inklusive
+`api/` und `images/` hochladen. Die private Resend-Konfiguration außerhalb des öffentlichen
+Website-Verzeichnisses ablegen, standardmäßig unter
+`dirname(__DIR__, 3) . '/medeina-resend-config.php'` relativ zu `api/send-inquiry.php`.
+Alternativ den absoluten Pfad mit `MEDEINA_RESEND_CONFIG` konfigurieren.
+Der API-Schlüssel darf niemals in `public/`, `dist/` oder im Frontend stehen.
+
+Alternativ sind die serverseitigen Umgebungsvariablen `RESEND_API_KEY`,
+`MEDEINA_INQUIRY_TO` und `MEDEINA_INQUIRY_FROM` möglich. Empfänger und Absender werden
+ausschließlich serverseitig festgelegt. Ohne verifizierte Domain den Absender
+`Medeina <onboarding@resend.dev>` und die eigene Resend-Konto-Adresse als Empfänger verwenden.
+Für einen späteren Produktivbetrieb Empfänger, verifizierten Absender und den Testhinweis
+`inquiryNote` in `src/app/translations.ts` anpassen.
+
+Die API prüft Sitzungstoken, Eingaben und Größenlimits, begrenzt Sendeversuche pro Sitzung
+und verwendet für Wiederholungen derselben Anfrage einen Idempotenzschlüssel.
+Das Standardlimit beträgt fünf Versuche in zehn Minuten. Die private lokale Testkonfiguration
+setzt `attemptLimit` auf 50; für den Produktivbetrieb wieder auf fünf setzen.
+Bei Fehlern werden keine Erfolge angezeigt; die Eingaben bleiben erhalten.
+
+Mit `npm run check:inquiry` lassen sich Validierung und beide E-Mail-Sprachen prüfen,
+ohne E-Mails zu versenden. Dafür muss `npm run start:api` laufen.

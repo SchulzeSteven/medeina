@@ -36,11 +36,15 @@ const de = {
   development: 'Raum für deine Entwicklung',
   email: 'Deine E-Mail-Adresse',
   interest: 'Dein Interesse',
-  prepare: 'Anfrage vorbereiten',
-  prepared: 'Deine Anfrage ist vorbereitet.',
-  confirmation:
-    'Deine Angaben werden in einen E-Mail-Entwurf an Çağla Mutlu übernommen. Prüfe deine Nachricht und versende sie in deinem E-Mail-Programm.',
-  openEmail: 'E-Mail-Entwurf öffnen',
+  prepare: 'Anfrage senden',
+  prepared: 'Deine Anfrage wurde gesendet.',
+  confirmation: 'Vielen Dank! Deine Anfrage wurde übermittelt. Wir melden uns bei dir.',
+  inquiryNote:
+    'Deine Angaben werden per E-Mail übermittelt. Aktuell werden Anfragen zum Testen an schulze89@hotmail.de gesendet.',
+  inquirySending: 'Anfrage wird gesendet …',
+  inquiryError:
+    'Die Anfrage konnte nicht gesendet werden. Deine Angaben bleiben erhalten. Bitte versuche es erneut.',
+  inquiryLimit: 'Zu viele Versuche. Bitte versuche es in zehn Minuten erneut.',
   benefits: [
     {
       icon: '♧',
@@ -222,11 +226,14 @@ const tr: typeof de = {
   development: 'Gelişimin için bir alan',
   email: 'E-posta adresin',
   interest: 'İlgilendiğin hizmet',
-  prepare: 'Talebi hazırla',
-  prepared: 'Talebin hazır.',
-  confirmation:
-    'Bilgilerin Çağla Mutlu’ya gönderilecek bir e-posta taslağına aktarılır. Mesajını kontrol edip e-posta uygulamandan gönderebilirsin.',
-  openEmail: 'E-posta taslağını aç',
+  prepare: 'Talebi gönder',
+  prepared: 'Talebin gönderildi.',
+  confirmation: 'Teşekkürler! Talebin iletildi. Seninle iletişime geçeceğiz.',
+  inquiryNote:
+    'Bilgilerin e-posta ile iletilir. Şu anda talepler test amacıyla schulze89@hotmail.de adresine gönderilir.',
+  inquirySending: 'Talep gönderiliyor …',
+  inquiryError: 'Talep gönderilemedi. Bilgilerin korunuyor. Lütfen tekrar dene.',
+  inquiryLimit: 'Çok fazla deneme yapıldı. Lütfen on dakika sonra tekrar dene.',
   benefits: [
     {
       icon: '♧',

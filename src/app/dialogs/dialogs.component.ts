@@ -34,7 +34,7 @@ export class DialogsComponent {
         this.state.bookingOpen() ||
         this.state.legalDocument()
       );
-      const prepared = this.state.requestPrepared();
+      const prepared = this.state.requestSent();
       if (open && !this.active) {
         this.active = true;
         this.opener = this.document.activeElement as HTMLElement | null;

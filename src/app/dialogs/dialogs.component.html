@@ -15,6 +15,7 @@
         class="modal-close"
         [attr.aria-label]="state.copy.close"
         (click)="state.close()"
+        [disabled]="state.requestSending()"
       >
         ×
       </button>
@@ -47,64 +48,88 @@
       @if (state.bookingOpen()) {
         <p class="eyebrow muted">{{ state.copy.firstStep }}</p>
         <h2 id="dialog-title">{{ state.copy.dialogTitle }}</h2>
-        @if (!state.requestPrepared()) {
+        @if (!state.requestSent()) {
           <p>{{ state.copy.dialogText }}</p>
           <form
             ngNativeValidate
-            (ngSubmit)="state.prepareRequest()"
+            (ngSubmit)="state.sendRequest()"
           >
-            <label>
-              {{ state.copy.name }}
-              <input
-                name="name"
-                [(ngModel)]="state.name"
-                required
-                autocomplete="name"
+            <fieldset [disabled]="state.requestSending()">
+              <label>
+                {{ state.copy.name }}
+                <input
+                  name="name"
+                  [(ngModel)]="state.name"
+                  required
+                  maxlength="120"
+                  autocomplete="name"
+                />
+              </label>
+              <label>
+                {{ state.copy.email }}
+                <input
+                  name="email"
+                  type="email"
+                  maxlength="254"
+                  [(ngModel)]="state.email"
+                  required
+                  autocomplete="email"
+                />
+              </label>
+              <app-interest-select
+                [label]="state.copy.interest"
+                [options]="state.inquiryOffers"
+                [(value)]="state.interest"
               />
-            </label>
-            <label>
-              {{ state.copy.email }}
-              <input
-                name="email"
-                type="email"
-                [(ngModel)]="state.email"
-                required
-                autocomplete="email"
-              />
-            </label>
-            <app-interest-select
-              [label]="state.copy.interest"
-              [options]="state.inquiryOffers"
-              [(value)]="state.interest"
-            />
-            <label>
-              {{ state.copy.message }}
-              <textarea
-                name="message"
-                [(ngModel)]="state.message"
-                rows="3"
-              ></textarea>
-            </label>
-            <p class="form-note">{{ state.copy.demo }}</p>
-            <button
-              class="button"
-              type="submit"
+              <label>
+                {{ state.copy.message }}
+                <textarea
+                  name="message"
+                  [(ngModel)]="state.message"
+                  rows="3"
+                  maxlength="5000"
+                ></textarea>
+              </label>
+              <p class="form-note">{{ state.copy.inquiryNote }}</p>
+              @if (state.requestError()) {
+                <p
+                  class="form-error"
+                  role="alert"
+                >
+                  {{
+                    state.requestError() === 'limit'
+                      ? state.copy.inquiryLimit
+                      : state.copy.inquiryError
+                  }}
+                </p>
+              }
+              <button
+                class="button"
+                type="submit"
+              >
+                {{ state.requestSending() ? state.copy.inquirySending : state.copy.prepare }}
+                <span aria-hidden="true">⟶</span>
+              </button>
+            </fieldset>
+            <span
+              class="form-status"
+              role="status"
             >
-              {{ state.copy.prepare }}
-              <span aria-hidden="true">⟶</span>
-            </button>
+              {{ state.requestSending() ? state.copy.inquirySending : '' }}
+            </span>
           </form>
         } @else {
           <div class="confirmation">
             <span aria-hidden="true">✓</span>
             <h3>{{ state.copy.prepared }}</h3>
             <p>{{ state.copy.confirmation }}</p>
-            <a
+            <button
               class="button"
-              [href]="state.emailHref"
+              type="button"
+              (click)="state.close()"
             >
-              {{ state.copy.openEmail }} ⟶
-            </a>
+              {{ state.copy.close }}
+            </button>
           </div>
         }
       }

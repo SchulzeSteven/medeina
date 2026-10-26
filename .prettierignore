@@ -8,3 +8,5 @@ public/fonts/
 .env.*
 medeina-stripe-config.php
 medeina-paypal-config.php
+
+medeina-resend-config.php

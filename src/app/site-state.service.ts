@@ -18,7 +18,11 @@ export class SiteStateService {
   readonly bookingOpen = signal(false);
   readonly legalDocument = signal<'imprint' | 'privacy' | null>(null);
   readonly showAllEvents = signal(false);
-  readonly requestPrepared = signal(false);
+  readonly requestSent = signal(false);
+  readonly requestSending = signal(false);
+  readonly requestError = signal<'failed' | 'limit' | null>(null);
+  private requestId = '';
+  private requestBody = '';
   readonly selectedOffer = computed(() => {
     const id = this.selectedOfferId();
     return this.offers.find((offer) => offer.id === id) ?? null;
@@ -139,15 +143,20 @@ export class SiteStateService {
   }
 
   book(interest = 'intro') {
+    if (this.requestSending()) return;
     this.legalDocument.set(null);
     this.interest = interest === 'about' ? 'intro' : interest;
     this.selectedOfferId.set(null);
-    this.requestPrepared.set(false);
+    this.requestSent.set(false);
+    this.requestError.set(null);
+    this.requestId = '';
+    this.requestBody = '';
     this.bookingOpen.set(true);
     this.menuOpen.set(false);
   }
 
   close() {
+    if (this.requestSending()) return;
     this.legalDocument.set(null);
     this.bookingOpen.set(false);
     this.selectedOfferId.set(null);
@@ -159,17 +168,61 @@ export class SiteStateService {
     void this.router.navigate(['/angebote'], { queryParams: { bereich: section } });
   }
 
-  prepareRequest() {
-    this.requestPrepared.set(true);
+  async sendRequest() {
+    if (this.requestSending() || this.requestSent()) return;
+
+    const inquiry = {
+      name: this.name.trim(),
+      email: this.email.trim(),
+      interest: this.interestLabel,
+      message: this.message.trim(),
+      language: this.language(),
+    };
+    const serialized = JSON.stringify(inquiry);
+    if (serialized !== this.requestBody) {
+      this.requestBody = serialized;
+      this.requestId = crypto.randomUUID();
+    }
+
+    this.requestSending.set(true);
+    this.requestError.set(null);
+    try {
+      const endpoint = new URL('api/send-inquiry.php', this.document.baseURI);
+      const sessionResponse = await fetch(endpoint, {
+        credentials: 'same-origin',
+        cache: 'no-store',
+        signal: AbortSignal.timeout(15000),
+      });
+      if (!sessionResponse.ok) throw new Error('session_failed');
+      const session = await sessionResponse.json();
+      if (typeof session.token !== 'string') throw new Error('session_failed');
+
+      const response = await fetch(endpoint, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Inquiry-Token': session.token,
+        },
+        body: JSON.stringify({ ...inquiry, requestId: this.requestId }),
+        signal: AbortSignal.timeout(35000),
+      });
+      if (!response.ok) {
+        this.requestError.set(response.status === 429 ? 'limit' : 'failed');
+        return;
+      }
+      const result = await response.json();
+      if (result.sent !== true) throw new Error('send_failed');
+      this.requestSent.set(true);
+    } catch {
+      this.requestError.set('failed');
+    } finally {
+      this.requestSending.set(false);
+    }
   }
 
   openLegal(document: 'imprint' | 'privacy') {
     this.close();
     void this.router.navigate([document === 'imprint' ? '/impressum' : '/datenschutz']);
-  }
-
-  get emailHref() {
-    const body = `${this.copy.emailGreeting}\n\n${this.copy.emailInterest} ${this.interestLabel}.\n\n${this.message}\n\n${this.copy.emailClosing}\n${this.name}\n${this.email}`;
-    return `mailto:medeinaa@hotmail.com?subject=${encodeURIComponent(this.copy.emailSubject + this.interestLabel)}&body=${encodeURIComponent(body)}`;
   }
 }

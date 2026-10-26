@@ -59,9 +59,9 @@ h1 {
 }
 .collection {
   padding-top: 64px;
-  scroll-margin-top: calc(var(--header-height) + 24px);
 }
 .collection-heading {
+  scroll-margin-top: calc(var(--header-height) + 24px);
   display: flex;
   align-items: baseline;
   justify-content: space-between;
