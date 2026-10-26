@@ -2,13 +2,15 @@ import { DOCUMENT } from '@angular/common';
 import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { LocalizedTextComponent, LocalizedText } from '../localized-text.component';
+import { Language } from '../translations';
 import { SiteStateService } from '../site-state.service';
 import { storeCategories, storeCopy, storeProducts, StoreProduct } from './store.data';
 
 @Component({
   selector: 'app-store',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, LocalizedTextComponent],
   templateUrl: './store.component.html',
   styleUrl: './store.component.scss',
 })
@@ -36,14 +38,22 @@ export class StoreComponent {
   constructor() {
     effect(() => {
       const product = this.selected();
-      this.document.title = `${product?.title[this.state.language()] ?? 'Store'} · Medeina · Çağla Mutlu`;
+      this.document.title = `${product?.title[this.state.language()] ?? this.state.copy.storeLabel} · Medeina · Çağla Mutlu`;
       this.document
         .querySelector('meta[name="description"]')
         ?.setAttribute('content', product?.description[this.state.language()] ?? this.copy().intro);
     });
   }
-  formatPrice(product: StoreProduct) {
-    return new Intl.NumberFormat(this.state.language() === 'de' ? 'de-DE' : 'tr-TR', {
+  label(key: keyof typeof storeCopy.de): LocalizedText {
+    return { de: storeCopy.de[key], tr: storeCopy.tr[key] };
+  }
+
+  prices(product: StoreProduct): LocalizedText {
+    return { de: this.formatPrice(product, 'de'), tr: this.formatPrice(product, 'tr') };
+  }
+
+  formatPrice(product: StoreProduct, language: Language = this.state.language()) {
+    return new Intl.NumberFormat(language === 'de' ? 'de-DE' : 'tr-TR', {
       style: 'currency',
       currency: 'EUR',
     }).format(product.priceCents / 100);

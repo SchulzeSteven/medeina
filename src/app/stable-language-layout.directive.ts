@@ -85,7 +85,9 @@ export class StableLanguageLayoutDirective {
       element.style.minWidth = original.width;
     }
     this.managed.clear();
-    const elements = Array.from(this.host.querySelectorAll<HTMLElement>(this.selector));
+    const elements = Array.from(this.host.querySelectorAll<HTMLElement>(this.selector)).filter(
+      (element) => !element.closest('app-store'),
+    );
     const clones = [false, true].map((translate) => {
       const clone = this.host.cloneNode(true) as HTMLElement;
       clone.setAttribute('aria-hidden', 'true');
@@ -110,7 +112,9 @@ export class StableLanguageLayoutDirective {
     });
     try {
       const copies = clones.map((clone) =>
-        Array.from(clone.querySelectorAll<HTMLElement>(this.selector)),
+        Array.from(clone.querySelectorAll<HTMLElement>(this.selector)).filter(
+          (element) => !element.closest('app-store'),
+        ),
       );
       // Give translated controls the same width before measuring text wrapping.
       elements.forEach((element, index) => {
