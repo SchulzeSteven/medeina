@@ -2,6 +2,7 @@ export type Language = 'de' | 'tr';
 
 const de = {
   home: 'Startseite',
+  backToTop: 'Nach oben scrollen',
   menu: 'Menü öffnen oder schließen',
   navigation: 'Hauptnavigation',
   about: 'Über mich',
@@ -197,6 +198,7 @@ const de = {
 
 const tr: typeof de = {
   home: 'Ana sayfa',
+  backToTop: 'Yukarı kaydır',
   menu: 'Menüyü aç veya kapat',
   navigation: 'Ana menü',
   about: 'Hakkımda',

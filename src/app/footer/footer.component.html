@@ -73,14 +73,14 @@
         </a>
       </nav>
     </div>
-    <a
+    <button
       class="footer-back-top"
-      href="./"
-      (click)="state.navigateTo('start', $event)"
-      [attr.aria-label]="state.copy.home"
+      type="button"
+      (click)="scrollToTop()"
+      [attr.aria-label]="state.copy.backToTop"
     >
       Medeina ↑
-    </a>
+    </button>
   </div>
   <div class="container footer-bottom">
     <p>Copyright © 2026 Çağla Mutlu</p>
