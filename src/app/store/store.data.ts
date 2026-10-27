@@ -25,7 +25,7 @@ export const storeProducts: StoreProduct[] = [
     isExample: true,
     priceCents: 2490,
     category: 'begleiter',
-    image: 'programs.png',
+    image: 'online.jpeg',
     title: { de: 'Zeit für dich', tr: 'Kendine zaman ayır' },
     description: {
       de: 'Ein Journal für Gedanken, kleine Erkenntnisse und neue Perspektiven.',
@@ -42,7 +42,7 @@ export const storeProducts: StoreProduct[] = [
     isExample: true,
     priceCents: 1490,
     category: 'meditation',
-    image: 'retreats.png',
+    image: 'retreats.jpeg',
     title: { de: 'Bei dir ankommen', tr: 'Kendine dön' },
     description: {
       de: 'Eine geführte Meditation als Einladung zu einer bewussten Pause.',
@@ -59,7 +59,7 @@ export const storeProducts: StoreProduct[] = [
     isExample: true,
     priceCents: 1990,
     category: 'begleiter',
-    image: 'seminars.png',
+    image: 'seminare.jpeg',
     title: { de: 'Ein neuer Gedanke', tr: 'Yeni bir düşünce' },
     description: {
       de: 'Impulskarten mit Fragen und Anregungen für deine persönliche Auszeit.',
@@ -93,7 +93,7 @@ export const storeProducts: StoreProduct[] = [
     isExample: true,
     priceCents: 1790,
     category: 'begleiter',
-    image: 'coaching.png',
+    image: 'coaching.jpeg',
     title: { de: 'Dein nächster Schritt', tr: 'Bir sonraki adımın' },
     description: {
       de: 'Ein Reflexionsheft, das deinen Gedanken und Wünschen Raum gibt.',

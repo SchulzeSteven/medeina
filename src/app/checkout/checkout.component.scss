@@ -94,8 +94,9 @@ h2 {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 1.6;
+  aspect-ratio: 1.2;
   object-fit: cover;
+  object-position: center 30%;
   border-radius: 12px;
   margin-block: 24px;
 }
@@ -174,6 +175,6 @@ h3 {
     grid-row: 1;
   }
   .order-summary img {
-    max-height: 220px;
+    max-height: 300px;
   }
 }

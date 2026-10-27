@@ -17,7 +17,7 @@
     transform: none;
     transition: none;
   }
-  @media (prefers-reduced-motion: reduce) {
+  @media (prefers-reduced-motion: reduce), (max-width: 600px) {
     .reveal-target,
     .reveal-target.reveal-pending {
       opacity: 1;

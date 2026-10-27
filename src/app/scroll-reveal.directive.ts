@@ -9,6 +9,7 @@ export class ScrollRevealDirective {
     afterNextRender(() => {
       const view = this.element.ownerDocument.defaultView;
       if (!view?.IntersectionObserver) return;
+      if (view.matchMedia('(max-width: 600px)').matches) return;
       const preference = view.matchMedia('(prefers-reduced-motion: reduce)');
       // Reveal meaningful groups instead of moving entire page sections.
       const groups = this.element.querySelectorAll<HTMLElement>(

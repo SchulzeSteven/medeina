@@ -138,7 +138,7 @@ const de = {
     {
       id: 'coaching',
       title: 'Einzelcoaching',
-      image: 'coaching',
+      image: 'coaching.jpeg',
       text: 'Persönliche Begleitung für deine individuellen Ziele.',
       detail:
         'Ein geschützter Raum für das, was dich bewegt. Gemeinsam entdecken wir deine Stärken, bringen Klarheit in deine nächsten Schritte und entwickeln neue Perspektiven – in deinem Tempo, online oder vor Ort.',
@@ -146,7 +146,7 @@ const de = {
     {
       id: 'seminars',
       title: 'Seminare & Workshops',
-      image: 'seminars',
+      image: 'seminare.jpeg',
       text: 'Inspiration, Wissen und praktische Umsetzung.',
       detail:
         'Erlebe neue Impulse und den Austausch mit anderen. Mit Reflexion, alltagstauglichen Übungen und persönlicher Begleitung übersetzen wir Erkenntnisse in konkrete Schritte.',
@@ -154,7 +154,7 @@ const de = {
     {
       id: 'programs',
       title: 'Online-Programme',
-      image: 'programs',
+      image: 'online.jpeg',
       text: 'Flexibel lernen – von überall aus, in deinem Tempo.',
       detail:
         'Nimm dir bewusst Zeit für dich. Geführte Übungen und inspirierende Impulse begleiten dich flexibel durch deinen Alltag. Frage die aktuellen Programme und Inhalte unverbindlich an.',
@@ -162,7 +162,7 @@ const de = {
     {
       id: 'retreats',
       title: 'Retreats',
-      image: 'retreats',
+      image: 'retreats.jpeg',
       text: 'Tiefere Erfahrungen an besonderen Orten.',
       detail:
         'Abstand vom Alltag, Verbindung mit der Natur und Raum für neue Klarheit. Entdecke achtsame Auszeiten mit Reflexion, Begegnung und Momenten der Ruhe.',
@@ -331,7 +331,7 @@ const tr: typeof de = {
     {
       id: 'coaching',
       title: 'Bireysel koçluk',
-      image: 'coaching',
+      image: 'coaching.jpeg',
       text: 'Kişisel hedeflerin için sana özel rehberlik.',
       detail:
         'Senin için önemli olanları paylaşabileceğin güvenli bir alan. Güçlü yönlerini birlikte keşfeder, sonraki adımlarını netleştirir ve yeni bakış açıları geliştiririz. Kendi hızında, online veya yüz yüze.',
@@ -339,7 +339,7 @@ const tr: typeof de = {
     {
       id: 'seminars',
       title: 'Seminerler & Atölyeler',
-      image: 'seminars',
+      image: 'seminare.jpeg',
       text: 'İlham, bilgi ve hayata geçirilebilecek adımlar.',
       detail:
         'Yeni fikirlerle tanış ve deneyimlerini başkalarıyla paylaş. Öz farkındalık, günlük hayatta uygulanabilecek egzersizler ve kişisel rehberlikle öğrendiklerini somut adımlara dönüştürüyoruz.',
@@ -347,7 +347,7 @@ const tr: typeof de = {
     {
       id: 'programs',
       title: 'Online programlar',
-      image: 'programs',
+      image: 'online.jpeg',
       text: 'Her yerden, kendi hızında öğren.',
       detail:
         'Kendine bilinçli bir şekilde zaman ayır. Rehberli egzersizler ve ilham veren fikirler günlük yaşamına uyum sağlar. Güncel programlar ve içerikleri hakkında bilgi alabilirsin.',
@@ -355,7 +355,7 @@ const tr: typeof de = {
     {
       id: 'retreats',
       title: 'İnziva programları',
-      image: 'retreats',
+      image: 'retreats.jpeg',
       text: 'Özel yerlerde derinleşen deneyimler.',
       detail:
         'Günlük hayattan uzaklaşmak, doğayla bağ kurmak ve yeni bir netliğe alan açmak. Kendini tanıma, paylaşım ve sakin anlarla dolu farkındalık molalarını keşfet.',

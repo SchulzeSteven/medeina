@@ -9,7 +9,7 @@
 }
 .quote-content {
   display: grid;
-  grid-template-columns: minmax(0, 340px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 400px) minmax(0, 1fr);
   align-items: center;
   gap: clamp(40px, 8vw, 112px);
 }
@@ -18,8 +18,6 @@
   width: 100%;
   height: auto;
   aspect-ratio: 4 / 5;
-  object-fit: cover;
-  object-position: center 30%;
   border-radius: 170px 170px 12px 12px;
 }
 .quote-message {
@@ -55,7 +53,7 @@ blockquote {
 }
 @media (max-width: 900px) {
   .quote-content {
-    grid-template-columns: minmax(0, 240px) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
     gap: 40px;
   }
 }
@@ -66,7 +64,7 @@ blockquote {
     text-align: center;
   }
   .quote-portrait {
-    max-width: 240px;
+    max-width: 280px;
     margin-inline: auto;
   }
 }

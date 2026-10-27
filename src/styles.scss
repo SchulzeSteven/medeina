@@ -193,6 +193,11 @@ img {
   }
 }
 @media (max-width: 600px) {
+  img:not(.hero-photo):not(.hero-logo) {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
   :root {
     --header-height: 76px;
     --page-gutter: 20px;
