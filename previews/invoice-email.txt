@@ -1,0 +1,32 @@
+[TEST · MUSTER] Deine Rechnung MUSTER-2026-001 · Medeina
+
+TESTMAIL · MUSTERDATEN · KEINE GÜLTIGE RECHNUNG
+
+Medeina by Çağla Mutlu
+Vielen Dank für deinen Einkauf, Anna Beispiel!
+
+Rechnung MUSTER-2026-001
+Rechnungsdatum: 27.10.2026
+Lieferdatum: Beispiel: 29.10.2026
+
+Rechnung an:
+Anna Beispiel
+Musterstraße 12
+12345 Musterstadt
+Deutschland
+
+Lotus-Kerzenhalter · Beispielartikel · 1 Stück · je 24,90 € · 24,90 €
+Bergkristall · Beispielartikel · 1 Stück · je 18,00 € · 18,00 €
+Versand: 4,90 €
+Nettobetrag: 40,17 €
+Mehrwertsteuer (19 %): 7,63 €
+Gesamtbetrag: 47,80 €
+Alle Artikelpreise und Versandkosten inklusive Mehrwertsteuer. MUSTER: 19 % dienen nur als Beispiel; die tatsächliche steuerliche Behandlung ist noch zu bestätigen.
+Bezahlt mit PayPal · Testzahlung
+
+Medeina · Çağla Mutlu
+[Firmenanschrift ergänzen]
+[Steuernummer oder USt-ID ergänzen]
+
+Fragen? Antworte einfach auf diese E-Mail.
+Deine Çağla

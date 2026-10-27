@@ -24,6 +24,9 @@ const de = {
   aboutCertificationsDescription:
     'Meine Zertifizierungen findest du auf meinem ThetaHealing®-Profil.',
   aboutCertificationsAction: 'Zertifizierungen ansehen',
+  aboutInnerSpeakDescription:
+    'Im Verzeichnis der ausgebildeten und zertifizierten InnerSpeak-Lehrenden von Jean Adrienne findest du mich unter „Germany“ bei Berlin.',
+  aboutInnerSpeakAction: 'InnerSpeak-Verzeichnis ansehen',
   slogansTitle: 'Raum für deine Veränderung',
   sloganTransformation: 'Der Schlüssel zur Veränderung liegt in dir.',
   sloganBloom: 'Heilen. Wachsen. Aufblühen.',
@@ -219,6 +222,9 @@ const tr: typeof de = {
   aboutCertifications: 'ThetaHealing® sertifikalarımı görüntüle',
   aboutCertificationsDescription: 'Sertifikalarımı ThetaHealing® profilimde bulabilirsin.',
   aboutCertificationsAction: 'Sertifikaları görüntüle',
+  aboutInnerSpeakDescription:
+    'Jean Adrienne’in eğitimli ve sertifikalı InnerSpeak eğitmenleri listesinde beni “Germany” başlığı altında, Berlin kaydında bulabilirsin.',
+  aboutInnerSpeakAction: 'InnerSpeak listesini görüntüle',
   slogansTitle: 'Değişimin için bir alan',
   sloganTransformation: 'Dönüşümün anahtarı senin içinde.',
   sloganBloom: 'İyileş. Büyü. Çiçek aç.',
