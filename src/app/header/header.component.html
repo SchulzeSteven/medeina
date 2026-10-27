@@ -10,10 +10,10 @@
   >
     <img
       class="brand-wordmark"
-      src="images/name.png"
-      alt="Medeina by Çağla Mutlu"
-      width="1920"
-      height="480"
+      src="images/name-header.png"
+      alt="Medeina"
+      width="2171"
+      height="724"
     />
   </a>
   <button
@@ -104,6 +104,16 @@
       (click)="state.setLanguage('tr')"
     >
       TR
+    </button>
+    <span aria-hidden="true">/</span>
+    <button
+      type="button"
+      lang="en"
+      aria-label="English"
+      [attr.aria-pressed]="state.language() === 'en'"
+      (click)="state.setLanguage('en')"
+    >
+      EN
     </button>
   </div>
 </header>

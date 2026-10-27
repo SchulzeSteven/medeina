@@ -10,7 +10,8 @@
     "format": "prettier --write . --ignore-unknown",
     "format:check": "prettier --check . --ignore-unknown",
     "start:api": "php -S 127.0.0.1:8081 -t public",
-    "check:inquiry": "node scripts/check-inquiry.cjs"
+    "check:inquiry": "node scripts/check-inquiry.cjs",
+    "check:languages": "node scripts/check-languages.cjs"
   },
   "dependencies": {
     "@angular/common": "~20.3.0",

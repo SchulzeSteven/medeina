@@ -51,6 +51,9 @@
         <h2 id="dialog-title">{{ state.copy.dialogTitle }}</h2>
         @if (!state.requestSent()) {
           <p>{{ state.copy.dialogText }}</p>
+          @if (state.language() === 'en') {
+            <p class="form-note">{{ state.copy.englishSupportText }}</p>
+          }
           <form
             ngNativeValidate
             (ngSubmit)="state.sendRequest()"

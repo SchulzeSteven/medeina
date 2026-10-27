@@ -21,12 +21,12 @@
   aspect-ratio: 4 / 5;
   object-fit: cover;
   object-position: center 30%;
-  border-radius: 180px 180px 12px 12px;
+  border-radius: 30px;
 }
 .about-inset {
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: -110px;
   width: 44%;
   height: auto;
   aspect-ratio: 3 / 4;
@@ -116,6 +116,9 @@
   }
 }
 @media (max-width: 700px) {
+  .about-inset {
+    bottom: -30px;
+  }
   .about {
     grid-template-columns: 1fr;
     gap: 36px;

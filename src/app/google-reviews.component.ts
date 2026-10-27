@@ -37,6 +37,19 @@ const labels = {
     stars: '/ 5 yıldız',
     swipe: 'Oklarla ilerle veya yana kaydır.',
   },
+  en: {
+    title: 'Google reviews',
+    description: 'Your experiences with Medeina.',
+    newest: 'Newest reviews first',
+    previous: 'Previous reviews',
+    next: 'More reviews',
+    all: 'All reviews on Google',
+    original: 'View on Google',
+    emptyTitle: 'Space for your experiences',
+    empty: 'Google reviews will appear here once available.',
+    stars: 'out of 5 stars',
+    swipe: 'Use the arrows or swipe sideways.',
+  },
 };
 
 @Component({
@@ -91,7 +104,7 @@ export class GoogleReviewsComponent {
   }
 
   dateLabel(date: string) {
-    return new Intl.DateTimeFormat(this.language() === 'de' ? 'de-DE' : 'tr-TR', {
+    return new Intl.DateTimeFormat({ de: 'de-DE', tr: 'tr-TR', en: 'en-GB' }[this.language()], {
       day: 'numeric',
       month: 'long',
       year: 'numeric',

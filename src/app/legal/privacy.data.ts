@@ -54,7 +54,7 @@ export const privacyCopy = {
       {
         title: 'Instagram, Google und externe Links',
         paragraphs: [
-          'Instagram ist derzeit nur als Profil-Link eingebunden; ein automatischer Feed ist nicht aktiviert. Die Google-Bewertungsdaten sind leer, eine Google-API oder ein Google-Skript wird dafür derzeit nicht geladen. Der ThetaHealing®-Nachweis ist ebenfalls ein gewöhnlicher externer Link. Erst beim Folgen dieser Links wird die jeweilige externe Seite aufgerufen; dort gelten deren Datenschutzinformationen.',
+          'Instagram-Beiträge werden nach Einrichtung der Kontoverbindung über unseren Server von der Meta-API abgerufen und zwischengespeichert. Der Zugriffstoken bleibt auf dem Server. Bei Anzeige der Vorschaubilder verbindet sich dein Browser direkt mit Meta-CDNs; dabei werden insbesondere IP-Adresse sowie Browser- und Geräteinformationen übermittelt. Ist die Verbindung nicht eingerichtet oder gestört, bleibt der Profil-Link verfügbar. Die Google-Bewertungsdaten sind leer, eine Google-API oder ein Google-Skript wird dafür derzeit nicht geladen. Der ThetaHealing®-Nachweis ist ebenfalls ein gewöhnlicher externer Link. Erst beim Folgen dieser Links wird die jeweilige externe Seite aufgerufen; dort gelten deren Datenschutzinformationen.',
           'Schriftarten und die vorhandenen Website-Bilder werden lokal ausgeliefert. Im geprüften Anwendungscode sind keine eigenen Analyse- oder Werbetracker eingebunden. Hostingseitige Statistikfunktionen sind davon nicht erfasst und müssen separat geprüft werden.',
         ],
       },
@@ -120,7 +120,7 @@ export const privacyCopy = {
       {
         title: 'Instagram, Google ve dış bağlantılar',
         paragraphs: [
-          'Instagram şu anda yalnızca profil bağlantısıdır; otomatik akış etkin değildir. Google yorum verileri boştur; bunlar için Google API’si veya betiği yüklenmez. ThetaHealing® profili de normal dış bağlantıdır. Bu siteler bağlantıya tıkladığında açılır ve kendi gizlilik bilgileri geçerlidir. Yazı tipleri ve mevcut site görselleri yerel sunulur. İncelenen uygulamada analiz/reklam izleyicisi yoktur; barındırma istatistikleri ayrıca kontrol edilmelidir.',
+          'Hesap bağlantısı yapılandırıldıktan sonra Instagram gönderileri sunucumuz üzerinden Meta API’sinden alınır ve önbelleğe kaydedilir. Erişim anahtarı sunucuda kalır. Önizleme görselleri gösterildiğinde tarayıcın doğrudan Meta CDN’lerine bağlanır; özellikle IP adresi ile tarayıcı/cihaz bilgileri iletilir. Bağlantı kurulmamışsa veya kullanılamıyorsa profil bağlantısı kullanılabilir kalır. Google yorum verileri boştur; bunlar için Google API’si veya betiği yüklenmez. ThetaHealing® profili de normal dış bağlantıdır. Bu siteler bağlantıya tıkladığında açılır ve kendi gizlilik bilgileri geçerlidir. Yazı tipleri ve mevcut site görselleri yerel sunulur. İncelenen uygulamada analiz/reklam izleyicisi yoktur; barındırma istatistikleri ayrıca kontrol edilmelidir.',
         ],
       },
       {
@@ -129,6 +129,75 @@ export const privacyCopy = {
           'Yasal koşullara göre erişim, düzeltme, silme, işlemeyi kısıtlama ve veri taşınabilirliği hakların vardır. Verdiğin rızayı geleceğe yönelik geri çekebilirsin; önceki işlemlerin hukuka uygunluğu etkilenmez.',
           'GDPR Madde 6(1)(f) kapsamındaki işlemeye özel durumundan kaynaklanan nedenlerle itiraz edebilirsin. Doğrudan pazarlamaya her zaman itiraz edebilirsin; bu form bülten aboneliği için kullanılmaz.',
           'Özellikle ikamet ettiğin, çalıştığın veya ihlal olduğunu düşündüğün yerdeki veri koruma makamına şikâyet edebilirsin. Hizmet sağlayıcının merkezi doğrulanınca ilgili makam belirtilebilir. İncelenen uygulamada hukuki veya benzer önemli sonuç doğuran otomatik karar verme yoktur. Türkiye’deki işletmeci ve veri akışı doğrulanırsa yerel mevzuat gereklilikleri ayrıca değerlendirilmelidir.',
+        ],
+      },
+    ],
+  },
+  en: {
+    updated: 'Last updated: 27 October 2026',
+    summary:
+      'Information about the processing of personal data when visiting this website and submitting contact enquiries.',
+    draft:
+      'Draft – not yet complete: the operator’s address and registered location, the hosting provider including log retention periods, and responsibility for test enquiries must be confirmed before publication. These details remain open.',
+    contact: 'Privacy contact: medeinaa@hotmail.com',
+    sources: 'Further information',
+    sections: [
+      {
+        title: 'Data controller',
+        paragraphs: [
+          'This website names Çağla Mutlu, trading as Medeina, as the service provider. The business address, registered location and responsibility for data protection in the current test installation remain to be confirmed. The contact address currently provided for privacy enquiries is medeinaa@hotmail.com.',
+        ],
+      },
+      {
+        title: 'Website access and hosting',
+        paragraphs: [
+          'When this website is accessed, the web server receives technically necessary connection data, including IP address, time, requested address and browser/device information. This data supports delivery, stability and protection against misuse. Article 6(1)(f) GDPR may provide the legal basis; the legitimate interest is the secure operation of the website.',
+          'According to the current project status, IONOS is intended as the hosting provider. The specific contracting party, logging or statistics functions and actual retention period for server logs remain to be confirmed. No specific deletion period is therefore promised here yet.',
+        ],
+      },
+      {
+        title: 'Contact form and email',
+        paragraphs: [
+          'The form processes your name, email address, selected topic, message and language. A random enquiry identifier helps prevent duplicate sending. These details are needed to handle your enquiry. General enquiries are handled on the basis of Article 6(1)(f) GDPR; specific pre-contractual enquiries on the basis of Article 6(1)(b) GDPR. Providing details is voluntary. The form cannot be used without a name and a working email address.',
+          'Current test operation: form enquiries are forwarded to schulze89@hotmail.de. They therefore go to the test installation’s recipient rather than directly to the service provider’s public contact address. Please do not send confidential health information, diagnoses or similarly sensitive information during testing. The test recipient’s role and responsibilities must be clarified before public use.',
+          'For direct email contact, the sender address, content and standard email metadata are processed by the email providers involved. Enquiries are generally deleted once fully handled and no further retention reason exists. Applicable business or statutory retention obligations remain in effect. The actual deletion practices for the mailboxes involved remain to be confirmed.',
+        ],
+      },
+      {
+        title: 'Resend email delivery service',
+        paragraphs: [
+          'The form submits the message to Resend (Plus Five Five, Inc., USA) on the server side. In particular, the name, sender and recipient addresses, selected topic, message and language are transmitted. Resend processes these details to deliver email.',
+          'According to Resend, data is stored in the USA. The provider offers a data processing agreement including EU standard contractual clauses. Whether the required agreement has been concluded for this installation and which transfer basis applies must be confirmed before publication. Further information and contractual terms are linked below.',
+        ],
+      },
+      {
+        title: 'Technically necessary sessions',
+        paragraphs: [
+          'Submitting the enquiry form uses the session cookie ‘medeina_inquiry’. It connects security identifiers and limits abusive enquiries. The test checkout similarly uses ‘medeina_checkout’. The application code does not set a persistent expiry time; these are configured as session cookies. Security identifiers and attempt timestamps may remain stored on the server until the session is cleared.',
+          'Section 25(2)(2) TDDDG applies to strictly necessary storage on the user’s device; the related processing of personal data serves the security of requested functions on the basis of Article 6(1)(f) GDPR. The specific server-side session deletion period remains to be confirmed. This statement does not automatically cover cookies used by external payment providers.',
+        ],
+      },
+      {
+        title: 'Stripe and PayPal in the test checkout',
+        paragraphs: [
+          'The store currently contains example products and a test checkout without real charges. Stripe and PayPal may load automatically when the checkout is opened, even before a payment method is selected. In particular, IP address and browser/device information may be transmitted to the providers. Testing therefore does not mean that no personal data is processed.',
+          'Payment entries are processed within the providers’ components. The application additionally processes product identifiers, amounts, request and payment identifiers and payment status responses. Please use only the designated test data and sandbox accounts.',
+          'Both providers’ privacy information is linked below. Specific contracting parties, legal bases, transfers to third countries and conditions for loading the SDKs, including any consent requirements, must be established before public operation. This draft does not cover real payment processing.',
+        ],
+      },
+      {
+        title: 'Instagram, Google and external links',
+        paragraphs: [
+          'Once the account connection is configured, Instagram posts are retrieved from the Meta API through our server and cached. The access token stays on the server. When preview images are displayed, your browser connects directly to Meta CDNs, transmitting in particular your IP address and browser/device information. If the connection is not configured or unavailable, the profile link remains accessible. Google review data is empty, and no Google API or script is currently loaded for reviews. The ThetaHealing® reference is also a normal external link. The external sites are opened only when you follow these links, and their own privacy information applies there.',
+          'Fonts and existing website images are served locally. The reviewed application code contains no first-party analytics or advertising trackers. Hosting-side statistics are not covered by this statement and must be checked separately.',
+        ],
+      },
+      {
+        title: 'Your rights',
+        paragraphs: [
+          'Subject to the statutory conditions, you have rights of access, rectification, erasure, restriction of processing and data portability. You may withdraw consent for the future. The lawfulness of processing before withdrawal is not affected.',
+          'Right to object: where data is processed on the basis of Article 6(1)(f) GDPR, you may object on grounds relating to your particular situation. You may object to direct marketing at any time; this form is not used for newsletter subscriptions.',
+          'You may lodge a complaint with a data protection supervisory authority, in particular where you normally live or work, or where an alleged infringement occurred. The authority responsible for the provider can be specified once the registered location is confirmed. The reviewed application code does not use automated decision-making with legal or similarly significant effects.',
         ],
       },
     ],

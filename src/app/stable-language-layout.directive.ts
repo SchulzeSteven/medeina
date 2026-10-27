@@ -5,7 +5,7 @@ import { translations } from './translations';
 import { catalogCategories, catalogCopy, catalogOffers } from './catalog/catalog.data';
 import { storeCategories, storeCopy, storeProducts } from './store/store.data';
 
-// Measure both languages in the real layout, including mobile line breaks.
+// Measure all three languages in the real layout, including mobile line breaks.
 // Reserve the larger text box rather than imposing fixed heights or clipping text.
 @Directive({ selector: '[appStableLanguageLayout]', standalone: true })
 export class StableLanguageLayoutDirective {
@@ -13,7 +13,7 @@ export class StableLanguageLayoutDirective {
   private readonly state = inject(SiteStateService);
   private readonly router = inject(Router);
   private readonly destroyRef = inject(DestroyRef);
-  private readonly pairs = new Map<string, string>();
+  private readonly variants = new Map<string, readonly string[]>();
   private signature = '';
   private frame = 0;
   private readonly managed = new Map<HTMLElement, { height: string; width: string }>();
@@ -51,22 +51,20 @@ export class StableLanguageLayoutDirective {
     if (!value || typeof value !== 'object') return;
     const localized = value as Record<string, unknown>;
     if (typeof localized['de'] === 'string' && typeof localized['tr'] === 'string') {
-      this.pairs.set(localized['de'], localized['tr']);
-      this.pairs.set(localized['tr'], localized['de']);
+      this.zip([localized['de'], localized['tr'], localized['en']]);
     } else if (localized['de'] && localized['tr']) {
-      this.zip(localized['de'], localized['tr']);
+      this.zip([localized['de'], localized['tr'], localized['en']]);
     } else {
       Object.values(localized).forEach((item) => this.collect(item));
     }
   }
 
-  private zip(de: unknown, tr: unknown): void {
-    if (typeof de === 'string' && typeof tr === 'string') {
-      this.pairs.set(de, tr);
-      this.pairs.set(tr, de);
-    } else if (de && tr && typeof de === 'object' && typeof tr === 'object') {
-      for (const key of Object.keys(de)) {
-        this.zip((de as Record<string, unknown>)[key], (tr as Record<string, unknown>)[key]);
+  private zip(values: unknown[]): void {
+    if (values.every((value): value is string => typeof value === 'string')) {
+      for (const value of values) this.variants.set(value, values);
+    } else if (values.every((value) => value && typeof value === 'object')) {
+      for (const key of Object.keys(values[0] as object)) {
+        this.zip(values.map((value) => (value as Record<string, unknown>)[key]));
       }
     }
   }
@@ -88,7 +86,7 @@ export class StableLanguageLayoutDirective {
     const elements = Array.from(this.host.querySelectorAll<HTMLElement>(this.selector)).filter(
       (element) => !element.closest('app-store'),
     );
-    const clones = [false, true].map((translate) => {
+    const clones = [0, 1, 2].map((languageIndex) => {
       const clone = this.host.cloneNode(true) as HTMLElement;
       clone.setAttribute('aria-hidden', 'true');
       clone.inert = true;
@@ -98,12 +96,12 @@ export class StableLanguageLayoutDirective {
         node.style.setProperty('animation', 'none', 'important');
         node.style.setProperty('transition', 'none', 'important');
       });
-      if (translate) {
+      {
         const walker = document.createTreeWalker(clone, 4);
         while (walker.nextNode()) {
           const node = walker.currentNode;
           const text = node.textContent ?? '';
-          const alternate = this.pairs.get(text.trim());
+          const alternate = this.variants.get(text.trim())?.[languageIndex];
           if (alternate) node.textContent = text.replace(text.trim(), alternate);
         }
       }

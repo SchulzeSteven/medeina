@@ -9,9 +9,8 @@ export interface InstagramPost {
 
 export const instagramProfileUrl = 'https://www.instagram.com/medeinaland/';
 
-// Set this to an actual server endpoint after connecting the Instagram account.
 // The endpoint returns { posts: InstagramPost[] }; account tokens stay on the server.
-export const instagramFeedEndpoint: string | null = null;
+export const instagramFeedEndpoint: string | null = 'api/instagram-feed.php';
 export const instagramPosts: readonly InstagramPost[] = [];
 
 function isHttpsUrl(value: unknown): value is string {

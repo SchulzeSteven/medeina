@@ -32,6 +32,18 @@ const labels = {
     video: 'Video',
     album: 'Birden fazla görsel',
   },
+  en: {
+    title: 'Moments from Medeina',
+    description: 'Inspiration, encounters and little moments – on Instagram.',
+    profile: 'Discover on Instagram',
+    open: 'Open post on Instagram',
+    empty: 'You can find current posts on my Instagram profile.',
+    loading: 'Loading Instagram posts …',
+    error: 'Posts are currently unavailable. You can still find them on Instagram.',
+    photo: 'Instagram post by Medeina',
+    video: 'Video',
+    album: 'Multiple images',
+  },
 };
 
 @Component({

@@ -10,6 +10,7 @@
       <p class="eyebrow">{{ state.copy.myOffers }}</p>
       <h2 id="offers-title">{{ state.copy.offersTitle }}</h2>
     </div>
+    <app-english-support-notice />
     <div class="offer-grid">
       @for (offer of state.offers; track offer.id) {
         <article class="offer-card">

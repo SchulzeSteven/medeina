@@ -75,4 +75,42 @@ export const imprintCopy = {
       },
     ],
   },
+  en: {
+    summary: 'Provisional business and contact details for Medeina.',
+    draft:
+      'Provisional draft – not yet complete. Missing details will be added. Before publication, the operator, business address, registered location and any further mandatory details must be confirmed.',
+    sections: [
+      {
+        title: 'Service provider',
+        paragraphs: [
+          'Medeina · Çağla Mutlu',
+          '[Add street and house number]',
+          '[Add postcode and town/city]',
+          '[Add country]',
+          'The exact business name, legal form where applicable and authorised representatives will be added after confirmation.',
+        ],
+      },
+      {
+        title: 'Contact',
+        paragraphs: [
+          'Email: medeinaa@hotmail.com',
+          '[Add or confirm a telephone number or another means of quick, direct contact]',
+        ],
+      },
+      {
+        title: 'Registration and identification details',
+        paragraphs: [
+          '[Add register and registration number if registered]',
+          '[Add VAT identification number and, where applicable, business identification number, where available and required]',
+        ],
+      },
+      {
+        title: 'Further details following clarification of activities',
+        paragraphs: [
+          'Once the registered location, legal form and business activities are confirmed, it will be checked whether details of a supervisory authority, regulated profession or professional chamber are required.',
+          'Any required designation of a person responsible for journalistic or editorial content and information about consumer dispute resolution will be added after clarification. No statement about participation or non-participation in dispute resolution is made here yet.',
+        ],
+      },
+    ],
+  },
 };

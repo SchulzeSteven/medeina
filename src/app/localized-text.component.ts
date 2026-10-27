@@ -41,5 +41,5 @@ export type LocalizedText = Readonly<Record<Language, string>>;
 export class LocalizedTextComponent {
   readonly text = input.required<LocalizedText>();
   readonly state = inject(SiteStateService);
-  readonly languages: readonly Language[] = ['de', 'tr'];
+  readonly languages: readonly Language[] = ['de', 'tr', 'en'];
 }

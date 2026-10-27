@@ -12,6 +12,11 @@ const contactCopy = {
     text: 'Bir sorun mu var veya sana uygun hizmeti mi arıyorsun? Bana yaz.',
     action: 'Mesaj yaz',
   },
+  en: {
+    title: 'Let’s start a conversation.',
+    text: 'Have a question or want to find the right offer for you? Write to me.',
+    action: 'Write a message',
+  },
 };
 
 @Component({

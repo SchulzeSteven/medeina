@@ -45,15 +45,19 @@ export class StoreComponent {
     });
   }
   label(key: keyof typeof storeCopy.de): LocalizedText {
-    return { de: storeCopy.de[key], tr: storeCopy.tr[key] };
+    return { de: storeCopy.de[key], tr: storeCopy.tr[key], en: storeCopy.en[key] };
   }
 
   prices(product: StoreProduct): LocalizedText {
-    return { de: this.formatPrice(product, 'de'), tr: this.formatPrice(product, 'tr') };
+    return {
+      de: this.formatPrice(product, 'de'),
+      tr: this.formatPrice(product, 'tr'),
+      en: this.formatPrice(product, 'en'),
+    };
   }
 
   formatPrice(product: StoreProduct, language: Language = this.state.language()) {
-    return new Intl.NumberFormat(language === 'de' ? 'de-DE' : 'tr-TR', {
+    return new Intl.NumberFormat({ de: 'de-DE', tr: 'tr-TR', en: 'en-GB' }[language], {
       style: 'currency',
       currency: 'EUR',
     }).format(product.priceCents / 100);

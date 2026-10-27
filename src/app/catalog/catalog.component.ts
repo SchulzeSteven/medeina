@@ -11,6 +11,7 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SiteStateService } from '../site-state.service';
+import { EnglishSupportNoticeComponent } from '../english-support-notice.component';
 import { catalogGuidance } from './catalog-guidance';
 import {
   catalogCategories,
@@ -23,7 +24,7 @@ import {
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, EnglishSupportNoticeComponent],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.scss',
 })

@@ -86,6 +86,40 @@ const checkoutCopy = {
     previewOnly:
       'Kart önizlemesi açık. Test ödemesini tamamlamak için özel test yapılandırması sunucuya eklenmelidir.',
   },
+  en: {
+    title: 'Your time out begins here.',
+    back: 'Back to product',
+    summary: 'Your selection',
+    quantity: '1 item',
+    total: 'Total amount',
+    payment: 'Secure payment',
+    intro: 'Choose your payment method and enter your payment details.',
+    test: 'Test checkout · no real charge',
+    loading: 'Loading payment form …',
+    unavailable: 'The payment area is ready. The Stripe test connection has not been set up yet.',
+    secure: 'Your payment details are processed directly by Stripe.',
+    pay: 'Make a test payment',
+    busy: 'Checking payment …',
+    error: 'The payment could not be completed. Please try again.',
+    retry: 'Reload',
+    success: 'Test payment successful',
+    successText:
+      'Your test payment was confirmed by the payment provider. No real money was charged and no order was placed.',
+    processing:
+      'Stripe is still processing the test payment. The payment status has not yet been confirmed.',
+    priceNote: 'Example price in euros. This checkout is for testing only.',
+    contact: 'Have a question?',
+    contactLink: 'Write to Çağla',
+    testCard: 'Test card: 4242 4242 4242 4242 · future expiry date · any 3-digit security code.',
+    card: 'Credit / debit card',
+    paypalInfo:
+      'PayPal sandbox: no real charge. A PayPal test account is required to complete payment.',
+    paypalSetup:
+      'PayPal preview is active. A PayPal sandbox account must still be connected for a test payment.',
+    paypalCancel: 'PayPal test payment cancelled. Nothing was charged.',
+    previewOnly:
+      'Card preview active. Private test configuration must be added on the server to complete a test payment.',
+  },
 };
 @Component({
   selector: 'app-checkout',
@@ -101,7 +135,7 @@ export class CheckoutComponent implements OnDestroy {
   readonly product = storeProducts.find((p) => p.id === this.route.snapshot.paramMap.get('id'))!;
   readonly copy = computed(() => checkoutCopy[this.state.language()]);
   readonly price = computed(() =>
-    new Intl.NumberFormat(this.state.language() === 'de' ? 'de-DE' : 'tr-TR', {
+    new Intl.NumberFormat({ de: 'de-DE', tr: 'tr-TR', en: 'en-GB' }[this.state.language()], {
       style: 'currency',
       currency: 'EUR',
     }).format(this.product.priceCents / 100),

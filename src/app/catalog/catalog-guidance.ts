@@ -77,4 +77,43 @@ export const catalogGuidance = {
       },
     ],
   },
+  en: {
+    title: 'What suits you?',
+    intro:
+      'You do not need to choose a method yet. Describe what is on your mind and whether you are looking for personal support or training in your enquiry.',
+    action: 'Finding direction together',
+    detailIntro:
+      'Interested in this offer? Ask about costs, available dates and the exact process. Your selected offer will be included in your enquiry.',
+    costs: 'Costs',
+    costsValue: 'Please enquire before booking',
+    faqTitle: 'Your questions. Answered with care.',
+    faqIntro: 'What to know before enquiring.',
+    questions: [
+      {
+        question: 'What is the difference between a session and a seminar?',
+        answer:
+          'Sessions and coaching offer personal support. In seminars and training, you learn and deepen a method. You can find the specific content on each offer’s detail page.',
+      },
+      {
+        question: 'Do I need prior knowledge?',
+        answer:
+          'That depends on the offer. For advanced training, the required courses are listed under ‘Prerequisites’. If none are listed, please clarify the requirements before registering.',
+      },
+      {
+        question: 'Are the offers online or in person?',
+        answer:
+          'The format is listed on the offer page where it has already been confirmed. If no format or location is given, you can ask through the enquiry form.',
+      },
+      {
+        question: 'Where can I find costs and dates?',
+        answer:
+          'Confirmed dates are listed with the relevant offer. Prices are not currently displayed on the website. Please ask about costs, availability and conditions before booking.',
+      },
+      {
+        question: 'What should I include in my enquiry?',
+        answer:
+          'Choose an offer or an introductory conversation and briefly describe your concerns. When enquiring from an offer page, that offer is already selected. Add any questions in the message field.',
+      },
+    ],
+  },
 };

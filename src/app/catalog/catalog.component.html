@@ -111,6 +111,7 @@
             }
           </section>
         </div>
+        <app-english-support-notice />
         <p class="inquiry-explanation">{{ guidance().detailIntro }}</p>
         <button
           class="catalog-cta"
@@ -258,6 +259,7 @@
       }
     }
     @if (!selected()) {
+      <app-english-support-notice />
       <section
         class="offer-guidance"
         aria-labelledby="guidance-title"

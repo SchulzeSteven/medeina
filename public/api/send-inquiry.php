@@ -67,7 +67,7 @@ if (
     $inquiry['interest'] === '' ||
     !filter_var($inquiry['email'], FILTER_VALIDATE_EMAIL) ||
     preg_match('/[\r\n]/', $inquiry['email']) ||
-    !in_array($inquiry['language'], ['de', 'tr'], true) ||
+    !in_array($inquiry['language'], ['de', 'tr', 'en'], true) ||
     !is_string($body['requestId'] ?? null) ||
     !preg_match('/^[a-f0-9-]{36}$/i', $body['requestId'])
 ) {
@@ -110,7 +110,7 @@ $_SESSION['attempts'] = $attempts;
 // Release the session lock while waiting for the mail provider.
 session_write_close();
 
-$logo = file_get_contents(dirname(__DIR__) . '/images/mainlogo.png');
+$logo = file_get_contents(dirname(__DIR__) . '/images/logo-footer.png');
 if ($logo === false) {
     inquiry_reply(503, ['error' => 'email_not_configured']);
 }
@@ -119,12 +119,12 @@ $payload = [
     'from' => $sender,
     'to' => [$recipient],
     'reply_to' => $inquiry['email'],
-    'subject' => 'Medeina · ' . ($inquiry['language'] === 'tr' ? 'Yeni talep' : 'Neue Anfrage'),
+    'subject' => $email['subject'],
     'html' => $email['html'],
     'text' => $email['text'],
     'attachments' => [
         [
-            'filename' => 'mainlogo.png',
+            'filename' => 'logo-footer.png',
             'content' => base64_encode($logo),
             'content_type' => 'image/png',
             'content_id' => 'medeina-logo',

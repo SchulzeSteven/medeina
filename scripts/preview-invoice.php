@@ -23,7 +23,7 @@ $email = invoice_email([
     'paymentMethod' => 'PayPal · Testzahlung',
 ]);
 $directory = dirname(__DIR__) . '/previews';
-$logo = base64_encode(file_get_contents(dirname(__DIR__) . '/public/images/mainlogo.png'));
+$logo = base64_encode(file_get_contents(dirname(__DIR__) . '/public/images/logo-footer.png'));
 file_put_contents($directory . '/invoice-email.html', str_replace('cid:medeina-logo', 'data:image/png;base64,' . $logo, $email['html']));
 file_put_contents($directory . '/invoice-email.txt', $email['subject'] . "\n\n" . $email['text']);
 $boundary = 'medeina-invoice-preview';
@@ -33,6 +33,6 @@ foreach (['text' => 'text/plain', 'html' => 'text/html'] as $part => $type) {
     $eml .= "--{$boundary}\r\nContent-Type: {$type}; charset=UTF-8\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split(base64_encode($email[$part]), 76, "\r\n");
 }
 $eml .= "--{$boundary}--\r\n";
-$eml .= "--{$related}\r\nContent-Type: image/png\r\nContent-ID: <medeina-logo>\r\nContent-Disposition: inline; filename=\"mainlogo.png\"\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split($logo, 76, "\r\n") . "--{$related}--\r\n";
+$eml .= "--{$related}\r\nContent-Type: image/png\r\nContent-ID: <medeina-logo>\r\nContent-Disposition: inline; filename=\"logo-footer.png\"\r\nContent-Transfer-Encoding: base64\r\n\r\n" . chunk_split($logo, 76, "\r\n") . "--{$related}--\r\n";
 file_put_contents($directory . '/invoice-email.eml', $eml);
 echo "Rechnungsvorschau erstellt (HTML, Text und EML). Keine E-Mail versendet.\n";

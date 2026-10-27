@@ -1,7 +1,10 @@
-export type Language = 'de' | 'tr';
+export type Language = 'de' | 'tr' | 'en';
 
 const de = {
   home: 'Startseite',
+  englishSupportTitle: 'Alle Angebote auch mit englischer Verdolmetschung',
+  englishSupportText:
+    'Çağla bietet alle Angebote auch mit einem Dolmetscher an, der ins Englische übersetzt. Dafür entstehen zusätzliche Kosten. Umfang, Verfügbarkeit und Mehrkosten werden vor der Buchung gemeinsam abgestimmt.',
   backToTop: 'Nach oben scrollen',
   menu: 'Menü öffnen oder schließen',
   navigation: 'Hauptnavigation',
@@ -198,9 +201,211 @@ const de = {
     },
   ],
 };
+const en: typeof de = {
+  home: 'Home',
+  englishSupportTitle: 'All offers also available with English interpretation',
+  englishSupportText:
+    'Çağla also offers all services with an interpreter who translates into English. Additional interpreting fees apply. Arrangements, availability and extra costs are agreed together before booking.',
+  backToTop: 'Back to top',
+  menu: 'Open or close menu',
+  navigation: 'Main navigation',
+  about: 'About me',
+  offersLabel: 'Offers',
+  storeLabel: 'Store',
+  dates: 'Events',
+  contact: 'Contact',
+  book: 'Book an appointment',
+  language: 'Choose language',
+  more: 'Learn more',
+  benefitsLabel: 'Your benefits',
+  mainPortraitAlt: 'Woman outdoors with eyes closed and hands over her heart',
+  aboutPhoto: 'Woman enjoying a quiet moment at sunset',
+  caglaPortraitAlt: 'Çağla Mutlu in warm sunlight at the edge of a forest',
+  caglaForestAlt: 'Çağla Mutlu among autumn birch trees in sunlight',
+  caglaLeavesAlt: 'Çağla Mutlu among autumn leaves holding a golden maple leaf',
+  aboutMore: 'More about me',
+  aboutCertifications: 'View my ThetaHealing® certifications',
+  aboutCertificationsDescription: 'You can find my certifications on my ThetaHealing® profile.',
+  aboutCertificationsAction: 'View certifications',
+  aboutInnerSpeakDescription:
+    'You can find me in Jean Adrienne’s directory of trained and certified InnerSpeak teachers under ‘Germany’, listed in Berlin.',
+  aboutInnerSpeakAction: 'View InnerSpeak directory',
+  slogansTitle: 'Space for your transformation',
+  sloganTransformation: 'The key to change is within you.',
+  sloganBloom: 'Heal. Grow. Bloom.',
+  enquire: 'Enquire without obligation',
+  start: 'Get started',
+  currentDates: 'Upcoming dates',
+  askDates: 'Ask about dates',
+  emailLink: 'Email',
+  imprint: 'Legal notice',
+  privacy: 'Privacy',
+  close: 'Close dialog',
+  legalDraft: 'Details to be added',
+  imprintPending: 'Full business details and the address will be added.',
+  privacyPending:
+    'The privacy information will be completed once hosting and the services used have been confirmed.',
+  development: 'Space for your growth',
+  email: 'Your email address',
+  interest: 'Your interest',
+  prepare: 'Send enquiry',
+  prepared: 'Your enquiry has been sent.',
+  confirmation: 'Thank you! Your enquiry has been submitted. We will be in touch.',
+  inquiryNote:
+    'Your details will be sent by email. During testing, enquiries are currently sent to schulze89@hotmail.de.',
+  inquirySending: 'Sending enquiry …',
+  inquiryError: 'Your enquiry could not be sent. Your details have been kept. Please try again.',
+  inquiryLimit: 'Too many attempts. Please try again in ten minutes.',
+  benefits: [
+    {
+      icon: '♧',
+      title: 'Personal support',
+    },
+    {
+      icon: '♧',
+      title: 'A holistic approach',
+    },
+    {
+      icon: '❀',
+      title: 'Practical methods',
+    },
+    {
+      icon: '◎',
+      title: 'Online & in person',
+    },
+  ],
+  contactInterest: 'Contact enquiry',
+  datesInterest: 'Event dates',
+  emailGreeting: 'Hello Çağla,',
+  emailInterest: 'I am interested in',
+  emailClosing: 'Kind regards',
+  emailSubject: 'Enquiry: ',
+  pageTitle: 'Medeina · Çağla Mutlu · Coaching, Seminars & Retreats',
+  pageDescription:
+    'Medeina with Çağla Mutlu: personal support for greater clarity, confidence and a fulfilling life. Coaching, seminars and retreats.',
+  seminars: 'Seminars',
+  sessionsLabel: 'Sessions & Coaching',
+  heroEyebrow: 'More aware. Clearer. Freer.',
+  heroTitle: 'Discover',
+  heroTitleEnd: 'your full potential',
+  heroDescription:
+    'Support that empowers you – for greater clarity, confidence and a fulfilling life.',
+  intro: 'Free introductory conversation',
+  bookIntro: 'Book an introductory conversation',
+  aboutTitle: 'My journey towards',
+  aboutTitleEnd: 'clarity and joy in life',
+  aboutText:
+    'I’m Çağla Mutlu. Through Medeina, I support people in discovering their full potential and living a fulfilling life on their own terms. With empathy, experience and effective methods, I create space for meaningful change.',
+  aboutDetail:
+    'I believe change begins with a moment of awareness. My support brings together personal reflection, empathy and practical inspiration. Get to know me in an introductory conversation without obligation, and tell me what is on your mind.',
+  aboutStory: [
+    {
+      title: 'What matters to me in supporting you',
+      text: 'I want to create a space where you can bring your questions, wishes and uncertainties. For me, supporting you begins with listening and understanding what is on your mind. Empathy and personal reflection are the foundation.',
+    },
+    {
+      title: 'Space for your own path',
+      text: 'Through Medeina, I help you become more aware of your needs, discover your possibilities and find your next step. It is about a life that feels right for you, and decisions you can make on your own terms.',
+    },
+    {
+      title: 'Inspiration for everyday life',
+      text: 'My support combines reflection with practical ideas. What you discover about yourself can become part of everyday life. Together, we explore what might support you and which next steps suit your situation.',
+    },
+  ],
+  aboutAnimalsTitle: 'People and animals. A special connection.',
+  aboutAnimalsText:
+    'For many people, an animal is a trusted companion and an important part of life. In the future, I would like to give this connection more attention and also reach people who share their everyday lives with animals through Medeina.',
+  aboutAnimalsInvitation:
+    'Do you live with an animal and want more space for yourself and the connection you share? Tell me what is on your mind. In a conversation without obligation, we can explore whether my support suits your needs.',
+  aboutAnimalsAlt: 'A woman walking two dogs across a meadow in the evening light',
+  aboutContactTitle: 'Let’s get to know each other',
+  aboutContactText:
+    'Would you like to make a change or find out whether my support is right for you? Tell me what is on your mind in a free introductory conversation without obligation. Ask your questions and get a personal impression before choosing an offer.',
+  aboutContactAction: 'Send an enquiry without obligation',
+  personalNote: 'Change begins the moment you start taking yourself seriously.',
+  myOffers: 'My offers',
+  offersTitle: 'Individual. Holistic. Effective.',
+  quote: '‘A fulfilling life begins with the decision to believe in yourself.’',
+  eventsTitle: 'Upcoming events',
+  hideNotice: 'Hide notice',
+  allDates: 'Show all dates',
+  eventNotice:
+    'These dates are layout examples. Ask about the year, availability and further events in an enquiry without obligation.',
+  firstStep: 'The first step begins with you',
+  dialogTitle: 'Let’s start a conversation.',
+  dialogText:
+    'Tell me a little about what is on your mind. Together, we will find the right next step.',
+  name: 'Your name',
+  message: 'What would you like to share?',
+  demo: 'Demo: The enquiry is prepared locally. No data is sent or stored.',
+  footer: 'Coaching · Seminars · Retreats',
+  offers: [
+    {
+      id: 'coaching',
+      title: 'Individual coaching',
+      image: 'coaching.jpeg',
+      text: 'Personal support for your individual goals.',
+      detail:
+        'A safe space for what matters to you. Together, we discover your strengths, bring clarity to your next steps and develop fresh perspectives – at your pace, online or in person.',
+    },
+    {
+      id: 'seminars',
+      title: 'Seminars & Workshops',
+      image: 'seminare.jpeg',
+      text: 'Inspiration, knowledge and practical application.',
+      detail:
+        'Discover new ideas and connect with others. Through reflection, everyday exercises and personal support, we turn insights into practical steps.',
+    },
+    {
+      id: 'programs',
+      title: 'Online programmes',
+      image: 'online.jpeg',
+      text: 'Flexible learning – from anywhere, at your own pace.',
+      detail:
+        'Make time for yourself. Guided exercises and inspiring ideas accompany you flexibly through everyday life. Ask about current programmes and content without obligation.',
+    },
+    {
+      id: 'retreats',
+      title: 'Retreats',
+      image: 'retreats.jpeg',
+      text: 'Deeper experiences in special places.',
+      detail:
+        'Step away from everyday life, connect with nature and find space for new clarity. Discover mindful breaks with reflection, connection and moments of peace.',
+    },
+  ],
+  events: [
+    {
+      id: 'everyday',
+      day: '12',
+      month: 'APR',
+      title: 'Mental strength in everyday life',
+      type: 'One-day seminar',
+      place: 'Zurich',
+    },
+    {
+      id: 'selflove',
+      day: '24',
+      month: 'MAY',
+      title: 'Self-love & Clarity',
+      type: 'Weekend seminar',
+      place: 'Bern',
+    },
+    {
+      id: 'boundaries',
+      day: '17',
+      month: 'JUN',
+      title: 'Setting boundaries',
+      type: 'Online workshop',
+      place: 'Online',
+    },
+  ],
+};
 
 const tr: typeof de = {
   home: 'Ana sayfa',
+  englishSupportTitle: 'Tüm hizmetler İngilizce tercüme desteğiyle de sunulur',
+  englishSupportText:
+    'Çağla, tüm hizmetlerini İngilizceye çeviri yapan bir tercüman eşliğinde de sunar. Tercüman için ek ücret alınır. Kapsam, uygunluk ve ek ücretler rezervasyondan önce birlikte kararlaştırılır.',
   backToTop: 'Yukarı kaydır',
   menu: 'Menüyü aç veya kapat',
   navigation: 'Ana menü',
@@ -395,4 +600,4 @@ const tr: typeof de = {
   ],
 };
 
-export const translations: Record<Language, typeof de> = { de, tr };
+export const translations: Record<Language, typeof de> = { de, tr, en };

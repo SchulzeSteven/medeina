@@ -3,9 +3,15 @@ declare(strict_types=1);
 
 function inquiry_email(array $inquiry): array
 {
-    $turkish = $inquiry['language'] === 'tr';
-    $copy = $turkish
-        ? [
+    $language = $inquiry['language'];
+    $languageName = match ($language) {
+        'tr' => 'Türkisch (TR)',
+        'en' => 'Englisch (EN)',
+        default => 'Deutsch (DE)',
+    };
+    $subject = 'Medeina · Neue Anfrage · ' . $languageName;
+    $copy = match ($language) {
+        'tr' => [
             'Yeni bir talep var.',
             'Ad',
             'E-posta',
@@ -13,8 +19,17 @@ function inquiry_email(array $inquiry): array
             'Mesaj',
             'Mesaj eklenmedi.',
             'Bu e-postayı yanıtlayarak talepte bulunan kişiye ulaşabilirsin.',
-        ]
-        : [
+        ],
+        'en' => [
+            'A new enquiry has arrived.',
+            'Name',
+            'Email',
+            'Interest',
+            'Message',
+            'No message provided.',
+            'Reply to this email to contact the person who sent the enquiry.',
+        ],
+        default => [
             'Eine neue Anfrage ist da.',
             'Name',
             'E-Mail',
@@ -22,14 +37,15 @@ function inquiry_email(array $inquiry): array
             'Nachricht',
             'Keine Nachricht angegeben.',
             'Du kannst direkt auf diese E-Mail antworten, um die anfragende Person zu erreichen.',
-        ];
+        ],
+    };
     $escape = static fn(string $value): string => htmlspecialchars(
         $value,
         ENT_QUOTES | ENT_SUBSTITUTE,
         'UTF-8',
     );
     $rows = '';
-    $text = $copy[0] . "\n\n";
+    $text = $copy[0] . "\n\nWebsite-Sprache: " . $languageName . "\n\n";
 
     foreach (['name', 'email', 'interest', 'message'] as $index => $field) {
         $value = $inquiry[$field] ?: $copy[5];
@@ -43,8 +59,8 @@ function inquiry_email(array $inquiry): array
         $text .= $label . ': ' . $value . "\n\n";
     }
 
-    $language = $turkish ? 'tr' : 'de';
     $heading = $escape($copy[0]);
+    $languageLabel = $escape($languageName);
     $footer = $escape($copy[6]);
     $html = <<<HTML
     <!doctype html>
@@ -105,6 +121,9 @@ function inquiry_email(array $inquiry): array
                       font-weight: normal;
                       line-height: 1.3;
                     ">{$heading}</h1>
+                    <p style="margin:0 0 24px;padding:12px 16px;background:#eae1d4;border-left:3px solid #e7c579;color:#283d3e">
+                      <strong>Website-Sprache:</strong> {$languageLabel}
+                    </p>
                     <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
                       {$rows}
                     </table>
@@ -128,5 +147,5 @@ function inquiry_email(array $inquiry): array
     </html>
     HTML;
 
-    return ['html' => $html, 'text' => $text . $copy[6]];
+    return ['subject' => $subject, 'html' => $html, 'text' => $text . $copy[6]];
 }

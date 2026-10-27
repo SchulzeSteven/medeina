@@ -49,7 +49,7 @@ async function main() {
   assert.equal((await post('a'.repeat(32769))).status, 413);
   assert.equal((await fetch(endpoint, { method: 'DELETE' })).status, 405);
 
-  for (const language of ['de', 'tr']) {
+  for (const language of ['de', 'tr', 'en']) {
     const fields = { ...inquiry, language, name: '<script>alert(1)</script> Çağla & Steven' };
     const rendered = JSON.parse(
       execFileSync(
@@ -66,14 +66,22 @@ async function main() {
     assert.ok(!rendered.html.includes('<script>'));
     assert.ok(rendered.html.includes('Çağla &amp; Steven'));
     assert.ok(rendered.text.includes(fields.message));
+    const languageName = { de: 'Deutsch (DE)', tr: 'Türkisch (TR)', en: 'Englisch (EN)' }[language];
+    assert.equal(rendered.subject, `Medeina · Neue Anfrage · ${languageName}`);
+    assert.ok(rendered.html.includes(`<strong>Website-Sprache:</strong> ${languageName}`));
+    assert.ok(rendered.text.includes(`Website-Sprache: ${languageName}`));
     assert.ok(
       rendered.html.includes(
-        language === 'tr' ? 'Yeni bir talep var.' : 'Eine neue Anfrage ist da.',
+        {
+          de: 'Eine neue Anfrage ist da.',
+          tr: 'Yeni bir talep var.',
+          en: 'A new enquiry has arrived.',
+        }[language],
       ),
     );
   }
 
-  console.log('Session, validation, size limits and DE/TR email rendering passed.');
+  console.log('Session, validation, size limits and DE/TR/EN email rendering passed.');
 
   if (process.argv.includes('--send-live')) {
     const response = await post(inquiry);

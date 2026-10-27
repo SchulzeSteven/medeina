@@ -17,7 +17,7 @@ Die Seite läuft unter http://localhost:4200. Produktionsbuild: `npm run build`;
 
 - Layout mit Hero, Vorteilen, Über-mich-Bereich, vier Angeboten, Zitat und Veranstaltungen
 - Responsive Darstellung und mobiles Menü
-- Deutsch und Türkisch mit DE/TR-Umschaltung
+- Deutsch, Türkisch und Englisch mit DE/TR/EN-Umschaltung
 - Dialoge für Angebotsdetails und Terminanfragen
 - Anfrageformular mit serverseitigem Resend-Versand; Testempfänger `schulze89@hotmail.de`
 - Vorhandene Bilder und Logos, ohne externe Bilddienste oder Fonts
@@ -46,6 +46,15 @@ Die Website wurde auf den Stand vor der Übernahme von `MEDEINA_Originaltexte.tx
 
 ## Prüfung
 
+`npm run check:languages` prüft die englische Inhaltsabdeckung, unveränderte
+Angebotskennungen und Bildpfade sowie den Hinweis zur englischen Verdolmetschung.
+Die Infobox steht bei den Angeboten auf der Startseite und im Angebotskatalog,
+auf Detailseiten vor der Anfrage. Sie erläutert in allen drei Sprachen, dass
+alle Angebote mit einem ins Englische übersetzenden Dolmetscher möglich sind
+und zusätzliche Kosten vor der Buchung abgestimmt werden. Im englischen
+Anfrageformular wird der Hinweis wiederholt. Die Anfrage-API und Mailvorlage
+unterstützen ebenfalls Englisch; `npm run check:inquiry` prüft DE/TR/EN ohne Versand.
+
 `npm run build` läuft erfolgreich. Die lokale Vorschau kann in dieser Umgebung wegen gesperrter Netzwerkports nicht gestartet werden.
 
 ## Google-Bewertungen vor dem Footer
@@ -60,13 +69,43 @@ Der Produktionsbuild und die Prüfung von Sortierung sowie Platzierung vor dem F
 
 ## Instagram-Beiträge
 
-Der Instagram-Bereich befindet sich zwischen den Terminen und den Google-Bewertungen. `src/app/instagram-feed.component.*` zeigt bis zu sechs echte Beiträge: drei Spalten auf dem Desktop, zwei auf Tablets und eine auf kleinen Handys. Ein Klick öffnet den jeweiligen Originalbeitrag. Bilder werden verzögert geladen; Videos verwenden ihr Vorschaubild. DE/TR betrifft die Bedienoberfläche, nicht die Original-Bildunterschriften.
+Der Instagram-Bereich befindet sich zwischen den Terminen und den Google-Bewertungen. `src/app/instagram-feed.component.*` zeigt bis zu sechs echte Beiträge: drei Spalten auf dem Desktop, zwei auf Tablets und eine auf kleinen Handys. Ein Klick öffnet den jeweiligen Originalbeitrag. Bilder werden verzögert geladen; Videos verwenden ihr Vorschaubild. DE/TR/EN betrifft die Bedienoberfläche, nicht die Original-Bildunterschriften.
 
-Der Profil-Link `https://www.instagram.com/medeinaland/` ist gesetzt. Es wurden keine Beiträge erfunden oder aus fremden Profilen übernommen. Der automatische Abruf ist vorbereitet, aber noch nicht angeschlossen. `instagramFeedEndpoint` in `src/app/instagram-feed.data.ts` bleibt bis zur tatsächlichen Kontoverbindung `null`; bis dahin erscheint ein neutraler Hinweis mit dem Profil-Link.
+Der Profil-Link `https://www.instagram.com/medeinaland/` ist gesetzt. Der Feed ruft
+`api/instagram-feed.php` auf. Zugangsdaten bleiben ausschließlich serverseitig.
+Ohne Konfiguration bleibt der Profil-Link mit einem Verfügbarkeitshinweis sichtbar.
 
-Eine echte serverseitige Verbindung muss `{ posts: [...] }` mit den Feldern `id`, `permalink`, `imageUrl`, `caption`, `publishedAt` und `mediaType` liefern. `publishedAt` enthält einen ISO-Zeitstempel; `mediaType` ist `IMAGE`, `VIDEO` oder `CAROUSEL_ALBUM`. Für Video-Beiträge ist `imageUrl` das Vorschaubild. Die Komponente prüft die Daten, sortiert nach Veröffentlichungszeit und begrenzt die Anzeige auf sechs Beiträge. Bei Ladefehlern bleibt der direkte Profil-Link verfügbar. Meta-Zugangsdaten gehören nicht in den Browser-Code.
+### Token hinterlegen
 
-Für die automatische Anzeige fehlt noch eine autorisierte Instagram-Kontoverbindung oder ein tatsächlich eingerichtetes Feed-Widget. Informationen zur Kontoverbindung: [Meta Instagram API](https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/).
+Lokal ist `server/medeina-instagram-config.php` vorbereitet und von Git ausgeschlossen.
+Den Token dort in `accessToken` eintragen. `login` ist `instagram` für Instagram Login
+oder `facebook` für Facebook Login/Graph API Explorer. Bei Instagram Login kann
+`userId` auf `me` bleiben; bei Facebook Login ist die Instagram-Konto-ID erforderlich
+(nicht die Facebook-Seiten-ID). Der konfigurierte Account muss `medeinaland` heißen.
+Die API-Version ist in `apiVersion` einstellbar. Keine Zugangsdaten in `public/`,
+`dist/`, Screenshots, Chat oder Git ablegen.
+
+Auf IONOS die private Datei außerhalb des öffentlichen Website-Ordners ablegen,
+standardmäßig neben dem Ordner `medeina/` unter `medeina-instagram-config.php`.
+Alternativ den vorhandenen, zuvor nachweislich per HTTP 403 gesperrten Ordner
+`medeina-private/` verwenden (siehe Resend-Anleitung) oder den absoluten Dateipfad
+über `MEDEINA_INSTAGRAM_CONFIG` setzen. Der Token kann alternativ als
+`MEDEINA_INSTAGRAM_TOKEN` gesetzt werden. PHP mit cURL ist erforderlich.
+Die private Konfiguration wird nicht mit der dist ausgeliefert.
+
+Der Server prüft das Profil und fragt bis zu 50 Beiträge ab. Aus den gültigen
+Ergebnissen werden die sechs neuesten nach Veröffentlichungszeit ausgewählt.
+Videos verwenden Vorschaubilder. Die öffentlichen Ergebnisse werden zehn Minuten
+zwischengespeichert; bei API-Fehlern wird frühestens nach einer Minute erneut angefragt.
+Bei einem ungültigen oder abgelaufenen Token erscheint der Profil-Link als Rückfall.
+Eine automatische Tokenverlängerung ist noch nicht eingerichtet.
+
+`php scripts/check-instagram.php` prüft Verarbeitung und Validierung ohne Meta-Aufruf.
+Nach Hinterlegen des Tokens muss der echte Abruf mit `api/instagram-feed.php` geprüft
+werden. Der Token wird nie an den Browser zurückgegeben. Die Vorschaubilder werden
+vom Browser direkt von Meta-CDNs geladen; die Datenschutzhinweise beschreiben dies.
+
+Referenz: [Meta Instagram API](https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login/).
 
 ## Seminare, Ausbildungen und Sessions
 
