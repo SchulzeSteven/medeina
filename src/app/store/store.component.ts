@@ -58,8 +58,4 @@ export class StoreComponent {
       currency: 'EUR',
     }).format(product.priceCents / 100);
   }
-  inquiryHref(product: StoreProduct) {
-    const title = product.title[this.state.language()];
-    return `mailto:medeinaa@hotmail.com?subject=${encodeURIComponent(this.copy().subject + title)}&body=${encodeURIComponent(this.copy().body + title + this.copy().bodyEnd)}`;
-  }
 }

@@ -359,6 +359,7 @@ h3 {
 .payment-note {
   font-size: 16px;
   color: var(--muted);
+  margin-top: 20px;
   margin-bottom: 16px;
 }
 .payment-panel .payment-note {
@@ -377,9 +378,10 @@ h3 {
   height: auto;
   aspect-ratio: auto;
   object-fit: contain;
-  padding: 8px;
-  border-radius: 8px;
-  background: var(--cream);
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  opacity: 0.7;
   transform: none;
   pointer-events: none;
 }

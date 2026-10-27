@@ -137,7 +137,6 @@ export const storeCopy = {
     price: 'Beispielpreis',
     checkout: 'Zum Test-Checkout',
     checkoutInfo: 'Bezahlen direkt bei Medeina mit Stripe Elements. Nur Testmodus.',
-    request: 'Zum Produkt anfragen',
     format: 'Auf einen Blick',
     demo: 'Beispielprodukt · noch nicht bestellbar',
     count: 'Produkte',
@@ -145,9 +144,6 @@ export const storeCopy = {
     noteText:
       'Du hast eine Frage oder wünschst dir eine persönliche Empfehlung? Schreib Çağla und erzähle ihr, was du suchst.',
     contact: 'Çağla kontaktieren',
-    subject: 'Anfrage zum Store-Beispiel: ',
-    body: 'Hallo Çağla,\n\nich interessiere mich für das Beispielprodukt „',
-    bodyEnd: '“ und möchte gerne mehr erfahren.\n\nViele Grüße',
   },
   tr: {
     title: 'Küçük eşlikçiler.\nKendine zaman.',
@@ -161,7 +157,6 @@ export const storeCopy = {
     price: 'Örnek fiyat',
     checkout: 'Test ödemesine geç',
     checkoutInfo: 'Stripe Elements ile doğrudan Medeina’da ödeme. Yalnızca test modu.',
-    request: 'Ürün hakkında sor',
     format: 'Bir bakışta',
     demo: 'Örnek ürün · henüz sipariş verilemez',
     count: 'ürün',
@@ -169,8 +164,5 @@ export const storeCopy = {
     noteText:
       'Bir sorun mu var ya da kişisel bir öneri mi istersin? Çağla’ya yaz ve ne aradığını anlat.',
     contact: 'Çağla ile iletişime geç',
-    subject: 'Mağaza örneği hakkında: ',
-    body: 'Merhaba Çağla,\n\n“',
-    bodyEnd: '” örnek ürünüyle ilgileniyorum ve daha fazla bilgi almak istiyorum.\n\nSevgiler',
   },
 };

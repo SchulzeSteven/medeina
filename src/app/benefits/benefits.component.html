@@ -3,16 +3,41 @@
   class="benefits"
   [attr.aria-label]="state.copy.benefitsLabel"
 >
+  <svg
+    class="benefit-filters"
+    width="0"
+    height="0"
+    aria-hidden="true"
+    focusable="false"
+  >
+    <defs>
+      <filter
+        id="benefit-transparent"
+        color-interpolation-filters="sRGB"
+      >
+        <feColorMatrix
+          type="matrix"
+          values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 4 0 -0.12"
+          result="silhouette"
+        />
+        <feFlood flood-color="var(--teal)" result="brand-color" />
+        <feComposite in="brand-color" in2="silhouette" operator="in" />
+      </filter>
+    </defs>
+  </svg>
   <div class="container benefit-grid">
     @for (benefit of state.benefits; track $index) {
       <div class="benefit">
-        <span
+        <img
           class="benefit-icon"
-          aria-hidden="true"
-        >
-          {{ benefit.icon }}
-        </span>
-        <span>{{ benefit.title }}</span>
+          [src]="'images/benefits' + ($index + 1) + '.jpeg'"
+          alt=""
+          width="56"
+          height="60"
+          loading="lazy"
+          decoding="async"
+        />
+        <span class="benefit-title">{{ benefit.title }}</span>
       </div>
     }
   </div>
