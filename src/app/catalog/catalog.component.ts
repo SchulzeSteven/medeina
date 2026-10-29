@@ -1,4 +1,4 @@
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, NgTemplateOutlet } from '@angular/common';
 import {
   afterRenderEffect,
   Component,
@@ -11,7 +11,8 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { SiteStateService } from '../site-state.service';
-import { EnglishSupportNoticeComponent } from '../english-support-notice.component';
+import { translations } from '../translations';
+import { StableTextComponent } from './stable-text.component';
 import { catalogGuidance } from './catalog-guidance';
 import {
   catalogCategories,
@@ -24,7 +25,7 @@ import {
 @Component({
   selector: 'app-catalog',
   standalone: true,
-  imports: [RouterLink, EnglishSupportNoticeComponent],
+  imports: [RouterLink, NgTemplateOutlet, StableTextComponent],
   templateUrl: './catalog.component.html',
   styleUrl: './catalog.component.scss',
 })
@@ -69,6 +70,41 @@ export class CatalogComponent {
       (offer) => offer.section === this.section() && offer.category === this.filter(),
     ),
   );
+
+  readonly languages = ['de', 'tr', 'en'] as const;
+
+  copyTexts(key: keyof typeof catalogCopy.de) {
+    return this.languages.map((language) => catalogCopy[language][key]);
+  }
+
+  guidanceTexts(key: Exclude<keyof typeof catalogGuidance.de, 'questions' | 'steps'>) {
+    return this.languages.map((language) => catalogGuidance[language][key]);
+  }
+
+  headingTexts() {
+    const category = catalogCategories.find((item) => item.id === this.filter());
+    return this.languages.map((language) =>
+      category
+        ? category.title[language]
+        : this.section() === 'seminars'
+          ? catalogCopy[language].title
+          : this.section() === 'sessions'
+            ? catalogCopy[language].sessions
+            : translations[language].offersLabel,
+    );
+  }
+
+  siteTexts(key: 'englishSupportTitle' | 'englishSupportText' | 'offersLabel') {
+    return this.languages.map((language) => translations[language][key]);
+  }
+
+  stepTexts(index: number, key: 'title' | 'text') {
+    return this.languages.map((language) => catalogGuidance[language].steps[index][key]);
+  }
+
+  questionTexts(index: number, key: 'question' | 'answer') {
+    return this.languages.map((language) => catalogGuidance[language].questions[index][key]);
+  }
 
   constructor() {
     effect(() => {

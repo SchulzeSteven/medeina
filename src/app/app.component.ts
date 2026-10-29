@@ -7,12 +7,13 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { StableLanguageLayoutDirective } from './stable-language-layout.directive';
 import { DialogsComponent } from './dialogs/dialogs.component';
+import { BreadcrumbsComponent } from './breadcrumbs.component';
 
 @Component({
   selector: 'app-root',
   hostDirectives: [StableLanguageLayoutDirective],
   standalone: true,
-  imports: [RouterOutlet, HeaderComponent, FooterComponent, DialogsComponent],
+  imports: [RouterOutlet, HeaderComponent, FooterComponent, DialogsComponent, BreadcrumbsComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })

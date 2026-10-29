@@ -1,5 +1,27 @@
 export const catalogGuidance = {
   de: {
+    personalTitle: 'Ich bin Çağla.',
+    personalIntro:
+      'Bei Medeina findest du Seminare, Ausbildungen und persönliche Begleitung mit Çağla Mutlu.',
+    personalText:
+      'Ich begleite dich in Sessions und Coaching oder unterstütze dich dabei, in Seminaren eine Methode kennenzulernen und zu vertiefen. Gemeinsam schauen wir, welches Angebot zu deinem Anliegen passt.',
+    personalLink: 'Lerne mich kennen',
+    processTitle: 'So beginnt es.',
+    processIntro: 'Von deiner ersten Frage zum passenden Angebot.',
+    steps: [
+      {
+        title: 'Erzähl mir dein Anliegen',
+        text: 'Wähle ein Angebot oder ein Erstgespräch und schicke mir deine Fragen über das Anfrageformular.',
+      },
+      {
+        title: 'Wir klären die Details',
+        text: 'Wir besprechen, was du suchst, und klären Kosten, verfügbare Termine, Format und Voraussetzungen.',
+      },
+      {
+        title: 'Du entscheidest in Ruhe',
+        text: 'Die Anfrage ist noch keine Buchung. Erst wenn die Details geklärt sind, entscheidest du, ob du teilnehmen möchtest.',
+      },
+    ],
     title: 'Was passt zu dir?',
     intro:
       'Du musst dich noch nicht für eine Methode entscheiden. Beschreibe in deiner Anfrage, was dich gerade beschäftigt und ob du eine persönliche Begleitung oder eine Ausbildung suchst.',
@@ -39,6 +61,28 @@ export const catalogGuidance = {
     ],
   },
   tr: {
+    personalTitle: 'Ben Çağla.',
+    personalIntro:
+      'Medeina’da Çağla Mutlu ile seminerler, eğitimler ve kişisel destek bulabilirsin.',
+    personalText:
+      'Seans ve koçlukla sana eşlik ediyor, seminerlerde ise bir yöntemi tanımana ve derinleştirmene yardımcı oluyorum. İhtiyacına hangi hizmetin uygun olduğuna birlikte bakabiliriz.',
+    personalLink: 'Beni daha yakından tanı',
+    processTitle: 'Böyle başlıyoruz.',
+    processIntro: 'İlk sorundan sana uygun hizmete.',
+    steps: [
+      {
+        title: 'İhtiyacını anlat',
+        text: 'Bir hizmet veya tanışma görüşmesi seç ve sorularını talep formundan gönder.',
+      },
+      {
+        title: 'Detayları konuşalım',
+        text: 'Ne aradığını konuşur; ücreti, uygun tarihleri, formatı ve ön koşulları netleştiririz.',
+      },
+      {
+        title: 'Rahatça karar ver',
+        text: 'Talep göndermek rezervasyon yapmak değildir. Detaylar netleştikten sonra katılmak isteyip istemediğine karar verirsin.',
+      },
+    ],
     title: 'Sana uygun olan ne?',
     intro:
       'Henüz bir yönteme karar vermek zorunda değilsin. Talebinde seni şu anda nelerin meşgul ettiğini ve kişisel destek mi yoksa eğitim mi aradığını anlat.',
@@ -78,6 +122,28 @@ export const catalogGuidance = {
     ],
   },
   en: {
+    personalTitle: 'I’m Çağla.',
+    personalIntro:
+      'At Medeina, you will find seminars, training and personal support with Çağla Mutlu.',
+    personalText:
+      'I offer personal support through sessions and coaching, and help you explore and deepen a method in seminars. Together, we can find an offer that suits what you are looking for.',
+    personalLink: 'Get to know me',
+    processTitle: 'How we begin.',
+    processIntro: 'From your first question to the right offer.',
+    steps: [
+      {
+        title: 'Tell me what you need',
+        text: 'Choose an offer or an introductory conversation and send your questions through the enquiry form.',
+      },
+      {
+        title: 'We discuss the details',
+        text: 'We discuss what you are looking for and clarify costs, available dates, format and prerequisites.',
+      },
+      {
+        title: 'Take time to decide',
+        text: 'An enquiry is not a booking. Once the details are clear, you decide whether you would like to take part.',
+      },
+    ],
     title: 'What suits you?',
     intro:
       'You do not need to choose a method yet. Describe what is on your mind and whether you are looking for personal support or training in your enquiry.',

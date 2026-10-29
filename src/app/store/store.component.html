@@ -58,7 +58,7 @@
           <a
             class="text-link"
             href="#kollektion"
-            (click)="collection.scrollIntoView({ behavior: 'auto' }); $event.preventDefault()"
+            (click)="scrollToCollection(collection, $event)"
           >
             <app-localized-text [text]="label('collection')" />
             <span aria-hidden="true">↓</span>
@@ -80,11 +80,10 @@
         aria-labelledby="collection-title"
       >
         <div
-          #collection
           id="kollektion"
           class="collection-heading"
         >
-          <h2 id="collection-title"><app-localized-text [text]="label('collection')" /></h2>
+          <h2 #collection id="collection-title"><app-localized-text [text]="label('collection')" /></h2>
           <span aria-live="polite">
             {{ products().length }}
             <app-localized-text [text]="label('count')" />

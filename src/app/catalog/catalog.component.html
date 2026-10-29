@@ -3,70 +3,66 @@
   aria-labelledby="catalog-title"
 >
   <div class="catalog-shell container">
-    <a
-      class="back-button"
-      routerLink="/"
-    >
-      ← {{ state.copy.home }}
-    </a>
     @if (section()) {
       <nav
         class="section-switch"
         [attr.aria-label]="copy().title + ' / ' + copy().sessions"
       >
-        <a routerLink="/angebote">{{ state.copy.offersLabel }}</a>
+        <a routerLink="/angebote"><app-stable-text [texts]="siteTexts('offersLabel')" /></a>
         <a
           routerLink="/angebote"
           [queryParams]="{ bereich: 'seminars' }"
           [attr.aria-current]="section() === 'seminars' ? 'page' : null"
         >
-          {{ copy().title }}
+          <app-stable-text [texts]="copyTexts('title')" />
         </a>
         <a
           routerLink="/angebote"
           [queryParams]="{ bereich: 'sessions' }"
           [attr.aria-current]="section() === 'sessions' ? 'page' : null"
         >
-          {{ copy().sessions }}
+          <app-stable-text [texts]="copyTexts('sessions')" />
         </a>
       </nav>
     }
     @if (selected(); as offer) {
       <article class="detail">
-        <a
-          class="back-button"
-          [routerLink]="basePath()"
-          [queryParams]="selectionParams()"
-        >
-          <span aria-hidden="true">←</span>
-          {{ copy().back }}
-        </a>
         <p class="category-label">{{ categoryTitle(offer.category) }}</p>
         <h1
           #viewHeading
           id="catalog-title"
           tabindex="-1"
         >
-          {{ offer.title[state.language()] }}
+          <app-stable-text [texts]="[offer.title.de, offer.title.tr, offer.title.en]" />
         </h1>
         <p class="detail-description">{{ offer.description[state.language()] }}</p>
+        @if (state.language() === 'en') {
+          <aside
+            class="catalog-language-note"
+            aria-labelledby="interpreting-title"
+          >
+            <h3 id="interpreting-title">{{ state.copy.englishSupportTitle }}</h3>
+            <p>{{ state.copy.englishSupportText }}</p>
+          </aside>
+        }
+
         <dl class="facts">
           <div>
-            <dt>{{ guidance().costs }}</dt>
-            <dd>{{ guidance().costsValue }}</dd>
+            <dt><app-stable-text [texts]="guidanceTexts('costs')" /></dt>
+            <dd><app-stable-text [texts]="guidanceTexts('costsValue')" /></dd>
           </div>
           <div>
-            <dt>{{ copy().duration }}</dt>
+            <dt><app-stable-text [texts]="copyTexts('duration')" /></dt>
             <dd>{{ offer.duration?.[state.language()] || copy().pending }}</dd>
           </div>
           <div>
-            <dt>{{ copy().format }}</dt>
+            <dt><app-stable-text [texts]="copyTexts('format')" /></dt>
             <dd>{{ offer.format?.[state.language()] || copy().pending }}</dd>
           </div>
         </dl>
         <div class="detail-columns">
           <section>
-            <h3>{{ copy().contents }}</h3>
+            <h3><app-stable-text [texts]="copyTexts('contents')" /></h3>
             @if (offer.contents; as contents) {
               <ul>
                 @for (content of contents; track $index) {
@@ -74,10 +70,10 @@
                 }
               </ul>
             } @else {
-              <p>{{ copy().pending }}</p>
+              <p><app-stable-text [texts]="copyTexts('pending')" /></p>
             }
             @if (offer.levels; as levels) {
-              <h3>{{ copy().levels }}</h3>
+              <h3><app-stable-text [texts]="copyTexts('levels')" /></h3>
               <ul>
                 @for (level of levels; track $index) {
                   <li>{{ level[state.language()] }}</li>
@@ -86,7 +82,7 @@
             }
           </section>
           <section>
-            <h3>{{ copy().prerequisites }}</h3>
+            <h3><app-stable-text [texts]="copyTexts('prerequisites')" /></h3>
             @if (offer.prerequisites; as prerequisites) {
               <ul>
                 @for (id of prerequisites; track id) {
@@ -94,9 +90,9 @@
                 }
               </ul>
             } @else {
-              <p>{{ copy().pending }}</p>
+              <p><app-stable-text [texts]="copyTexts('pending')" /></p>
             }
-            <h3>{{ copy().dates }}</h3>
+            <h3><app-stable-text [texts]="copyTexts('dates')" /></h3>
             @if (offer.dates.length) {
               <ul>
                 @for (date of offer.dates; track date.startsAt) {
@@ -107,12 +103,13 @@
                 }
               </ul>
             } @else {
-              <p>{{ copy().datesPending }}</p>
+              <p><app-stable-text [texts]="copyTexts('datesPending')" /></p>
             }
           </section>
         </div>
-        <app-english-support-notice />
-        <p class="inquiry-explanation">{{ guidance().detailIntro }}</p>
+        <p class="inquiry-explanation">
+          <app-stable-text [texts]="guidanceTexts('detailIntro')" />
+        </p>
         <button
           class="catalog-cta"
           (click)="request(offer.id)"
@@ -129,21 +126,25 @@
           id="catalog-title"
           tabindex="-1"
         >
-          {{
-            filter()
-              ? categoryTitle(filter()!)
-              : section() === 'seminars'
-                ? copy().title
-                : section() === 'sessions'
-                  ? copy().sessions
-                  : state.copy.offersLabel
-          }}
+          <app-stable-text [texts]="headingTexts()" />
         </h1>
         <p>
-          {{ !section() ? copy().chooseSection : filter() ? copy().intro : copy().chooseMethod }}
+          <app-stable-text
+            [texts]="copyTexts(!section() ? 'chooseSection' : filter() ? 'intro' : 'chooseMethod')"
+          />
         </p>
       </div>
+      @if (state.language() === 'en') {
+        <aside
+          class="catalog-language-note"
+          aria-labelledby="interpreting-title"
+        >
+          <h3 id="interpreting-title">{{ state.copy.englishSupportTitle }}</h3>
+          <p>{{ state.copy.englishSupportText }}</p>
+        </aside>
+      }
       @if (!section()) {
+        <ng-container *ngTemplateOutlet="personalIntro" />
         <nav
           class="method-grid"
           [attr.aria-label]="copy().chooseSection"
@@ -153,10 +154,12 @@
             routerLink="/angebote"
             [queryParams]="{ bereich: 'seminars' }"
           >
-            <h2>{{ copy().title }}</h2>
-            <p class="section-description">{{ copy().seminarsSummary }}</p>
+            <h2><app-stable-text [texts]="copyTexts('title')" /></h2>
+            <p class="section-description">
+              <app-stable-text [texts]="copyTexts('seminarsSummary')" />
+            </p>
             <span class="method-link">
-              {{ copy().exploreMethod }}
+              <app-stable-text [texts]="copyTexts('exploreMethod')" />
               <span aria-hidden="true">⟶</span>
             </span>
           </a>
@@ -165,10 +168,12 @@
             routerLink="/angebote"
             [queryParams]="{ bereich: 'sessions' }"
           >
-            <h2>{{ copy().sessions }}</h2>
-            <p class="section-description">{{ copy().sessionsSummary }}</p>
+            <h2><app-stable-text [texts]="copyTexts('sessions')" /></h2>
+            <p class="section-description">
+              <app-stable-text [texts]="copyTexts('sessionsSummary')" />
+            </p>
             <span class="method-link">
-              {{ copy().exploreMethod }}
+              <app-stable-text [texts]="copyTexts('exploreMethod')" />
               <span aria-hidden="true">⟶</span>
             </span>
           </a>
@@ -183,7 +188,7 @@
             [routerLink]="basePath()"
             [queryParams]="selectionParams(null)"
           >
-            {{ copy().all }}
+            <app-stable-text [texts]="copyTexts('all')" />
           </a>
           @for (category of categories(); track category.id) {
             <a
@@ -191,7 +196,9 @@
               [queryParams]="selectionParams(category.id)"
               [attr.aria-current]="filter() === category.id ? 'true' : null"
             >
-              {{ category.title[state.language()] }}
+              <app-stable-text
+                [texts]="[category.title.de, category.title.tr, category.title.en]"
+              />
             </a>
           }
         </div>
@@ -200,17 +207,23 @@
           aria-live="polite"
           aria-atomic="true"
         >
-          {{ offers().length }} {{ copy().count }}
+          {{ offers().length }}
+          <app-stable-text [texts]="copyTexts('count')" />
         </p>
         <div class="catalog-grid">
           @for (offer of offers(); track offer.id) {
             <article class="catalog-card">
               <p class="category-label">{{ categoryTitle(offer.category) }}</p>
-              <h2>{{ offer.title[state.language()] }}</h2>
-              <p class="card-summary">{{ offer.summary[state.language()] }}</p>
+              <h2>
+                <app-stable-text [texts]="[offer.title.de, offer.title.tr, offer.title.en]" />
+              </h2>
+              <p class="card-summary">
+                <app-stable-text [texts]="[offer.summary.de, offer.summary.tr, offer.summary.en]" />
+              </p>
               @if (offer.duration) {
                 <p class="duration">
-                  {{ copy().duration }} · {{ offer.duration[state.language()] }}
+                  <app-stable-text [texts]="copyTexts('duration')" />
+                  · {{ offer.duration[state.language()] }}
                 </p>
               }
               <div class="card-actions">
@@ -220,7 +233,7 @@
                   [queryParams]="selectionParams()"
                   [attr.aria-label]="copy().more + ': ' + offer.title[state.language()]"
                 >
-                  {{ copy().more }}
+                  <app-stable-text [texts]="copyTexts('more')" />
                   <span aria-hidden="true">⟶</span>
                 </a>
                 @if (section() === 'sessions') {
@@ -229,7 +242,7 @@
                     (click)="request(offer.id)"
                     [attr.aria-label]="copy().appointment + ': ' + offer.title[state.language()]"
                   >
-                    {{ copy().appointment }}
+                    <app-stable-text [texts]="copyTexts('appointment')" />
                   </button>
                 }
               </div>
@@ -247,10 +260,17 @@
               [routerLink]="basePath()"
               [queryParams]="selectionParams(category.id)"
             >
-              <span class="method-count">{{ categoryCount(category.id) }} {{ copy().count }}</span>
-              <h2>{{ category.title[state.language()] }}</h2>
+              <span class="method-count">
+                {{ categoryCount(category.id) }}
+                <app-stable-text [texts]="copyTexts('count')" />
+              </span>
+              <h2>
+                <app-stable-text
+                  [texts]="[category.title.de, category.title.tr, category.title.en]"
+                />
+              </h2>
               <span class="method-link">
-                {{ copy().exploreMethod }}
+                <app-stable-text [texts]="copyTexts('exploreMethod')" />
                 <span aria-hidden="true">⟶</span>
               </span>
             </a>
@@ -259,40 +279,56 @@
       }
     }
     @if (!selected()) {
-      <app-english-support-notice />
       <section
         class="offer-guidance"
         aria-labelledby="guidance-title"
       >
-        <h2 id="guidance-title">{{ guidance().title }}</h2>
+        <h2 id="guidance-title"><app-stable-text [texts]="guidanceTexts('title')" /></h2>
         <div>
-          <p>{{ guidance().intro }}</p>
+          <p><app-stable-text [texts]="guidanceTexts('intro')" /></p>
           <button
             class="catalog-cta"
             (click)="request('intro')"
           >
-            {{ guidance().action }}
+            <app-stable-text [texts]="guidanceTexts('action')" />
             <span aria-hidden="true">⟶</span>
           </button>
         </div>
       </section>
     }
     <section
+      class="inquiry-process"
+      aria-labelledby="process-title"
+    >
+      <div>
+        <h2 id="process-title"><app-stable-text [texts]="guidanceTexts('processTitle')" /></h2>
+        <p><app-stable-text [texts]="guidanceTexts('processIntro')" /></p>
+      </div>
+      <ol>
+        @for (step of guidance().steps; track $index) {
+          <li>
+            <h3><app-stable-text [texts]="stepTexts($index, 'title')" /></h3>
+            <p><app-stable-text [texts]="stepTexts($index, 'text')" /></p>
+          </li>
+        }
+      </ol>
+    </section>
+    <section
       class="catalog-faq"
       aria-labelledby="faq-title"
     >
       <div class="faq-heading">
-        <h2 id="faq-title">{{ guidance().faqTitle }}</h2>
-        <p>{{ guidance().faqIntro }}</p>
+        <h2 id="faq-title"><app-stable-text [texts]="guidanceTexts('faqTitle')" /></h2>
+        <p><app-stable-text [texts]="guidanceTexts('faqIntro')" /></p>
       </div>
       <div class="faq-questions">
-        @for (item of guidance().questions; track item.question) {
+        @for (item of guidance().questions; track $index) {
           <details>
             <summary>
-              {{ item.question }}
+              <app-stable-text [texts]="questionTexts($index, 'question')" />
               <span aria-hidden="true">+</span>
             </summary>
-            <p>{{ item.answer }}</p>
+            <p><app-stable-text [texts]="questionTexts($index, 'answer')" /></p>
           </details>
         }
       </div>
@@ -301,8 +337,32 @@
       class="method-note"
       aria-labelledby="method-note-title"
     >
-      <h3 id="method-note-title">{{ copy().noticeTitle }}</h3>
-      <p>{{ copy().notice }}</p>
+      <h3 id="method-note-title"><app-stable-text [texts]="copyTexts('noticeTitle')" /></h3>
+      <p><app-stable-text [texts]="copyTexts('notice')" /></p>
     </aside>
   </div>
 </section>
+
+<ng-template #personalIntro>
+  <section
+    class="personal-intro"
+    aria-labelledby="personal-title"
+  >
+    <img
+      src="images/cagla-angebote.jpeg"
+      [alt]="state.copy.caglaPortraitAlt"
+      width="1122"
+      height="1402"
+      decoding="async"
+    />
+    <div>
+      <h2 id="personal-title"><app-stable-text [texts]="guidanceTexts('personalTitle')" /></h2>
+      <p class="personal-summary"><app-stable-text [texts]="guidanceTexts('personalIntro')" /></p>
+      <p><app-stable-text [texts]="guidanceTexts('personalText')" /></p>
+      <a routerLink="/ueber-mich">
+        <app-stable-text [texts]="guidanceTexts('personalLink')" />
+        <span aria-hidden="true">⟶</span>
+      </a>
+    </div>
+  </section>
+</ng-template>

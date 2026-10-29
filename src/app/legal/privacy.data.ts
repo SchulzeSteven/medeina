@@ -39,6 +39,7 @@ export const privacyCopy = {
       {
         title: 'Technisch erforderliche Sitzungen',
         paragraphs: [
+          'Wenn du eine Sprache auswählst, speichern wir diese unter „medeina-language“ im lokalen Browserspeicher (Local Storage). Sie bleibt bis zum Löschen der Website-Daten gespeichert. Ohne gespeicherte Auswahl verwenden wir eine unterstützte Browsersprache, andernfalls Deutsch. Die Sprachpräferenz wird nicht an einen externen Dienst übermittelt.',
           'Beim Absenden des Anfrageformulars wird das Sitzungscookie „medeina_inquiry“ verwendet. Es verknüpft Sicherheitskennungen und begrenzt missbräuchliche Anfragen. Der Test-Checkout verwendet entsprechend „medeina_checkout“. Die Cookies haben im Anwendungscode keine dauerhafte Ablaufzeit und sind als Sitzungscookies eingerichtet. Serverseitig können Sicherheitskennungen und Zeitpunkte von Versuchen bis zur Bereinigung der Sitzung gespeichert bleiben.',
           'Für unbedingt erforderliche Speicherung im Endgerät ist § 25 Abs. 2 Nr. 2 TDDDG maßgeblich; die zugehörige Verarbeitung personenbezogener Daten dient auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO der Sicherheit der angeforderten Funktionen. Die konkrete serverseitige Sitzungs-Löschfrist ist noch zu bestätigen. Diese Aussage erfasst nicht automatisch Cookies der externen Zahlungsanbieter.',
         ],
@@ -106,6 +107,7 @@ export const privacyCopy = {
       {
         title: 'Teknik olarak gerekli oturumlar',
         paragraphs: [
+          'Bir dil seçtiğinde bu tercih, tarayıcının yerel depolamasında (Local Storage) “medeina-language” adıyla site verilerini silene kadar saklanır. Kayıtlı bir seçim yoksa desteklenen tarayıcı dili, aksi hâlde Almanca kullanılır. Dil tercihi harici bir hizmete iletilmez.',
           'Form gönderiminde güvenlik ve kötüye kullanım sınırlandırması için “medeina_inquiry”, test ödemesinde “medeina_checkout” oturum çerezleri kullanılır. Uygulama kalıcı bir çerez son kullanma tarihi tanımlamaz. Sunucu güvenlik kimliklerini ve deneme zamanlarını oturum temizlenene kadar saklayabilir; kesin silme süresi henüz doğrulanmalıdır.',
           'Talep edilen işlev için kesinlikle gerekli cihaz depolaması § 25(2)(2) TDDDG, ilgili güvenlik amaçlı veri işleme GDPR Madde 6(1)(f) kapsamında değerlendirilir. Bu açıklama ödeme sağlayıcılarının çerezlerini otomatik olarak kapsamaz.',
         ],
@@ -173,6 +175,7 @@ export const privacyCopy = {
       {
         title: 'Technically necessary sessions',
         paragraphs: [
+          'When you select a language, we save your preference as “medeina-language” in your browser’s Local Storage until you delete the website data. Without a saved choice, we use a supported browser language, otherwise German. The language preference is not sent to an external service.',
           'Submitting the enquiry form uses the session cookie ‘medeina_inquiry’. It connects security identifiers and limits abusive enquiries. The test checkout similarly uses ‘medeina_checkout’. The application code does not set a persistent expiry time; these are configured as session cookies. Security identifiers and attempt timestamps may remain stored on the server until the session is cleared.',
           'Section 25(2)(2) TDDDG applies to strictly necessary storage on the user’s device; the related processing of personal data serves the security of requested functions on the basis of Article 6(1)(f) GDPR. The specific server-side session deletion period remains to be confirmed. This statement does not automatically cover cookies used by external payment providers.',
         ],

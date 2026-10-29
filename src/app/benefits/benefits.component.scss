@@ -38,6 +38,16 @@
   position: absolute;
   pointer-events: none;
 }
+@media (min-width: 901px) {
+  .benefit:first-child {
+    justify-content: flex-start;
+    padding-left: 0;
+  }
+  .benefit:last-child {
+    justify-content: flex-end;
+    padding-right: 0;
+  }
+}
 @media (max-width: 900px) {
   .benefit-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));

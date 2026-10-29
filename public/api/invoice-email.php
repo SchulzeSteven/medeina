@@ -24,7 +24,7 @@ function invoice_email(array $invoice): array
         $quantity = (int) $item['quantity'];
         $unit = $escape($money($item['unitCents']));
         $line = $escape($money($item['unitCents'] * $quantity));
-        $rows .= "<tr><td style=\"padding:18px 0;border-bottom:1px solid #dbd6ca\">{$title}<br><span style=\"font-size:14px;color:#5a6864\">{$quantity} Stück · je {$unit}</span></td><td align=\"right\" style=\"padding:18px 0;border-bottom:1px solid #dbd6ca;white-space:nowrap\">{$line}</td></tr>";
+        $rows .= "<tr><td style=\"padding:18px 24px 18px 0;border-bottom:1px solid #dbd6ca\">{$title}<br><span style=\"font-size:14px;color:#5a6864\">{$quantity} Stück · je {$unit}</span></td><td align=\"right\" style=\"padding:18px 0;border-bottom:1px solid #dbd6ca;white-space:nowrap\">{$line}</td></tr>";
         $text .= "{$item['title']} · {$quantity} Stück · je " . $money($item['unitCents']) . ' · ' . $money($item['unitCents'] * $quantity) . "\n";
     }
     $shipping = $escape($money($invoice['shippingCents']));
@@ -44,9 +44,9 @@ function invoice_email(array $invoice): array
     <!doctype html>
     <html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{$number} · Medeina</title></head>
     <body style="margin:0;background:#faf7f2;color:#283d3e">
-      <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:32px 12px">
-        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;font:16px/1.7 Arial,Helvetica,sans-serif">
-          <tr><td style="padding:32px;background:#173d42;color:#faf7f2;border-radius:16px 16px 0 0">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:0">
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="width:100%;max-width:1440px;font:16px/1.7 Arial,Helvetica,sans-serif">
+          <tr><td style="padding:32px;background:#173d42;color:#faf7f2">
             <table role="presentation" cellpadding="0" cellspacing="0"><tr>
               <td width="80" valign="middle"><img src="cid:medeina-logo" alt="" width="80" style="display:block;width:80px;height:auto;border:0"></td>
               <td valign="middle" style="padding-left:16px"><p style="margin:0;font:28px Georgia,serif;letter-spacing:2px;color:#e7c579">MEDEINA</p>
@@ -64,8 +64,8 @@ function invoice_email(array $invoice): array
             </td></tr></table>
             <p style="margin:24px 0 4px;color:#795b3d;font-size:14px">RECHNUNG AN</p>
             <p style="margin:0 0 24px">{$name}<br>{$address}</p>
-            <table width="100%" cellpadding="0" cellspacing="0" style="font:16px/1.6 Arial,Helvetica,sans-serif;color:#283d3e">
-              <tr><th align="left" style="border-bottom:2px solid #285e65;padding:8px 0">Artikel</th><th align="right" style="border-bottom:2px solid #285e65;padding:8px 0">Betrag</th></tr>
+            <table width="100%" cellpadding="0" cellspacing="0" style="width:100%;font:16px/1.6 Arial,Helvetica,sans-serif;color:#283d3e">
+              <tr><th align="left" style="border-bottom:2px solid #285e65;padding:8px 24px 8px 0">Artikel</th><th align="right" style="border-bottom:2px solid #285e65;padding:8px 0">Betrag</th></tr>
               {$rows}
               <tr><td style="padding:16px 0">Versand</td><td align="right">{$shipping}</td></tr>
               {$taxRows}

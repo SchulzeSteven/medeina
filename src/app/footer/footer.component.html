@@ -73,14 +73,6 @@
         </a>
       </nav>
     </div>
-    <button
-      class="footer-back-top"
-      type="button"
-      (click)="scrollToTop()"
-      [attr.aria-label]="state.copy.backToTop"
-    >
-      Medeina ↑
-    </button>
   </div>
   <div class="container footer-bottom">
     <p>Copyright © 2026 Çağla Mutlu</p>
@@ -93,3 +85,14 @@
     </nav>
   </div>
 </footer>
+@if (showBackToTop()) {
+  <button
+    class="footer-back-top"
+    type="button"
+    (click)="scrollToTop()"
+    [attr.aria-label]="state.copy.backToTop"
+  >
+    {{ state.copy.backToTop }}
+    <span aria-hidden="true">↑</span>
+  </button>
+}

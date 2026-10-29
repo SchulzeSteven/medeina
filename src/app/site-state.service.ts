@@ -34,6 +34,7 @@ export class SiteStateService {
   message = '';
 
   constructor() {
+    this.language.set(this.initialLanguage());
     this.updateDocumentLanguage();
   }
   get copy() {
@@ -79,7 +80,27 @@ export class SiteStateService {
 
   setLanguage(language: Language) {
     this.language.set(language);
+    try {
+      this.document.defaultView?.localStorage.setItem('medeina-language', language);
+    } catch {
+      // Language switching also works when browser storage is blocked.
+    }
     this.updateDocumentLanguage();
+  }
+
+  private initialLanguage(): Language {
+    const view = this.document.defaultView;
+    try {
+      const saved = view?.localStorage.getItem('medeina-language');
+      if (saved === 'de' || saved === 'tr' || saved === 'en') return saved;
+    } catch {
+      // Fall back to browser preferences when storage is unavailable.
+    }
+    for (const locale of view?.navigator.languages ?? [view?.navigator.language ?? 'de']) {
+      const language = locale.toLowerCase().split(/[-_]/)[0];
+      if (language === 'de' || language === 'tr' || language === 'en') return language;
+    }
+    return 'de';
   }
 
   restorePageMetadata() {

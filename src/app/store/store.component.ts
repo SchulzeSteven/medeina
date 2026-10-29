@@ -1,5 +1,5 @@
 import { DOCUMENT } from '@angular/common';
-import { Component, computed, effect, inject } from '@angular/core';
+import { Component, computed, DestroyRef, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { LocalizedTextComponent, LocalizedText } from '../localized-text.component';
@@ -17,6 +17,8 @@ import { storeCategories, storeCopy, storeProducts, StoreProduct } from './store
 export class StoreComponent {
   readonly state = inject(SiteStateService);
   private readonly document = inject(DOCUMENT);
+  private scrollFrame = 0;
+  private readonly destroyRef = inject(DestroyRef);
   private readonly route = inject(ActivatedRoute);
   private readonly params = toSignal(this.route.paramMap, {
     initialValue: this.route.snapshot.paramMap,
@@ -36,6 +38,9 @@ export class StoreComponent {
     storeProducts.filter((p) => this.filter() === 'alle' || p.category === this.filter()),
   );
   constructor() {
+    this.destroyRef.onDestroy(() => {
+      this.document.defaultView?.cancelAnimationFrame(this.scrollFrame);
+    });
     effect(() => {
       const product = this.selected();
       this.document.title = `${product?.title[this.state.language()] ?? this.state.copy.storeLabel} · Medeina · Çağla Mutlu`;
@@ -44,6 +49,32 @@ export class StoreComponent {
         ?.setAttribute('content', product?.description[this.state.language()] ?? this.copy().intro);
     });
   }
+  scrollToCollection(title: HTMLElement, event: Event): void {
+    event.preventDefault();
+    const view = this.document.defaultView;
+    if (!view) return;
+
+    view.cancelAnimationFrame(this.scrollFrame);
+    const start = view.scrollY;
+    const headerHeight = this.document.querySelector('app-header')?.getBoundingClientRect().height ?? 0;
+    const target = Math.max(0, start + title.getBoundingClientRect().top - headerHeight - 24);
+    if (view.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      view.scrollTo({ top: target, behavior: 'instant' });
+      return;
+    }
+
+    const startedAt = view.performance.now();
+    const animate = (now: number) => {
+      const progress = Math.min((now - startedAt) / 1120, 1);
+      const eased = progress < 0.5
+        ? 4 * progress ** 3
+        : 1 - (-2 * progress + 2) ** 3 / 2;
+      view.scrollTo({ top: start + (target - start) * eased, behavior: 'instant' });
+      if (progress < 1) this.scrollFrame = view.requestAnimationFrame(animate);
+    };
+    this.scrollFrame = view.requestAnimationFrame(animate);
+  }
+
   label(key: keyof typeof storeCopy.de): LocalizedText {
     return { de: storeCopy.de[key], tr: storeCopy.tr[key], en: storeCopy.en[key] };
   }
