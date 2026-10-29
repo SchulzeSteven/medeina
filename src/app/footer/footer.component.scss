@@ -47,7 +47,7 @@
 .footer-back-top {
   position: fixed;
   right: max(20px, env(safe-area-inset-right, 0px));
-  bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+  bottom: calc(100px + env(safe-area-inset-bottom, 0px));
   z-index: 9;
   background: var(--paper);
   box-shadow: 0 4px 20px rgb(23 61 66 / 15%);
