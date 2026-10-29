@@ -452,9 +452,15 @@ li + li {
 .personal-intro a {
   display: inline-flex;
   align-items: center;
-  gap: 24px;
+  gap: 30px;
+  text-decoration: none;
+}
+.personal-intro a .personal-link-label {
   text-decoration: underline;
   text-underline-offset: 5px;
+}
+.personal-intro a:is(:hover, :focus-visible) .personal-link-label {
+  text-decoration-thickness: 2px;
 }
 .inquiry-process {
   display: grid;

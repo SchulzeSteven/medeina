@@ -359,7 +359,7 @@
       <h2 id="personal-title"><app-stable-text [texts]="guidanceTexts('personalTitle')" /></h2>
       <p class="personal-summary"><app-stable-text [texts]="guidanceTexts('personalIntro')" /></p>
       <a routerLink="/ueber-mich">
-        <app-stable-text [texts]="guidanceTexts('personalLink')" />
+        <span class="personal-link-label">{{ guidance().personalLink }}</span>
         <span aria-hidden="true">⟶</span>
       </a>
     </div>
