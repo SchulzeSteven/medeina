@@ -1,11 +1,9 @@
 export const catalogGuidance = {
   de: {
-    personalTitle: 'Ich bin Çağla.',
+    personalTitle: 'Seminare und persönliche Begleitung',
     personalIntro:
-      'Bei Medeina findest du Seminare, Ausbildungen und persönliche Begleitung mit Çağla Mutlu.',
-    personalText:
-      'Ich begleite dich in Sessions und Coaching oder unterstütze dich dabei, in Seminaren eine Methode kennenzulernen und zu vertiefen. Gemeinsam schauen wir, welches Angebot zu deinem Anliegen passt.',
-    personalLink: 'Lerne mich kennen',
+      'Ob du ein persönliches Anliegen mitbringst oder eine Methode erlernen möchtest: Hier findest du meine Angebote. Gemeinsam schauen wir, was zu dir passt.',
+    personalLink: 'Mehr über Çağla',
     processTitle: 'So beginnt es.',
     processIntro: 'Von deiner ersten Frage zum passenden Angebot.',
     steps: [
@@ -61,12 +59,10 @@ export const catalogGuidance = {
     ],
   },
   tr: {
-    personalTitle: 'Ben Çağla.',
+    personalTitle: 'Seminerler ve kişisel destek',
     personalIntro:
-      'Medeina’da Çağla Mutlu ile seminerler, eğitimler ve kişisel destek bulabilirsin.',
-    personalText:
-      'Seans ve koçlukla sana eşlik ediyor, seminerlerde ise bir yöntemi tanımana ve derinleştirmene yardımcı oluyorum. İhtiyacına hangi hizmetin uygun olduğuna birlikte bakabiliriz.',
-    personalLink: 'Beni daha yakından tanı',
+      'İster kişisel bir konuda destek arıyor ister bir yöntem öğrenmek istiyor ol: Hizmetlerimi burada bulabilirsin. Sana neyin uygun olduğuna birlikte bakabiliriz.',
+    personalLink: 'Çağla hakkında daha fazla',
     processTitle: 'Böyle başlıyoruz.',
     processIntro: 'İlk sorundan sana uygun hizmete.',
     steps: [
@@ -122,12 +118,10 @@ export const catalogGuidance = {
     ],
   },
   en: {
-    personalTitle: 'I’m Çağla.',
+    personalTitle: 'Seminars and personal support',
     personalIntro:
-      'At Medeina, you will find seminars, training and personal support with Çağla Mutlu.',
-    personalText:
-      'I offer personal support through sessions and coaching, and help you explore and deepen a method in seminars. Together, we can find an offer that suits what you are looking for.',
-    personalLink: 'Get to know me',
+      'Whether you are looking for personal support or want to learn a method, you can explore my offers here. Together, we can find what suits you.',
+    personalLink: 'More about Çağla',
     processTitle: 'How we begin.',
     processIntro: 'From your first question to the right offer.',
     steps: [
