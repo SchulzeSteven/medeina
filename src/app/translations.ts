@@ -26,10 +26,23 @@ const de = {
   aboutCertifications: 'Meine Zertifizierungen bei ThetaHealing® ansehen',
   aboutCertificationsDescription:
     'Meine Zertifizierungen findest du auf meinem ThetaHealing®-Profil.',
-  aboutCertificationsAction: 'Zertifizierungen ansehen',
+  aboutCertificationsAction: 'Alle Zertifizierungen ansehen',
+  aboutThetaQualifications: [
+    'Practitioner · 19 Zertifizierungen',
+    'Instructor · 8 Zertifizierungen',
+    '2 ergänzende Seminare',
+  ],
   aboutInnerSpeakDescription:
     'Im Verzeichnis der ausgebildeten und zertifizierten InnerSpeak-Lehrenden von Jean Adrienne findest du mich unter „Germany“ bei Berlin.',
   aboutInnerSpeakAction: 'InnerSpeak-Verzeichnis ansehen',
+  aboutCertificateView: 'Zertifikat ansehen',
+  aboutVioletFlameCertificate: 'Violette Flamme',
+  aboutCertificatesLabel: 'Zertifikate:',
+  aboutReikiDescription:
+    'Meine Usui Reiki-Ausbildungen umfassen den 1., 2. und 3. Grad sowie den Master.',
+  aboutFurtherTrainingTitle: 'Weitere Qualifikationen',
+  aboutFurtherTrainingDescription:
+    'Meine Zertifizierungen in energetischen und spirituellen Methoden wie Kundalini Reiki, Ra-Sheeba, Violette Flamme, Past-Life-Regression und mehr.',
   slogansTitle: 'Raum für deine Veränderung',
   sloganTransformation: 'Der Schlüssel zur Veränderung liegt in dir.',
   sloganBloom: 'Heilen. Wachsen. Aufblühen.',
@@ -226,10 +239,23 @@ const en: typeof de = {
   aboutMore: 'More about me',
   aboutCertifications: 'View my ThetaHealing® certifications',
   aboutCertificationsDescription: 'You can find my certifications on my ThetaHealing® profile.',
-  aboutCertificationsAction: 'View certifications',
+  aboutCertificationsAction: 'View all certifications',
+  aboutThetaQualifications: [
+    'Practitioner · 19 certifications',
+    'Instructor · 8 certifications',
+    '2 elective seminars',
+  ],
   aboutInnerSpeakDescription:
     'You can find me in Jean Adrienne’s directory of trained and certified InnerSpeak teachers under ‘Germany’, listed in Berlin.',
   aboutInnerSpeakAction: 'View InnerSpeak directory',
+  aboutCertificateView: 'View certificate',
+  aboutVioletFlameCertificate: 'Violet Flame',
+  aboutCertificatesLabel: 'Certificates:',
+  aboutReikiDescription:
+    'My Usui Reiki training includes the first, second and third degrees, as well as Master.',
+  aboutFurtherTrainingTitle: 'Further qualifications',
+  aboutFurtherTrainingDescription:
+    'My certifications in energy and spiritual methods include Kundalini Reiki, Ra-Sheeba, Violet Flame, Past-Life Regression and more.',
   slogansTitle: 'Space for your transformation',
   sloganTransformation: 'The key to change is within you.',
   sloganBloom: 'Heal. Grow. Bloom.',
@@ -426,10 +452,23 @@ const tr: typeof de = {
   aboutMore: 'Beni daha yakından tanı',
   aboutCertifications: 'ThetaHealing® sertifikalarımı görüntüle',
   aboutCertificationsDescription: 'Sertifikalarımı ThetaHealing® profilimde bulabilirsin.',
-  aboutCertificationsAction: 'Sertifikaları görüntüle',
+  aboutCertificationsAction: 'Tüm sertifikaları görüntüle',
+  aboutThetaQualifications: [
+    'Uygulayıcı · 19 sertifika',
+    'Eğitmen · 8 sertifika',
+    '2 seçmeli seminer',
+  ],
   aboutInnerSpeakDescription:
     'Jean Adrienne’in eğitimli ve sertifikalı InnerSpeak eğitmenleri listesinde beni “Germany” başlığı altında, Berlin kaydında bulabilirsin.',
   aboutInnerSpeakAction: 'InnerSpeak listesini görüntüle',
+  aboutCertificateView: 'Sertifikayı görüntüle',
+  aboutVioletFlameCertificate: 'Mor Alev',
+  aboutCertificatesLabel: 'Sertifikalar:',
+  aboutReikiDescription:
+    'Usui Reiki eğitimlerim 1., 2. ve 3. seviyeleri ve Master seviyesini kapsar.',
+  aboutFurtherTrainingTitle: 'Diğer yetkinlikler',
+  aboutFurtherTrainingDescription:
+    'Kundalini Reiki, Ra-Sheeba, Mor Alev, Geçmiş Yaşam Regresyonu ve daha birçok enerjetik ve spiritüel yöntemdeki sertifikalarım.',
   slogansTitle: 'Değişimin için bir alan',
   sloganTransformation: 'Dönüşümün anahtarı senin içinde.',
   sloganBloom: 'İyileş. Büyü. Çiçek aç.',
