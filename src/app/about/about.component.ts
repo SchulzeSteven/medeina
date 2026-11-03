@@ -1,6 +1,6 @@
 import { DOCUMENT } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { Component, DestroyRef, effect, inject } from '@angular/core';
+import { Component, DestroyRef, ElementRef, HostListener, effect, inject } from '@angular/core';
 import { translations } from '../translations';
 import { SiteStateService } from '../site-state.service';
 import { ScrollRevealDirective } from '../scroll-reveal.directive';
@@ -19,6 +19,7 @@ export class AboutComponent {
   }));
   readonly fullPage = inject(ActivatedRoute).snapshot.data['aboutPage'] === true;
   private readonly document = inject(DOCUMENT);
+  private readonly element = inject<ElementRef<HTMLElement>>(ElementRef);
 
   readonly certificates = {
     rasheeba: {
@@ -52,6 +53,16 @@ export class AboutComponent {
   };
   activeCertificate: keyof typeof this.certificates | null = null;
   private restoreCertificateScroll: (() => void) | null = null;
+
+  @HostListener('document:click', ['$event'])
+  closeCertificateDropdownsOutside(event: MouseEvent) {
+    const path = event.composedPath();
+    this.element.nativeElement
+      .querySelectorAll<HTMLDetailsElement>('.certificate-dropdown[open]')
+      .forEach((dropdown) => {
+        if (!path.includes(dropdown)) dropdown.open = false;
+      });
+  }
 
   openCertificate(dialog: HTMLDialogElement, certificate: keyof typeof this.certificates) {
     this.activeCertificate = certificate;
